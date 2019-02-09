@@ -13,21 +13,21 @@ constexpr int PDPID = 0;
 
 constexpr bool CONFIG_MODE = false;
 
-constexpr int hatchRun = 0;
-constexpr int hatchAbort = 0;
+constexpr int hatchRun = 0; //A
+constexpr int hatchAbort = 0; //B
 
-constexpr int eleLift = 0;
-constexpr int eleSwitch = 0;
-constexpr int eleOverride = 0;
-constexpr int eleOverrideAxis = 0;
+constexpr int eleLift = 0; //Right Bumper
+constexpr int eleSwitch = 0; //Left Bumper
+constexpr int eleOverride = 0; //X
+constexpr int eleOverrideAxis = 0; //Axis 1
 
-constexpr int climbIncStage = 0;
-constexpr int climbDecStage = 0;
-constexpr int climbWheelAxis = 0;
-constexpr int climbArmAxis = 0;
+constexpr int climbIncStage = 0; //Menu
+constexpr int climbDecStage = 0; //View
+constexpr int climbWheelAxis = 0; //Axis 1
+constexpr int climbArmAxis = 0; //Axis 4
 
-constexpr int cargoToggle = 0;
-constexpr int cargoIntakeAxis = 0;
+constexpr int cargoToggle = 0; //Y
+constexpr int cargoIntakeAxis = 0; //Eject Is Right Trigger, Intake Is Left Trigger
 
 
 //
