@@ -12,9 +12,6 @@
 
 
 void Robot::RobotInit() {
-  
-    Driver.SetThrottleChannel(1);
-    Driver.SetTwistChannel(4);
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
@@ -54,11 +51,45 @@ void Robot::TeleopInit() {}
 
 void Robot::TeleopPeriodic() {
 
+	if(Op.GetRawButtonPressed(hatchAbort)){
+		Hatch.Abort();
+	}
 
+	Hatch.Run(Op.GetRawButton(hatchRun));
 
-    Drive.Drive(deadzone(Driver.GetThrottle()), deadzone(Driver.GetTwist()), false, true);
+	Ele.Override(deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButtonPressed(eleOverride));
+	
+	if(Op.GetRawButtonPressed(eleSwitch)){
+		Ele.Switch();
+	}
 
+	if(Op.GetRawButtonPressed(eleLift)){
+		Ele.Lift();
+	}
+	
+	if(Op.GetRawButtonPressed(climbIncStage)){
+		Climb.incStage();
+	}
 
+	if(Op.GetRawButtonPressed(climbDecStage)){
+		Climb.decStage();
+	}
+
+    Climb.deployArm(Op.GetRawAxis(climbArmAxis));
+	Climb.setWheel(Op.GetRawAxis(climbWheelAxis));
+
+	if(Op.GetRawButtonPressed(cargoToggle)){
+		Cargo.ToggleArm();
+	}
+
+	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis));
+	
+	Ele.Refresh();
+	
+	
+	
+	
+	Drive.Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), false, true);
 
 }
 
