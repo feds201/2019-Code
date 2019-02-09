@@ -2,14 +2,12 @@
 
 Climber::Climber() {
 
-    front1.Set(frc::DoubleSolenoid::Value::kReverse);
-    front2.Set(frc::DoubleSolenoid::Value::kReverse);
-    back1.Set(frc::DoubleSolenoid::Value::kReverse);
-    back2.Set(frc::DoubleSolenoid::Value::kReverse);
-    tractiondeploy.Set(frc::DoubleSolenoid::Value::kReverse);
+    front.Set(frc::DoubleSolenoid::Value::kReverse);
+    back.Set(frc::DoubleSolenoid::Value::kReverse);
     //This makes sure that all of the pistons are retracted by default
 
-    tractionwheel.Set(0);
+    tractionwheel.Set(ControlMode::PercentOutput, 0);
+    armMotor.Set(ControlMode::PercentOutput, 0);
     //This makes sure that the motor for the wheel is off by default
 
 }
@@ -35,11 +33,21 @@ void Climber::incStage(){
   void Climber::setWheel(double speed){
 
       if(stage == 2){
-      tractionwheel.Set(speed);
+      tractionwheel.Set(ControlMode::PercentOutput, speed);
       }else{
-        tractionwheel.Set(0);
+        tractionwheel.Set(ControlMode::PercentOutput, 0);
         //This sets the speed of the traction wheel; if it's in any stage but 2, it sets the speed to 0
       }
+  }
+
+  void Climber::deployArm(double speed){
+
+      if(stage == 1 ||stage == 2 || stage == 3){
+            armMotor.Set(ControlMode::PercentOutput, speed);
+        }else{
+            armMotor.Set(ControlMode::PercentOutput, 0);
+        }
+
   }
 
   void Climber::excStage(){
@@ -55,14 +63,12 @@ void Climber::incStage(){
             //This case extends all of the pistons on the robot except for the one for the traction wheel
         case 2:
 
-            deployArm();
 
             break;
             //This case extends the traction wheel (but does not run the motor for the traction wheel)
         case 3:
         
             liftFront();
-            deployArm();
 
             break;
             //This case retracts the pistons on the front of the robot and retracts the traction wheel
@@ -84,48 +90,31 @@ void Climber::incStage(){
   }
   void Climber::liftFront(){
 
-      if(front1.Get() == frc::DoubleSolenoid::Value::kReverse){
-          front1.Set(frc::DoubleSolenoid::Value::kForward);
-          front2.Set(frc::DoubleSolenoid::Value::kForward);
+      if(front.Get() == frc::DoubleSolenoid::Value::kReverse){
+          front.Set(frc::DoubleSolenoid::Value::kForward);
       }else{
-          front1.Set(frc::DoubleSolenoid::Value::kReverse);
-          front2.Set(frc::DoubleSolenoid::Value::kReverse);
+          front.Set(frc::DoubleSolenoid::Value::kReverse);
       }
     //If this is set to true, the front 2 pistons deploy; if it is false, the front 2 pistons retract
 
   }
   void Climber::liftBack(){
 
-      if(back1.Get() == frc::DoubleSolenoid::Value::kReverse){
-          back1.Set(frc::DoubleSolenoid::Value::kForward);
-          back2.Set(frc::DoubleSolenoid::Value::kForward);
+      if(back.Get() == frc::DoubleSolenoid::Value::kReverse){
+          back.Set(frc::DoubleSolenoid::Value::kForward);
       }else{
-          back1.Set(frc::DoubleSolenoid::Value::kReverse);
-          back2.Set(frc::DoubleSolenoid::Value::kReverse);
+          back.Set(frc::DoubleSolenoid::Value::kReverse);
       }
     //If this is set to true, the back 2 pistons deploy; if it is false, the back 2 pistons retract
 
   }
-  void Climber::deployArm(){
-
-      if(tractiondeploy.Get() == frc::DoubleSolenoid::Value::kReverse){
-          tractiondeploy.Set(frc::DoubleSolenoid::Value::kForward);
-      }else{
-          tractiondeploy.Set(frc::DoubleSolenoid::Value::kReverse);
-      }
-        //If this is set to true, the traction wheel is deployed; if it is false, the traction wheel retracts
-
-  }
-
 
 void Climber::liftFront(bool state){
 
       if(state){
-          front1.Set(frc::DoubleSolenoid::Value::kForward);
-          front2.Set(frc::DoubleSolenoid::Value::kForward);
+          front.Set(frc::DoubleSolenoid::Value::kForward);
       }else{
-          front1.Set(frc::DoubleSolenoid::Value::kReverse);
-          front2.Set(frc::DoubleSolenoid::Value::kReverse);
+          front.Set(frc::DoubleSolenoid::Value::kReverse);
       }
     //If this is set to true, the front 2 pistons deploy; if it is false, the front 2 pistons retract
 
@@ -133,22 +122,10 @@ void Climber::liftFront(bool state){
   void Climber::liftBack(bool state){
 
       if(state){
-          back1.Set(frc::DoubleSolenoid::Value::kForward);
-          back2.Set(frc::DoubleSolenoid::Value::kForward);
+          back.Set(frc::DoubleSolenoid::Value::kForward);
       }else{
-          back1.Set(frc::DoubleSolenoid::Value::kReverse);
-          back2.Set(frc::DoubleSolenoid::Value::kReverse);
+          back.Set(frc::DoubleSolenoid::Value::kReverse);
       }
     //If this is set to true, the back 2 pistons deploy; if it is false, the back 2 pistons retract
-
-  }
-  void Climber::deployArm(bool state){
-
-      if(state){
-          tractiondeploy.Set(frc::DoubleSolenoid::Value::kForward);
-      }else{
-          tractiondeploy.Set(frc::DoubleSolenoid::Value::kReverse);
-      }
-        //If this is set to true, the traction wheel is deployed; if it is false, the traction wheel retracts
 
   }
