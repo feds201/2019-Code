@@ -61,11 +61,6 @@ void Climber::incStage(){
 
             break;
             //This case extends all of the pistons on the robot except for the one for the traction wheel
-        case 2:
-
-
-            break;
-            //This case extends the traction wheel (but does not run the motor for the traction wheel)
         case 3:
         
             liftFront();
