@@ -25,7 +25,7 @@ class CargoPickup {
   int masterID;
 
   int upPos = 0; //Dont Know Yet
-  int downPos = 0;
+  int downPos = 0; //Don't Know Yet
 
   WPI_TalonSRX shooter{2};
   WPI_TalonSRX master{0};
