@@ -9,6 +9,11 @@
 
 #include"frc/WPILib.h"
 
+#include"CargoPickup.h"
+#include"Climber.h"
+#include"Drivetrain.h"
+#include"Elevator.h"
+
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;
