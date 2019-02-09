@@ -13,6 +13,12 @@
 
 void Robot::RobotInit() {
   
+    Driver.SetThrottleChannel(1);
+    Driver.SetTwistChannel(4);
+
+    Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
+
+
 }
 
 
@@ -27,9 +33,34 @@ void Robot::AutonomousPeriodic() {
  
 }
 
+
+float deadzone(float f){
+
+			if (fabs(f) < .15)
+				return 0.0f;
+			else{
+				if(f > 0)
+					return(f-.15)/(1-.15);
+				else
+					return(f+.15)/(1-.15);
+			}
+
+
+		}
+
+
+
 void Robot::TeleopInit() {}
 
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+
+
+
+    Drive.Drive(deadzone(Driver.GetThrottle()), deadzone(Driver.GetTwist()), false, true);
+
+
+
+}
 
 void Robot::TestPeriodic() {}
 

@@ -13,6 +13,9 @@
 #include"Climber.h"
 #include"Drivetrain.h"
 #include"Elevator.h"
+#include"HatchManipulator.h"
+#include"cameraserver/CameraServer.h"
+#include"RobotMap.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -26,5 +29,15 @@ class Robot : public frc::TimedRobot {
 
  private:
   
+  Drivetrain Drive{};
+  Elevator Ele{};
+  CargoPickup Cargo{};
+  HatchManipulator Hatch{};
+  Climber Climb{};
+
+  frc::Joystick Driver{0};
+  frc::Joystick Op{1};
+
+  cs::UsbCamera Camera;
 
 };

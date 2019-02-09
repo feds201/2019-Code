@@ -13,6 +13,23 @@ constexpr int PDPID = 0;
 
 constexpr bool CONFIG_MODE = false;
 
+constexpr int hatchRun = 0;
+constexpr int hatchAbort = 0;
+
+constexpr int eleLift = 0;
+constexpr int eleSwitch = 0;
+constexpr int eleOverride = 0;
+constexpr int eleOverrideAxis = 0;
+
+constexpr int climbIncStage = 0;
+constexpr int climbDecStage = 0;
+constexpr int climbWheelAxis = 0;
+constexpr int climbArmAxis = 0;
+
+constexpr int cargoToggle = 0;
+constexpr int cargoIntakeAxis = 0;
+
+
 //
 //
 //
