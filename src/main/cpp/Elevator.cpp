@@ -8,6 +8,7 @@
 #include "Elevator.h"
 #include"frc/WPILib.h"
 #include"ctre/Phoenix.h"
+#include"math.h"
 
 Elevator::Elevator() {
 
@@ -91,6 +92,9 @@ void Elevator::Move(int position){
     if(isMoving && position != 0){
 
         if(goingUp && motor.GetSelectedSensorPosition() < posList[position-1] && !topLimit.Get()){
+            if(abs(posList[position-1] - motor.GetSelectedSensorPosition()) < bufferDist){
+                motor.Set(ControlMode::PercentOutput, 0.4);
+            }
             motor.Set(ControlMode::PercentOutput, 1);
         }else if(goingUp && topLimit.Get()){
             isMoving = false;
@@ -99,6 +103,9 @@ void Elevator::Move(int position){
         }
 
         if(!goingUp && motor.GetSelectedSensorPosition() > posList[position-1] && !bottomLimit.Get()){
+             if(abs(posList[position-1] - motor.GetSelectedSensorPosition()) < bufferDist){
+                motor.Set(ControlMode::PercentOutput, 0);
+            }
             motor.Set(ControlMode::PercentOutput, -0.2);
         }else if(!goingUp && bottomLimit.Get()){
             isMoving = false;
@@ -111,11 +118,13 @@ void Elevator::Move(int position){
         if(!bottomLimit.Get()){
             motor.Set(ControlMode::PercentOutput, -0.2);
         }else{
-            motor.Set(ControlMode::PercentOutput, 0);
+           isMoving = false;
         }
     }
-        if(!bottomLimit.Get()){
+        if(!bottomLimit.Get() && !isMoving){
             motor.Set(ControlMode::PercentOutput, 0.2);
+        }else if(bottomLimit.Get() && !isMoving){
+            motor.Set(ControlMode::PercentOutput, 0);
         }
     }
 

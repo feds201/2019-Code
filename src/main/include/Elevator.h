@@ -50,6 +50,7 @@ class Elevator {
    bool goingUp = true;
    bool isMoving = false;
    bool isOverridden = false;
+   int bufferDist = 0; //TBD
 
    void Move(int position);
 
