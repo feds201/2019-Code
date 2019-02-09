@@ -23,14 +23,14 @@ private:
 
     bool ACCEL_LIMIT_ENABLED = false;
 
-		double P = 0;  //Don't Know Yet
-		double I = 0;
-		double D = 0;
+		double P = Drivetrain_P;
+		double I = Drivetrain_I;
+		double D = Drivetrain_D;
 
-		int maxSpeed = 0; //Don't Know Yet
+		int maxSpeed = maxRobotVelocity; 
 
-		double gearRatio = 0; //Don't Know Yet
-		double wheelR = 0; //Don't Know
+		double gearRatio = gearRatioToEncodersFromWheels; 
+		double wheelR = wheelRadius; 
 		double encCountsPerRev = 4096;
 		double pi = 3.14159;
 		double countsPerIn;

@@ -37,9 +37,14 @@ class Elevator {
   void Home();
   void Refresh();
   void Override(double speed, bool isOverride);
+  int getEncPos();
 
   private:
+   
+   bool configMode = CONFIG_MODE;
 
+   void Move(int position);
+   
    int pos = 0; // 0 = Home, 1 = Hatch Mid, 2 = Hatch High, 3 = Cargo Low, 4 = Cargo Mid, 5 = Cargo High
 
    enum mode {Hatch, Cargo};
@@ -52,8 +57,13 @@ class Elevator {
    bool isMoving = false;
    bool isOverridden = false;
    int bufferDist = 0; //TBD
+   
+   double goingUpCruseSpeed = upCruseSpeed;
+   double goingUpApproachSpeed = upApproachSpeed;
+   double goingDownCruseSpeed = downCruseSpeed;
+   double goingDownApproachSpeed = downApproachSpeed;
 
-   void Move(int position);
+   
 
    WPI_TalonSRX motor{elevatorMotor};
 

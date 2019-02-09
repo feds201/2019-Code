@@ -8,7 +8,12 @@
 #include "HatchManipulator.h"
 #include"frc/WPILib.h"
 
-HatchManipulator::HatchManipulator() {}
+HatchManipulator::HatchManipulator() {
+
+    Backplate.Set(frc::DoubleSolenoid::Value::kReverse);
+    Ejector.Set(frc::DoubleSolenoid::Value::kReverse);
+
+}
 
 void HatchManipulator::Run(bool state){
 

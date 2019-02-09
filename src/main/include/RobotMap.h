@@ -11,6 +11,8 @@
 constexpr int PCMID = 0;
 constexpr int PDPID = 0;
 
+constexpr bool CONFIG_MODE = false;
+
 //
 //
 //
@@ -26,6 +28,14 @@ constexpr int driveMotor4 = 0;
 
 constexpr int Pigeon = 0;
 
+constexpr int Drivetrain_P = 0;
+constexpr int Drivetrain_I = 0;
+constexpr int Drivetrain_D = 0;
+
+constexpr int maxRobotVelocity = 0;
+constexpr int gearRatioToEncodersFromWheels = 0;
+constexpr int wheelRadius = 0;
+
 //
 //
 //
@@ -37,6 +47,11 @@ constexpr int Pigeon = 0;
 constexpr int elevatorMotor = 0;
 constexpr int topLimitSwitch = 0;
 constexpr int bottomLimitSwitch = 0;
+
+constexpr double upCruseSpeed = 1;
+constexpr double upApproachSpeed = 0.4;
+constexpr double downCruseSpeed = -0.2;
+constexpr double downApproachSpeed = 0;
 
 //
 //
@@ -65,6 +80,10 @@ constexpr int shooterMotor = 0;
 constexpr int masterWristMotor = 0;
 constexpr int slaveWristMotor = 0;
 constexpr int limitSwitch = 0;
+
+constexpr int Cargo_P = 0;
+constexpr int Cargo_I = 0;
+constexpr int Cargo_D = 0;
 
 //
 //

@@ -85,6 +85,8 @@ void Elevator::Move(int position){
 
 //Once the elevator hits the top limit switch, the elevator can not go more up. When the elevator hits the bottom limit switch, the elevator can not go more down.
 
+if(!configMode){
+
     if(bottomLimit.Get()){
         motor.SetSelectedSensorPosition(0);
     }
@@ -93,9 +95,9 @@ void Elevator::Move(int position){
 
         if(goingUp && motor.GetSelectedSensorPosition() < posList[position-1] && !topLimit.Get()){
             if(abs(posList[position-1] - motor.GetSelectedSensorPosition()) < bufferDist){
-                motor.Set(ControlMode::PercentOutput, 0.4);
+                motor.Set(ControlMode::PercentOutput, goingUpApproachSpeed);
             }
-            motor.Set(ControlMode::PercentOutput, 1);
+            motor.Set(ControlMode::PercentOutput, goingUpCruseSpeed);
         }else if(goingUp && topLimit.Get()){
             isMoving = false;
         }else if(goingUp && motor.GetSelectedSensorPosition() >= posList[position-1]){
@@ -104,9 +106,9 @@ void Elevator::Move(int position){
 
         if(!goingUp && motor.GetSelectedSensorPosition() > posList[position-1] && !bottomLimit.Get()){
              if(abs(posList[position-1] - motor.GetSelectedSensorPosition()) < bufferDist){
-                motor.Set(ControlMode::PercentOutput, 0);
+                motor.Set(ControlMode::PercentOutput, goingDownApproachSpeed);
             }
-            motor.Set(ControlMode::PercentOutput, -0.2);
+            motor.Set(ControlMode::PercentOutput, goingDownCruseSpeed);
         }else if(!goingUp && bottomLimit.Get()){
             isMoving = false;
         }else if(!goingUp && motor.GetSelectedSensorPosition() <= posList[position-1]){
@@ -126,7 +128,8 @@ void Elevator::Move(int position){
         }else if(bottomLimit.Get() && !isMoving){
             motor.Set(ControlMode::PercentOutput, 0);
         }
-    }
+  }
+}
 
 void Elevator::Refresh(){
 
@@ -162,4 +165,9 @@ void Elevator::Override(double speed, bool isOverride){
     }
 }
 
+int Elevator::getEncPos(){
+
+    return motor.GetSelectedSensorPosition();
+
+}
 

@@ -17,9 +17,12 @@ class CargoPickup {
   CargoPickup();
   void ToggleArm();
   void Intake(double input);
+  int getEncPos();
   
  private:
  
+  bool configMode = CONFIG_MODE;
+
   enum poss {Up, Down};
 
   poss currentPos = Up;
@@ -28,6 +31,11 @@ class CargoPickup {
 
   int upPos = 0; //Dont Know Yet
   int downPos = 0; //Don't Know Yet
+
+  int P = Cargo_P;
+  int I = Cargo_I;
+  int D = Cargo_D;
+
 
   WPI_TalonSRX shooter{shooterMotor};
   WPI_TalonSRX master{masterWristMotor};

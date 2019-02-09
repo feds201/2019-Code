@@ -17,16 +17,15 @@ CargoPickup::CargoPickup() {
     master.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
     master.SetSelectedSensorPosition(0);
 
-    master.Config_kP(0, 0); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
-    master.Config_kI(0, 0); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
-    master.Config_kD(0, 0);
+    master.Config_kP(0, P); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
+    master.Config_kI(0, I); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
+    master.Config_kD(0, D);
 
     master.SetInverted(false);
     slave.SetInverted(true);
 
     master.Set(ControlMode::Position, 0);
     slave.Set(ControlMode::Follower, masterID);
-    
 
 }
 
@@ -34,6 +33,8 @@ CargoPickup::CargoPickup() {
 //Dont know which direction to set motors 
 void CargoPickup::ToggleArm() {
    
+if(!configMode){
+
    if(currentPos == Up){
        master.Set(ControlMode::Position, downPos);
        slave.Set(ControlMode::Follower, masterID);
@@ -43,12 +44,14 @@ void CargoPickup::ToggleArm() {
        slave.Set(ControlMode::Follower, masterID);
        currentPos = Up;
    }
-
+}
 
 }
 
 void CargoPickup::Intake(double input) {
     
+if(!configMode){
+
     if(input == 0){
         shooter.Set(ControlMode::PercentOutput, 0);
     }
@@ -64,7 +67,13 @@ void CargoPickup::Intake(double input) {
             shooter.Set(ControlMode::PercentOutput, input);
         }
     }
+  }
 }   
 
+int CargoPickup::getEncPos(){
+
+    return master.GetSelectedSensorPosition();
+
+}
 
 
