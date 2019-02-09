@@ -9,6 +9,8 @@
 #include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
 #include <iostream>
+#include"RobotMap.h"
+
 
 class CargoPickup {
  public:
@@ -27,9 +29,9 @@ class CargoPickup {
   int upPos = 0; //Dont Know Yet
   int downPos = 0; //Don't Know Yet
 
-  WPI_TalonSRX shooter{2};
-  WPI_TalonSRX master{0};
-  WPI_TalonSRX slave{1};
-  frc::DigitalInput swi{2};
+  WPI_TalonSRX shooter{shooterMotor};
+  WPI_TalonSRX master{masterWristMotor};
+  WPI_TalonSRX slave{slaveWristMotor};
+  frc::DigitalInput swi{limitSwitch};
 };
 

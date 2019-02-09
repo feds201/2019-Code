@@ -1,15 +1,8 @@
-/*
- * Drivetrain.h
- *
- *  Created on: Jan 16, 2018
- *      Author: feds201
- */
-
-#ifndef SRC_DRIVETRAIN_H_
-#define SRC_DRIVETRAIN_H_
+#pragma once
 
 #include"frc/WPILib.h"
 #include"ctre/Phoenix.h"
+#include"RobotMap.h"
 
 class Drivetrain{
 
@@ -51,15 +44,15 @@ private:
 
 		float lastTime;
 
-		WPI_TalonSRX Left1{0};
-		WPI_TalonSRX Left2{0};
-		WPI_TalonSRX Right1{0};
-		WPI_TalonSRX Right2{0};
+		WPI_TalonSRX Left1{driveMotor1};
+		WPI_TalonSRX Left2{dirveMotor2};
+		WPI_TalonSRX Right1{driveMotor3};
+		WPI_TalonSRX Right2{driveMotor4};
 
     int lmasterID;
     int rmasterID;
 
-		PigeonIMU gyro{0};
+		PigeonIMU gyro{Pigeon};
 
 		float MAXAccel = 0; //To Be Calculated
 
@@ -73,9 +66,3 @@ private:
 
 
 };
-
-
-
-
-
-#endif /* SRC_DRIVETRAIN_H_ */

@@ -26,6 +26,7 @@ Move: Carry out direction from lift
 
 #include"frc/WPILib.h"
 #include"ctre/Phoenix.h"
+#include"RobotMap.h"
 
 
 class Elevator {
@@ -54,11 +55,9 @@ class Elevator {
 
    void Move(int position);
 
-   int canID = 0;
+   WPI_TalonSRX motor{elevatorMotor};
 
-   WPI_TalonSRX motor{canID};
-
-   frc::DigitalInput topLimit{0};
-   frc::DigitalInput bottomLimit{1};
+   frc::DigitalInput topLimit{topLimitSwitch};
+   frc::DigitalInput bottomLimit{bottomLimitSwitch};
 
 };

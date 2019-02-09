@@ -10,16 +10,31 @@
 #include "frc/WPILib.h"
 #include <iostream>
 #include "ctre/Phoenix.h"
+#include"RobotMap.h"
 
 class HatchManipulator {
  public:
 
-  HatchManipulator(int PCM, int intake, int reject);
-  void eject();
+  HatchManipulator();
+  void Run(bool state);
+  void Abort();
 
- private:
+  private:
 
-  frc::DoubleSolenoid leftSolenoid{0, 0, 1}; //Fix for later
-  frc::DoubleSolenoid rightSolenoid{0 , 0 , 1};
+  enum thingsThatCanHappen {PickingUp, DroppingOff, Nothing};
+
+  thingsThatCanHappen whatIsHappening = Nothing;
+
+  bool lastState = false;
+  bool wasHatchOn = false;
+  int dropOffStage = 0; // 0 = Not Dropping Off, 1 = Plate Extended, 2 = Ejector Pins Out
+
+  void moveBackplate(bool inOrOut);
+  void Eject(bool inOrOut);
+
+  frc::DoubleSolenoid Backplate{PCMID, plateExtend, plateRetract};
+  frc::DoubleSolenoid Ejector{PCMID, ejectorsExtend , ejectorsRetract};
+
+  frc::DigitalInput isHatch{hatchDetectionLimitSwitch};
 
 };

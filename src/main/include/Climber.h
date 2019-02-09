@@ -2,6 +2,7 @@
 
 #include"frc/WPILib.h"
 #include"ctre/Phoenix.h"
+#include"RobotMap.h"
 
 class Climber {
  public:
@@ -21,14 +22,14 @@ class Climber {
   void liftBack(bool state);
 //Requirements for the function; these are what you have to provide when this function is called
 
-  frc::DoubleSolenoid front{0, 0, 0};
-  frc::DoubleSolenoid back{0, 0, 0};
+  frc::DoubleSolenoid front{PCMID, extendFront, retractFront};
+  frc::DoubleSolenoid back{PCMID, extendBack, retractBack};
   
 //The first four control the four pneumatic pistons that lift the robot
 //The last one controls the piston that deploys the traction wheel to pull the robot forward
 
-  WPI_TalonSRX tractionwheel{0};
-  WPI_TalonSRX armMotor{0};
+  WPI_TalonSRX tractionwheel{tractionWheelID};
+  WPI_TalonSRX armMotor{armMotorID};
 //Controls the wheel that will pull the robot forward after it lits itself up
 
   int stage = 0;
