@@ -47,9 +47,23 @@ float deadzone(float f){
 
 
 
-void Robot::TeleopInit() {}
+void Robot::TeleopInit() {
+
+}
 
 void Robot::TeleopPeriodic() {
+
+	//Logging Stuff
+
+	logThisTime = false;
+	logTicker++;
+	if(logTicker == logInterval){
+		logTicker = 0;
+		logThisTime = true;
+	}
+
+
+	//Op Controls
 
 	if(Op.GetRawButtonPressed(hatchAbort)){
 		Hatch.Abort();
@@ -87,9 +101,50 @@ void Robot::TeleopPeriodic() {
 	Ele.Refresh();
 	
 	
-	
+	//Driver Controls
 	
 	Drive.Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), false, true);
+
+
+
+
+//Logging
+
+
+	if(logThisTime){
+
+		logTicker = 0;
+
+		struct Logger::CSVVals csvData;
+
+		csvData.driveSetpoints[0] = Drive.GetSetpoint()[0];
+		csvData.driveSetpoints[1] = Drive.GetSetpoint()[1];
+
+		csvData.driveCurrents[0] = Drive.GetCurr()[0];
+		csvData.driveCurrents[1] = Drive.GetCurr()[1];
+		csvData.driveCurrents[2] = Drive.GetCurr()[2];
+		csvData.driveCurrents[3] = Drive.GetCurr()[3];
+
+		csvData.elevatorCurrent = Ele.getCurrent();
+
+		csvData.cargoPickupWheelsCurrent = Cargo.getWheelsCurrent();
+		csvData.cargoPickupWristCurrent[0] = Cargo.getWristCurrent()[0];
+		csvData.cargoPickupWristCurrent[1] = Cargo.getWristCurrent()[1];
+		csvData.cargoPickupWristPos = Cargo.getEncPos();
+		csvData.cargoIn = Cargo.isCargo();
+
+		csvData.hatchOn = Hatch.hatchOn();
+
+		csvData.frontLifterUp = Climb.getFrontState();
+		csvData.backLifterUp = Climb.getBackState();
+		csvData.liftStage = Climb.getStage();
+
+		csvData.voltage = pdp.GetVoltage();
+		csvData.totalCurrent = pdp.GetTotalCurrent();
+
+		Logger::instance()->logCSV(&csvData);
+
+	}
 
 }
 

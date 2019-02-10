@@ -15,6 +15,7 @@ public:
 	int * GetEncVel();
 	int * GetEncPos();
 	float * GetCurr();
+	float * GetSetpoint();
 	void SetEncPos(double left, double right);
 	double getGyroAngle();
 	void setGyroAngle(double angle);
@@ -38,7 +39,8 @@ private:
 		float inchesPerMeter = 39.37007874;
 		double metersPerCount;
 		float accelTime;
-		float current[2];
+		float current[4];
+		float setpt[2];
     float tempHeadingZero;
     float angleErr;
 

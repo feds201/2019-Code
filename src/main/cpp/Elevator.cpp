@@ -171,3 +171,8 @@ int Elevator::getEncPos(){
 
 }
 
+double Elevator::getCurrent(){
+
+    return motor.GetOutputCurrent();
+
+}

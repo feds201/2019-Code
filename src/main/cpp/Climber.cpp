@@ -124,3 +124,29 @@ void Climber::liftFront(bool state){
     //If this is set to true, the back 2 pistons deploy; if it is false, the back 2 pistons retract
 
   }
+
+  bool Climber::getBackState(){
+
+      if(back.Get() == frc::DoubleSolenoid::Value::kReverse){
+          return false;
+      }else{
+          return true;
+      }
+
+  }
+
+  bool Climber::getFrontState(){
+
+      if(front.Get() == frc::DoubleSolenoid::Value::kReverse){
+          return false;
+      }else{
+          return true;
+      }
+
+  }
+
+  int Climber::getStage(){
+
+      return stage;
+
+  }

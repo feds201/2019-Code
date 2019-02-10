@@ -80,3 +80,9 @@ void HatchManipulator::Eject(bool inOrOut){
 
 
 }
+
+bool HatchManipulator::hatchOn(){
+
+    return isHatch.Get();
+
+}

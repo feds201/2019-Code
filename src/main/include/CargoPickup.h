@@ -18,6 +18,9 @@ class CargoPickup {
   void ToggleArm();
   void Intake(double input);
   int getEncPos();
+  double * getWristCurrent();
+  double getWheelsCurrent();
+  bool isCargo();
   
  private:
  
@@ -36,6 +39,7 @@ class CargoPickup {
   int I = Cargo_I;
   int D = Cargo_D;
 
+  double current[2];
 
   WPI_TalonSRX shooter{shooterMotor};
   WPI_TalonSRX master{masterWristMotor};

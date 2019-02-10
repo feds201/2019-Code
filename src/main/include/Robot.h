@@ -16,6 +16,7 @@
 #include"HatchManipulator.h"
 #include"cameraserver/CameraServer.h"
 #include"RobotMap.h"
+#include"Logger.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -35,9 +36,15 @@ class Robot : public frc::TimedRobot {
   HatchManipulator Hatch{};
   Climber Climb{};
 
+  frc::PowerDistributionPanel pdp{PDPID};
+
   frc::Joystick Driver{0};
   frc::Joystick Op{1};
 
   cs::UsbCamera Camera;
+
+  int logTicker = 0;
+  int logInterval = 20;
+  bool logThisTime = false;
 
 };

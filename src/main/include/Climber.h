@@ -11,6 +11,9 @@ class Climber {
   void decStage();
   void setWheel(double speed);
   void deployArm(double speed);
+  bool getFrontState();
+  bool getBackState();
+  int getStage();
 //Requirements for the function; these are what you have to provide when this function is called
 
   private:

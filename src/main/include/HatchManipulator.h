@@ -18,6 +18,7 @@ class HatchManipulator {
   HatchManipulator();
   void Run(bool state);
   void Abort();
+  bool hatchOn();
 
   private:
 

@@ -76,4 +76,23 @@ int CargoPickup::getEncPos(){
 
 }
 
+double * CargoPickup::getWristCurrent(){
 
+    current[0] = master.GetOutputCurrent();
+    current[1] = slave.GetOutputCurrent();
+
+    return current;
+
+}
+
+double CargoPickup::getWheelsCurrent(){
+
+    return shooter.GetOutputCurrent();
+
+}
+
+bool CargoPickup::isCargo(){
+
+    return swi.Get();
+
+}

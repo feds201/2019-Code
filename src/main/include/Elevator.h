@@ -38,6 +38,7 @@ class Elevator {
   void Refresh();
   void Override(double speed, bool isOverride);
   int getEncPos();
+  double getCurrent();
 
   private:
    
@@ -62,8 +63,6 @@ class Elevator {
    double goingUpApproachSpeed = upApproachSpeed;
    double goingDownCruseSpeed = downCruseSpeed;
    double goingDownApproachSpeed = downApproachSpeed;
-
-   
 
    WPI_TalonSRX motor{elevatorMotor};
 

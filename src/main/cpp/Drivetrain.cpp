@@ -128,8 +128,17 @@ void Drivetrain::setGyroAngle(double angle){
 
 float * Drivetrain::GetCurr(){
 
-	current[0] = Left2.GetOutputCurrent();
-	current[1] = Right2.GetOutputCurrent();
+	current[0] = Left1.GetOutputCurrent();
+	current[1] = Left2.GetOutputCurrent();
+	current[2] = Right1.GetOutputCurrent();
+	current[3] = Right2.GetOutputCurrent();
 
 	return current;
+}
+
+float * Drivetrain::GetSetpoint(){
+
+	setpt[0] = leftSet;
+	setpt[1] = rightSet;
+
 }
