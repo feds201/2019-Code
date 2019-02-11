@@ -51,6 +51,10 @@ void HatchManipulator::Run(bool state){
     lastState = state;
     wasHatchOn = isHatch.Get();
 
+    if(dropOffStage > 2){
+        std::cout << "ERROR: HATCH MANIPULATOR STAGE HAS EXCEEDED MAX VALUE" << std::endl;
+    }
+
 }
 
 void HatchManipulator::Abort(){
