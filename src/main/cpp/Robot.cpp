@@ -10,10 +10,18 @@
 #include"frc/WPILib.h"
 
 
-
 void Robot::RobotInit() {
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
+
+	if(SINGLE_OPERATOR_MODE){
+		singleOP = new frc::Joystick(2);
+		std::cout << "WARNING: SINGLE OP MODE IS ENABLED" << std::endl;
+	}
+
+	if(CONFIG_MODE){
+		std::cout << "WARNING: CONFIG MODE IS ENABLED" << std::endl;
+	}
 
 }
 
@@ -27,6 +35,8 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
  
+	//Make Sure To Put Teleop Code In Here For Sandstorm Period
+
 }
 
 
@@ -46,6 +56,94 @@ float deadzone(float f){
 
 
 
+void Robot::singleOpMode() {
+
+	if(singleOP->GetPOV() == 90){
+		singleOPDriverMode = false;
+	}else if(singleOP->GetPOV() == 270){
+		singleOPDriverMode = true;
+	}
+
+	//Op Controler Vibration For Ele Modes
+
+	if(vibrationTicker == 1 && eleMode){
+		vibrationTicker++;
+		singleOP->SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 1);
+	}else if(vibrationTicker == 1 && !eleMode){
+		vibrationTicker++;
+		singleOP->SetRumble(frc::GenericHID::RumbleType::kRightRumble, 1);
+	}else if(vibrationTicker != 0 && vibrationTicker < 50){
+		vibrationTicker++;
+	}else{
+		vibrationTicker = 0;
+		singleOP->SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 0);
+		singleOP->SetRumble(frc::GenericHID::RumbleType::kRightRumble, 0);
+	}
+
+	if(!singleOPDriverMode){
+
+	//Op Controls
+
+	//Comment Out If No Limit Switch Is Added To Hatch Mech
+
+	if(singleOP->GetRawButtonPressed(hatchAbort)){
+		Hatch->Abort();
+	}
+
+	Hatch->Run(singleOP->GetRawButton(hatchRun));
+
+	//
+	//
+
+	/* Uncomment If No Limit Switch Is Added To Hatch Mech
+
+	if(singleOP->GetRawButtonPressed(hatchRun)){
+		Hatch->moveBackplate();
+	}
+
+	Hatch->Eject(singleOP->GetRawButton(hatchAbort));
+
+	*/
+
+	if(Climb->getStage() == 0){
+		Ele->Override(deadzone(singleOP->GetRawAxis(eleOverrideAxis)), singleOP->GetRawButtonPressed(eleOverride));
+	}
+
+	if(singleOP->GetRawButtonPressed(eleSwitch)){
+		eleMode = Ele->Switch();
+		vibrationTicker = 1;
+	}
+
+	if(singleOP->GetRawButtonPressed(eleLift)){
+		Ele->Lift();
+	}
+	
+	if(singleOP->GetRawButtonPressed(climbIncStage)){
+		Climb->incStage();
+	}
+
+	if(singleOP->GetRawButtonPressed(climbDecStage)){
+		Climb->decStage();
+	}
+
+    Climb->deployArm(singleOP->GetRawAxis(climbArmAxis));
+	Climb->setWheel(singleOP->GetRawAxis(climbWheelAxis));
+
+	if(singleOP->GetRawButtonPressed(cargoToggle)){
+		Cargo->ToggleArm();
+	}
+
+	Cargo->Intake(singleOP->GetRawAxis(cargoIntakeAxis));
+	
+	Ele->Refresh();
+	
+	}else{
+	//Driver Controls
+	
+	Drive->Drive(deadzone(singleOP->GetRawAxis(1)), deadzone(singleOP->GetRawAxis(4)), false, true);
+	}
+}
+
 void Robot::TeleopInit() {
 
 }
@@ -60,6 +158,8 @@ void Robot::TeleopPeriodic() {
 		logTicker = 0;
 		logThisTime = true;
 	}
+
+	if(!SINGLE_OPERATOR_MODE){
 
 	//Op Controler Vibration For Ele Modes
 
@@ -137,6 +237,11 @@ void Robot::TeleopPeriodic() {
 	
 	Drive->Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), false, true);
 
+	}else{
+
+		singleOpMode();
+	
+	}
 
 	//Display Data To Dashboard
 

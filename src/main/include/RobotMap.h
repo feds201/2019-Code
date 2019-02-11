@@ -13,6 +13,8 @@ constexpr int PDPID = 0;
 
 constexpr bool CONFIG_MODE = false;
 
+constexpr bool SINGLE_OPERATOR_MODE = false;
+
 constexpr int hatchRun = 0; //A
 constexpr int hatchAbort = 0; //B
 

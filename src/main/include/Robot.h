@@ -17,6 +17,7 @@
 #include"cameraserver/CameraServer.h"
 #include"RobotMap.h"
 #include"Logger.h"
+#include<iostream>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -27,6 +28,7 @@ class Robot : public frc::TimedRobot {
   void TeleopInit() override;
   void TeleopPeriodic() override;
   void TestPeriodic() override;
+  void singleOpMode();
 
  private:
   
@@ -40,12 +42,14 @@ class Robot : public frc::TimedRobot {
 
   frc::Joystick Driver{0};
   frc::Joystick Op{1};
+  frc::Joystick* singleOP;
 
   cs::UsbCamera Camera;
 
   int logTicker = 0;
   int logInterval = 20;
   bool logThisTime = false;
+  bool singleOPDriverMode = true;
 
   int vibrationTicker = 0;
   bool eleMode = false;
