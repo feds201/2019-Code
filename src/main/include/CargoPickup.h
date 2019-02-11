@@ -6,11 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "frc/WPILib.h"
-#include "ctre/Phoenix.h"
-#include <iostream>
+
 #include"RobotMap.h"
-#include <iostream>
 
 
 class CargoPickup {

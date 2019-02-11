@@ -7,9 +7,6 @@
 
 #include "Robot.h"
 
-#include"frc/WPILib.h"
-
-
 void Robot::RobotInit() {
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();

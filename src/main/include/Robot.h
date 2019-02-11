@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include"frc/WPILib.h"
-
 #include"CargoPickup.h"
 #include"Climber.h"
 #include"Drivetrain.h"
@@ -17,7 +15,6 @@
 #include"cameraserver/CameraServer.h"
 #include"RobotMap.h"
 #include"Logger.h"
-#include<iostream>
 
 class Robot : public frc::TimedRobot {
  public:

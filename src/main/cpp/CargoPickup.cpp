@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "CargoPickup.h"
-#include"frc/WPILib.h"
 
 CargoPickup::CargoPickup() {
 

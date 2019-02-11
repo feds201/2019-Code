@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "HatchManipulator.h"
-#include"frc/WPILib.h"
 
 HatchManipulator::HatchManipulator() {
 

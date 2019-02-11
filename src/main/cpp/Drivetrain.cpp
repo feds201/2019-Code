@@ -1,6 +1,4 @@
 #include "Drivetrain.h"
-#include"frc/WPILib.h"
-#include<iostream>
 #include"Math.h"
 
 Drivetrain::Drivetrain(){

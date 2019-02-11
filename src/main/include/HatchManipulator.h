@@ -7,11 +7,7 @@
 
 #pragma once
 
-#include "frc/WPILib.h"
-#include <iostream>
-#include "ctre/Phoenix.h"
 #include "RobotMap.h"
-#include <iostream>
 
 class HatchManipulator {
  public:

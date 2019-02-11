@@ -24,10 +24,7 @@ Move: Carry out direction from lift
 
 #pragma once
 
-#include"frc/WPILib.h"
-#include"ctre/Phoenix.h"
 #include"RobotMap.h"
-#include<iostream>
 
 
 class Elevator {

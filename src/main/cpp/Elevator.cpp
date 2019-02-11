@@ -6,8 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Elevator.h"
-#include"frc/WPILib.h"
-#include"ctre/Phoenix.h"
 #include"math.h"
 
 Elevator::Elevator() {
