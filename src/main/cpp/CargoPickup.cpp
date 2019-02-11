@@ -27,6 +27,8 @@ CargoPickup::CargoPickup() {
     master.Set(ControlMode::Position, 0);
     slave.Set(ControlMode::Follower, masterID);
 
+    std::cout << "INFO: CARGO PICKUP INIT COMPLETE" << std::endl;
+
 }
 
 //How to know when arm is completely up or down?
@@ -80,6 +82,12 @@ double * CargoPickup::getWristCurrent(){
 
     current[0] = master.GetOutputCurrent();
     current[1] = slave.GetOutputCurrent();
+
+    if(current[0] > 50 || current[1] > 50){
+
+        std::cout << "WARNING: HIGH WRIST CURRENT" << std::endl;
+
+    }
 
     return current;
 

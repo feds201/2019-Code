@@ -10,6 +10,8 @@ Climber::Climber() {
     armMotor.Set(ControlMode::PercentOutput, 0);
     //This makes sure that the motor for the wheel is off by default
 
+    std::cout << "INFO: CLIMBER INIT COMPLETE" << std::endl;
+
 }
 
 void Climber::incStage(){

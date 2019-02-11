@@ -44,7 +44,7 @@ Drivetrain::Drivetrain(){
     Right1.Config_kI(0, I);
     Right1.Config_kD(0, D);
 
-	std::cout << "Drivetrain Init Done" << std::endl;
+	std::cout << "INFO: DRIVETRAIN INIT COMPLETE" << std::endl;
 
 }
 
@@ -132,6 +132,22 @@ float * Drivetrain::GetCurr(){
 	current[1] = Left2.GetOutputCurrent();
 	current[2] = Right1.GetOutputCurrent();
 	current[3] = Right2.GetOutputCurrent();
+
+	if(current[0] > 50 || current[1] > 50 || current[2] > 50 || current[3] > 50){
+		
+		double highCurr = 0;
+		int motorNum = 0;
+
+		for(int i = 0; i < 4; i++){
+			if(current[i] > highCurr){
+				highCurr = current[i];
+				motorNum = i+1;
+			}
+		}
+		
+		std::cout << "WARNING: HIGH DRIVETRAIN CURRENT ON MOTOR " << motorNum << " DRAWING " << highCurr << " AMPS" << std::endl;
+		
+	}
 
 	return current;
 }

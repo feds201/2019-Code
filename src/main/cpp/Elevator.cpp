@@ -16,6 +16,8 @@ Elevator::Elevator() {
     motor.SetSelectedSensorPosition(0);
     motor.Set(ControlMode::PercentOutput, 0);
 
+    std::cout << "INFO: ELEVATOR INIT COMPLETE" << std::endl;
+
 }
 
 void Elevator::Home(){
@@ -133,6 +135,10 @@ if(!configMode){
 
 void Elevator::Refresh(){
 
+    if(currentPos > 5 || currentPos < 0){
+        std::cout << "ERROR: ELEVATOR POS OUT OF BOUNDS: " << currentPos << std::endl;
+    }
+
     if(!isOverridden){
         Move(currentPos);
     }
@@ -172,6 +178,10 @@ int Elevator::getEncPos(){
 }
 
 double Elevator::getCurrent(){
+
+    if(motor.GetOutputCurrent() > 50){
+        std::cout << "WARNING: HIGH ELEVATOR CURRENT: " << motor.GetOutputCurrent() << std::endl;  
+    }
 
     return motor.GetOutputCurrent();
 

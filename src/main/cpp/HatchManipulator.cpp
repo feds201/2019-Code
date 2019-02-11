@@ -13,6 +13,8 @@ HatchManipulator::HatchManipulator() {
     Backplate.Set(frc::DoubleSolenoid::Value::kReverse);
     Ejector.Set(frc::DoubleSolenoid::Value::kReverse);
 
+    std::cout << "INFO: HATCH MANIPULATOR INIT COMPLETE" << std::endl;
+
 }
 
 void HatchManipulator::Run(bool state){

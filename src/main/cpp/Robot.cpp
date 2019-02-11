@@ -23,6 +23,8 @@ void Robot::RobotInit() {
 		std::cout << "WARNING: CONFIG MODE IS ENABLED" << std::endl;
 	}
 
+	std::cout << "INFO: ROBOT INIT COMPLETED" << std::endl;
+
 }
 
 

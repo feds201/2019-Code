@@ -55,6 +55,8 @@ constexpr int maxRobotVelocity = 0;
 constexpr int gearRatioToEncodersFromWheels = 0;
 constexpr int wheelRadius = 0;
 
+constexpr bool accelLimit = false;
+
 //
 //
 //

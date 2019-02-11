@@ -3,6 +3,7 @@
 #include"frc/WPILib.h"
 #include"ctre/Phoenix.h"
 #include"RobotMap.h"
+#include<iostream>
 
 class Climber {
  public:

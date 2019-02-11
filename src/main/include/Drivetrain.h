@@ -3,6 +3,7 @@
 #include"frc/WPILib.h"
 #include"ctre/Phoenix.h"
 #include"RobotMap.h"
+#include<iostream>
 
 class Drivetrain{
 
@@ -22,7 +23,7 @@ public:
 
 private:
 
-    bool ACCEL_LIMIT_ENABLED = false;
+    bool ACCEL_LIMIT_ENABLED = accelLimit;
 
 		double P = Drivetrain_P;
 		double I = Drivetrain_I;

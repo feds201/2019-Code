@@ -25,6 +25,8 @@ Logger::Logger() {
 	logFile.open("/home/lvuser/logFile" + (std::string)timeString + ".txt");
 	csvFile.open("/home/lvuser/logFile" + (std::string)timeString + ".csv");
 
+	std::cout << "INFO: THE LOGFILE FOR THIS SESSION IS NAMED " << (std::string)timeString << std::endl; 
+
 	csvFile
 			<< "time" << ','
 			<< "voltage" << ','
