@@ -176,3 +176,23 @@ double Elevator::getCurrent(){
     return motor.GetOutputCurrent();
 
 }
+
+std::string Elevator::getTarget(){
+
+    if(currentPos == 0){
+        return "Home";
+    }else if(currentPos == 1){
+        return "Hatch Mid";
+    }else if(currentPos == 2){
+        return "Hatch High";
+    }else if(currentPos == 3){
+        return "Cargo Low";
+    }else if(currentPos == 4){
+        return "Cargo Mid";
+    }else if(currentPos == 5){
+        return "Cargo High";
+    }else{
+        return "Error Unknown Pos";
+    }
+
+}

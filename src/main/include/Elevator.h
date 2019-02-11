@@ -39,6 +39,7 @@ class Elevator {
   void Override(double speed, bool isOverride);
   int getEncPos();
   double getCurrent();
+  std::string getTarget();
 
   private:
    

@@ -30,11 +30,11 @@ class Robot : public frc::TimedRobot {
 
  private:
   
-  Drivetrain Drive{};
-  Elevator Ele{};
-  CargoPickup Cargo{};
-  HatchManipulator Hatch{};
-  Climber Climb{};
+  Drivetrain* Drive{};
+  Elevator* Ele{};
+  CargoPickup* Cargo{};
+  HatchManipulator* Hatch{};
+  Climber* Climb{};
 
   frc::PowerDistributionPanel pdp{PDPID};
 
@@ -46,5 +46,8 @@ class Robot : public frc::TimedRobot {
   int logTicker = 0;
   int logInterval = 20;
   bool logThisTime = false;
+
+  int vibrationTicker = 0;
+  bool eleMode = false;
 
 };
