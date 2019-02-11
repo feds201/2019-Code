@@ -19,6 +19,9 @@ class HatchManipulator {
   void Run(bool state);
   void Abort();
   bool hatchOn();
+  void moveBackplate(bool inOrOut);
+  void moveBackplate();
+  void Eject(bool inOrOut);
 
   private:
 
@@ -30,8 +33,7 @@ class HatchManipulator {
   bool wasHatchOn = false;
   int dropOffStage = 0; // 0 = Not Dropping Off, 1 = Plate Extended, 2 = Ejector Pins Out
 
-  void moveBackplate(bool inOrOut);
-  void Eject(bool inOrOut);
+  
 
   frc::DoubleSolenoid Backplate{PCMID, plateExtend, plateRetract};
   frc::DoubleSolenoid Ejector{PCMID, ejectorsExtend , ejectorsRetract};

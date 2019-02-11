@@ -86,3 +86,13 @@ bool HatchManipulator::hatchOn(){
     return isHatch.Get();
 
 }
+
+void HatchManipulator::moveBackplate(){
+
+    if(Backplate.Get() == frc::DoubleSolenoid::Value::kForward){
+        Backplate.Set(frc::DoubleSolenoid::Value::kReverse);
+    }else{
+        Backplate.Set(frc::DoubleSolenoid::Value::kForward);
+    }
+
+}

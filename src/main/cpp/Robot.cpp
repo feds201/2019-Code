@@ -15,7 +15,6 @@ void Robot::RobotInit() {
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-
 }
 
 
@@ -80,14 +79,31 @@ void Robot::TeleopPeriodic() {
 
 	//Op Controls
 
+	//Comment Out If No Limit Switch Is Added To Hatch Mech
+
 	if(Op.GetRawButtonPressed(hatchAbort)){
 		Hatch->Abort();
 	}
 
 	Hatch->Run(Op.GetRawButton(hatchRun));
 
-	Ele->Override(deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButtonPressed(eleOverride));
-	
+	//
+	//
+
+	/* Uncomment If No Limit Switch Is Added To Hatch Mech
+
+	if(Op.GetRawButtonPressed(hatchRun)){
+		Hatch->moveBackplate();
+	}
+
+	Hatch->Eject(Op.GetRawButton(hatchAbort));
+
+	*/
+
+	if(Climb->getStage() == 0){
+		Ele->Override(deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButtonPressed(eleOverride));
+	}
+
 	if(Op.GetRawButtonPressed(eleSwitch)){
 		eleMode = Ele->Switch();
 		vibrationTicker = 1;
