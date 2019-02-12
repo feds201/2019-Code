@@ -49,6 +49,6 @@ class Robot : public frc::TimedRobot {
   bool singleOPDriverMode = true;
 
   int vibrationTicker = 0;
-  bool eleMode = false;
+  int eleMode = 0;
 
 };

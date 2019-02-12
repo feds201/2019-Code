@@ -61,22 +61,29 @@ void Elevator::Lift(){
 
 }
 
-bool Elevator::Switch(){
+int Elevator::Switch(){
 
 //The switch will change from hatch to cargo or cargo to hatch mode. Once changed, the position will go straight to home.
 
     if(currentMode == Hatch){
         currentMode = Cargo;
-    }else{
+        isAuto = false;
+    }else if(currentMode == Cargo){
+        currentMode = Auto;
+        isAuto = true;
+    }else if(currentMode == Auto){
         currentMode = Hatch;
+        isAuto = false;
     }
 
     Home();
 
     if(currentMode == Hatch){
-        return true;
+        return 0;
+    }else if(currentMode == Cargo){
+        return 1;
     }else{
-        return false;
+        return 2;
     }
    
 }
@@ -131,11 +138,23 @@ if(!configMode){
   }
 }
 
-void Elevator::Refresh(){
+void Elevator::Refresh(bool isHatch, bool isCargo){
 
     if(currentPos > 5 || currentPos < 0){
         std::cout << "ERROR: ELEVATOR POS OUT OF BOUNDS: " << currentPos << std::endl;
     }
+
+    if(currentMode == Auto || isAuto){
+        if(isHatch){
+            currentMode = Hatch;
+        }else if(isCargo){
+            currentMode = Cargo;
+        }else{
+            currentMode = Auto;
+            }
+        }
+    }
+
 
     if(!isOverridden){
         Move(currentPos);

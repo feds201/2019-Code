@@ -31,9 +31,9 @@ class Elevator {
  public:
   Elevator();
   void Lift();
-  bool Switch();
+  int Switch();
   void Home();
-  void Refresh();
+  void Refresh(bool isHatch, bool isCargo);
   void Override(double speed, bool isOverride);
   int getEncPos();
   double getCurrent();
@@ -47,7 +47,7 @@ class Elevator {
    
    int pos = 0; // 0 = Home, 1 = Hatch Mid, 2 = Hatch High, 3 = Cargo Low, 4 = Cargo Mid, 5 = Cargo High
 
-   enum mode {Hatch, Cargo};
+   enum mode {Hatch, Cargo, Auto};
 
    int posList[5] = {0, 0, 0, 0, 0}; //Hatch Mid, Hatch High, Cargo Low, Cargo Mid, Cargo High
 
@@ -57,6 +57,8 @@ class Elevator {
    bool isMoving = false;
    bool isOverridden = false;
    int bufferDist = 0; //TBD
+
+   bool isAuto = false;
    
    double goingUpCruseSpeed = upCruseSpeed;
    double goingUpApproachSpeed = upApproachSpeed;

@@ -65,12 +65,14 @@ void Robot::singleOpMode() {
 
 	//Op Controler Vibration For Ele Modes
 
-	if(vibrationTicker == 1 && eleMode){
+	if(vibrationTicker == 1 && eleMode == 0){
 		vibrationTicker++;
 		singleOP->SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 1);
-	}else if(vibrationTicker == 1 && !eleMode){
+	}else if(vibrationTicker == 1 && eleMode == 1){
 		vibrationTicker++;
 		singleOP->SetRumble(frc::GenericHID::RumbleType::kRightRumble, 1);
+	}else if(eleMode == 2){
+		vibrationTicker = 0;
 	}else if(vibrationTicker != 0 && vibrationTicker < 50){
 		vibrationTicker++;
 	}else{
@@ -134,7 +136,7 @@ void Robot::singleOpMode() {
 
 	Cargo->Intake(singleOP->GetRawAxis(cargoIntakeAxis));
 	
-	Ele->Refresh();
+	Ele->Refresh(Hatch->hatchOn(), Cargo->isCargo());
 	
 	}else{
 	//Driver Controls
@@ -162,12 +164,14 @@ void Robot::TeleopPeriodic() {
 
 	//Op Controler Vibration For Ele Modes
 
-	if(vibrationTicker == 1 && eleMode){
+	if(vibrationTicker == 1 && eleMode == 0){
 		vibrationTicker++;
 		Op.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 1);
-	}else if(vibrationTicker == 1 && !eleMode){
+	}else if(vibrationTicker == 1 && eleMode == 1){
 		vibrationTicker++;
 		Op.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 1);
+	}else if(vibrationTicker == 1 && eleMode == 2){
+		vibrationTicker = 0;
 	}else if(vibrationTicker != 0 && vibrationTicker < 50){
 		vibrationTicker++;
 	}else{
@@ -229,7 +233,7 @@ void Robot::TeleopPeriodic() {
 
 	Cargo->Intake(Op.GetRawAxis(cargoIntakeAxis));
 	
-	Ele->Refresh();
+	Ele->Refresh(Hatch->hatchOn(), Cargo->isCargo());
 	
 	
 	//Driver Controls
