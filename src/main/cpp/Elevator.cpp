@@ -22,6 +22,8 @@ Elevator::Elevator() {
         motor.Config_kI(0, I);
         motor.Config_kD(0, D);
 
+        std::cout << "INFO: POS MODE ENABLED ON ELEVATOR" << std::endl;
+
     }
 }
 
