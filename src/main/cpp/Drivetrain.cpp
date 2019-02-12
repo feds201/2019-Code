@@ -23,6 +23,19 @@ Drivetrain::Drivetrain(){
     }else{
         std::cout << "WARNING: ACCEL LIMIT NOT ENABLED" << std::endl;
     }
+
+	if(drivetrainVoltageControl){
+		std::cout << "INFO: DRIVETRAIN IN VOLTAGE MODE" << std::endl;
+	}else{
+		std::cout << "INFO: DRIVETRAIN IN VEL MODE" << std::endl;
+	}
+
+	if(drivetrainAutoheading){
+		std::cout << "INFO: DRIVETRAIN AUTOHEADING ENABLED" << std::endl;
+	}else{
+		std::cout << "INFO: DRIVETRAIN AUTOHEADING DISABLED" << std::endl;
+	}
+
 	Left1.Set(ControlMode::PercentOutput, 0);
 	Left2.Set(ControlMode::Follower, Left1.GetDeviceID());
 	Right1.Set(ControlMode::PercentOutput, 0);

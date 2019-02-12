@@ -22,8 +22,10 @@ Elevator::Elevator() {
         motor.Config_kI(0, I);
         motor.Config_kD(0, D);
 
-        std::cout << "INFO: POS MODE ENABLED ON ELEVATOR" << std::endl;
+        std::cout << "INFO: ELEVATOR IN POS MODE" << std::endl;
 
+    }else{
+        std::cout << "INFO: ELEVATOR IN REG MODE" << std::endl;
     }
 }
 
@@ -134,13 +136,13 @@ if(!configMode & !posMode){
 
     }else if(isMoving && position == 0){
         if(!bottomLimit.Get()){
-            motor.Set(ControlMode::PercentOutput, -0.2);
+            motor.Set(ControlMode::PercentOutput, goingDownCruseSpeed);
         }else{
            isMoving = false;
         }
     }
         if(!bottomLimit.Get() && !isMoving){
-            motor.Set(ControlMode::PercentOutput, 0.2);
+            motor.Set(ControlMode::PercentOutput, holdVoltage);
         }else if(bottomLimit.Get() && !isMoving){
             motor.Set(ControlMode::PercentOutput, 0);
         }

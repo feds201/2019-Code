@@ -70,6 +70,7 @@ class Elevator {
    double goingUpApproachSpeed = upApproachSpeed;
    double goingDownCruseSpeed = downCruseSpeed;
    double goingDownApproachSpeed = downApproachSpeed;
+   double holdPos = holdVoltage;
 
    WPI_TalonSRX motor{elevatorMotor};
 

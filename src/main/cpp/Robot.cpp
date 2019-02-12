@@ -141,7 +141,7 @@ void Robot::singleOpMode() {
 	}else{
 	//Driver Controls
 	
-	Drive->Drive(deadzone(singleOP->GetRawAxis(1)), deadzone(singleOP->GetRawAxis(4)), false, true);
+	Drive->Drive(deadzone(singleOP->GetRawAxis(1)), deadzone(singleOP->GetRawAxis(4)), drivetrainAutoheading, drivetrainVoltageControl);
 	}
 }
 
@@ -238,7 +238,7 @@ void Robot::TeleopPeriodic() {
 	
 	//Driver Controls
 	
-	Drive->Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), false, true);
+	Drive->Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), drivetrainAutoheading, drivetrainVoltageControl);
 
 	}else{
 
