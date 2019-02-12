@@ -99,7 +99,7 @@ void Elevator::Move(int position){
 
 //Once the elevator hits the top limit switch, the elevator can not go more up. When the elevator hits the bottom limit switch, the elevator can not go more down.
 
-if(!configMode){
+if(!configMode & !posMode){
 
     if(bottomLimit.Get()){
         motor.SetSelectedSensorPosition(0);
