@@ -59,6 +59,12 @@ class Elevator {
    int bufferDist = 0; //TBD
 
    bool isAuto = false;
+
+   double P = elevator_P;
+   double I = elevator_I;
+   double D = elevator_D;
+
+   bool posMode = elevatorPosMode;
    
    double goingUpCruseSpeed = upCruseSpeed;
    double goingUpApproachSpeed = upApproachSpeed;

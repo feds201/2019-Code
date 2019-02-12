@@ -16,6 +16,13 @@ Elevator::Elevator() {
 
     std::cout << "INFO: ELEVATOR INIT COMPLETE" << std::endl;
 
+    if(posMode){
+
+        motor.Config_kP(0, P);
+        motor.Config_kI(0, I);
+        motor.Config_kD(0, D);
+
+    }
 }
 
 void Elevator::Home(){
@@ -136,6 +143,31 @@ if(!configMode){
             motor.Set(ControlMode::PercentOutput, 0);
         }
   }
+
+
+//
+//
+//
+//
+//
+//
+
+if(!configMode && posMode){
+
+    if(bottomLimit.Get()){
+        motor.SetSelectedSensorPosition(0);
+    }
+
+    if(position != 0){
+        motor.Set(ControlMode::Position, posList[position-1]);
+    }else{
+        motor.Set(ControlMode::Position, 0);
+    }
+    
+  }
+
+
+
 }
 
 void Elevator::Refresh(bool isHatch, bool isCargo){
@@ -153,7 +185,7 @@ void Elevator::Refresh(bool isHatch, bool isCargo){
             currentMode = Auto;
             }
         }
-    }
+    
 
 
     if(!isOverridden){

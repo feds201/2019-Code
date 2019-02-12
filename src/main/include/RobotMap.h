@@ -69,6 +69,8 @@ constexpr bool accelLimit = false;
 //
 //
 
+constexpr bool elevatorPosMode = false;
+
 constexpr int elevatorMotor = 0;
 constexpr int topLimitSwitch = 0;
 constexpr int bottomLimitSwitch = 0;
@@ -77,6 +79,10 @@ constexpr double upCruseSpeed = 1;
 constexpr double upApproachSpeed = 0.4;
 constexpr double downCruseSpeed = -0.2;
 constexpr double downApproachSpeed = 0;
+
+constexpr double elevator_P = 0;
+constexpr double elevator_I = 0;
+constexpr double elevator_D = 0;
 
 //
 //
