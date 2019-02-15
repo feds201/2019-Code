@@ -17,8 +17,8 @@ Drivetrain::Drivetrain(){
 
     if(ACCEL_LIMIT_ENABLED){
 
-	Left2.ConfigClosedloopRamp(accelTime, 10);
-	Right2.ConfigClosedloopRamp(accelTime, 10);
+	Left1.ConfigClosedloopRamp(accelTime, 10);
+	Right1.ConfigClosedloopRamp(accelTime, 10);
 
     }else{
         std::cout << "WARNING: ACCEL LIMIT NOT ENABLED" << std::endl;
@@ -44,8 +44,8 @@ Drivetrain::Drivetrain(){
     lmasterID = Left1.GetDeviceID();
     rmasterID = Right1.GetDeviceID();
 
-	Left2.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
-	Right2.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
+	Left1.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
+	Right1.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 
 	Left1.Config_kP(0, P);
 	Left1.Config_kI(0, I);
@@ -88,21 +88,21 @@ void Drivetrain::Drive(float fwd, float trn, bool autoHeading, bool voltageContr
 void Drivetrain::Set(float Left, float Right, bool voltageControl){
 
     if(!voltageControl){
-	    Left2.Set(ControlMode::Velocity, Left);
-	    Right2.Set(ControlMode::Velocity, Right);
+	    Left1.Set(ControlMode::Velocity, Left);
+	    Right1.Set(ControlMode::Velocity, Right);
     }else{
-        Left2.Set(ControlMode::PercentOutput, Left);
-	    Right2.Set(ControlMode::PercentOutput, Right);
+        Left1.Set(ControlMode::PercentOutput, Left);
+	    Right1.Set(ControlMode::PercentOutput, Right);
     }
-	Left1.Set(ControlMode::Follower, lmasterID);
-	Right1.Set(ControlMode::Follower, rmasterID);
+	Left2.Set(ControlMode::Follower, lmasterID);
+	Right2.Set(ControlMode::Follower, rmasterID);
 
 }
 
 int * Drivetrain::GetEncVel(){
 
-	EncVel[0] = Left2.GetSelectedSensorVelocity(0);
-	EncVel[1] = Right2.GetSelectedSensorVelocity(0);
+	EncVel[0] = Left1.GetSelectedSensorVelocity(0);
+	EncVel[1] = Right1.GetSelectedSensorVelocity(0);
 
 	return EncVel;
 
@@ -110,8 +110,8 @@ int * Drivetrain::GetEncVel(){
 
 int * Drivetrain::GetEncPos(){
 
-	EncPos[0] = Left2.GetSelectedSensorPosition(0);
-	EncPos[1] = Right2.GetSelectedSensorPosition(0);
+	EncPos[0] = Left1.GetSelectedSensorPosition(0);
+	EncPos[1] = Right1.GetSelectedSensorPosition(0);
 
 	return EncPos;
 
@@ -119,13 +119,13 @@ int * Drivetrain::GetEncPos(){
 
 void Drivetrain::SetEncPos(double left, double right){
 
-	Left2.SetSelectedSensorPosition(left, 0, 10);
-	Right2.SetSelectedSensorPosition(right, 0, 10);
+	Left1.SetSelectedSensorPosition(left, 0, 10);
+	Right1.SetSelectedSensorPosition(right, 0, 10);
 
 	frc::Wait(0.1);
 
-	Left2.SetSelectedSensorPosition(left, 0, 10);
-	Right2.SetSelectedSensorPosition(right, 0, 10);
+	Left1.SetSelectedSensorPosition(left, 0, 10);
+	Right1.SetSelectedSensorPosition(right, 0, 10);
 
 }
 

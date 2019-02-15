@@ -44,10 +44,10 @@ private:
 
 		float lastTime;
 
-		WPI_TalonSRX Left1{driveMotor1};
-		WPI_TalonSRX Left2{dirveMotor2};
-		WPI_TalonSRX Right1{driveMotor3};
-		WPI_TalonSRX Right2{driveMotor4};
+		WPI_TalonSRX Left1{leftDriveMotor1};
+		WPI_TalonSRX Left2{leftDirveMotor2};
+		WPI_TalonSRX Right1{rightDriveMotor1};
+		WPI_TalonSRX Right2{rightDriveMotor2};
 
     int lmasterID;
     int rmasterID;

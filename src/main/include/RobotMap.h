@@ -46,10 +46,10 @@ constexpr int pressureTransID = 0;
 //
 //
 
-constexpr int driveMotor1 = 0;
-constexpr int dirveMotor2 = 0;
-constexpr int driveMotor3 = 0;
-constexpr int driveMotor4 = 0;
+constexpr int leftDriveMotor1 = 9;
+constexpr int leftDirveMotor2 = 8;
+constexpr int rightDriveMotor1 = 7;
+constexpr int rightDriveMotor2 = 6
 
 constexpr int Pigeon = 0;
 
