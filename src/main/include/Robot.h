@@ -36,6 +36,8 @@ class Robot : public frc::TimedRobot {
   Climber* Climb{};
 
   frc::PowerDistributionPanel pdp{PDPID};
+  
+  frc::AnalogInput pressure{pressureTransID};
 
   frc::Joystick Driver{0};
   frc::Joystick Op{1};
@@ -47,6 +49,8 @@ class Robot : public frc::TimedRobot {
   int logInterval = 20;
   bool logThisTime = false;
   bool singleOPDriverMode = true;
+
+  int press;
 
   int vibrationTicker = 0;
   int eleMode = 0;

@@ -248,6 +248,10 @@ void Robot::TeleopPeriodic() {
 
 	//Display Data To Dashboard
 
+
+	press = (double)((((double)pressure.GetValue()-404.0)/3418.0)*120.0);
+
+	frc::SmartDashboard::PutNumber("Pressure", press);
 	frc::SmartDashboard::PutNumber("Total Current Draw", pdp.GetTotalCurrent());
 	frc::SmartDashboard::PutBoolean("Has Cargo", Cargo->isCargo());
 	frc::SmartDashboard::PutBoolean("Has Hatch", Hatch->hatchOn());
