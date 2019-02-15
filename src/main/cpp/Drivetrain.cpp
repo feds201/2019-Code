@@ -67,8 +67,8 @@ void Drivetrain::Drive(float fwd, float trn, bool autoHeading, bool voltageContr
 	if(autoHeading){
         angleErr = gyro.GetFusedHeading()-tempHeadingZero;
 
-		leftSet = ((trn+(angleErr*0.07)) - fwd);
-		rightSet = ((trn+(angleErr*0.07)) + fwd);
+		leftSet = ((trn+(angleErr*0.05)) - fwd);
+		rightSet = ((trn+(angleErr*0.05)) + fwd);
 	}else{
 		leftSet = (trn-fwd);
 		rightSet = (trn+fwd);

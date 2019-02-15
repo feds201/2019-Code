@@ -76,7 +76,7 @@ constexpr bool drivetrainAutoheading = false;
 constexpr bool elevatorPosMode = false;
 
 constexpr int elevatorMotor = 0;
-constexpr int topLimitSwitch = 0;
+constexpr int topLimitSwitch = 1;
 constexpr int bottomLimitSwitch = 0;
 
 constexpr double upCruseSpeed = 1;
@@ -115,7 +115,7 @@ constexpr int armMotorID = 0;
 constexpr int shooterMotor = 0;
 constexpr int masterWristMotor = 0;
 constexpr int slaveWristMotor = 0;
-constexpr int limitSwitch = 0;
+constexpr int limitSwitch = 2;
 
 constexpr int Cargo_P = 0;
 constexpr int Cargo_I = 0;
@@ -133,7 +133,7 @@ constexpr int plateExtend = 0;
 constexpr int plateRetract = 0;
 constexpr int ejectorsExtend = 0;
 constexpr int ejectorsRetract = 0;
-constexpr int hatchDetectionLimitSwitch = 0;
+constexpr int hatchDetectionLimitSwitch = 3;
 
 //
 //
