@@ -142,6 +142,11 @@ void Robot::singleOpMode() {
 	//Driver Controls
 	
 	Drive->Drive(deadzone(singleOP->GetRawAxis(1)), deadzone(singleOP->GetRawAxis(4)), drivetrainAutoheading, drivetrainVoltageControl);
+
+	if(singleOP->GetRawButtonPressed(shiftBtn)){
+		Drive->Shift();
+	}
+	
 	}
 }
 
