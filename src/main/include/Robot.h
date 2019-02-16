@@ -29,11 +29,11 @@ class Robot : public frc::TimedRobot {
 
  private:
   
-  Drivetrain* Drive{};
-  Elevator* Ele{};
-  CargoPickup* Cargo{};
-  HatchManipulator* Hatch{};
-  Climber* Climb{};
+  Drivetrain Drive{};
+  Elevator Ele{};
+  CargoPickup Cargo{};
+  HatchManipulator Hatch{};
+  Climber Climb{};
 
   frc::PowerDistributionPanel pdp{PDPID};
   
@@ -41,7 +41,6 @@ class Robot : public frc::TimedRobot {
 
   frc::Joystick Driver{0};
   frc::Joystick Op{1};
-  frc::Joystick* singleOP;
 
   cs::UsbCamera Camera;
 

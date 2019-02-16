@@ -16,6 +16,7 @@ class CargoPickup {
   void ToggleArm();
   void Intake(double input);
   int getEncPos();
+  int getEncVel();
   double * getWristCurrent();
   double getWheelsCurrent();
   bool isCargo();

@@ -230,6 +230,12 @@ int Elevator::getEncPos(){
 
 }
 
+int Elevator::getEncVel(){
+
+    return motor.GetSelectedSensorVelocity();
+
+}
+
 double Elevator::getCurrent(){
 
     if(motor.GetOutputCurrent() > 50){

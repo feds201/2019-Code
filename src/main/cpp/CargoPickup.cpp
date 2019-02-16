@@ -77,6 +77,12 @@ int CargoPickup::getEncPos(){
 
 }
 
+int CargoPickup::getEncVel(){
+
+    return master.GetSelectedSensorVelocity();
+
+}
+
 double * CargoPickup::getWristCurrent(){
 
     current[0] = master.GetOutputCurrent();

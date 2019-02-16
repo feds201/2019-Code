@@ -19,8 +19,15 @@ public:
 		double voltage;
 		double totalCurrent;
 
-		double driveSetpoints[2];
 		double driveCurrents[4];
+
+		int driveEncPos[2];
+		int driveEncVel[2];
+
+		int eleEncVel;
+		int eleEncPos;
+		
+		int wristEncVel;
 
 		double elevatorCurrent;
 		double cargoPickupWristPos;

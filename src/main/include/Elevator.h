@@ -36,6 +36,7 @@ class Elevator {
   void Refresh(bool isHatch, bool isCargo);
   void Override(double speed, bool isOverride);
   int getEncPos();
+  int getEncVel();
   double getCurrent();
   std::string getTarget();
 
