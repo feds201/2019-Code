@@ -10,6 +10,7 @@ public:
 	void Drive(float fwd, float trn, bool autoHeading, bool voltageControl);
 	void directSet(float left, float right);
 	void Set(float Left, float Right, bool voltageControl);
+	void Shift();
 	int * GetEncVel();
 	int * GetEncPos();
 	float * GetCurr();
@@ -26,21 +27,40 @@ private:
 		double I = Drivetrain_I;
 		double D = Drivetrain_D;
 
-		int maxSpeed = maxRobotVelocity; 
+		int maxSpeedLo = maxRobotVelocityLo; 
+		int maxSpeedHi = maxRobotVelocityHi;
 
-		double gearRatio = gearRatioToEncodersFromWheels; 
-		double wheelR = wheelRadius; 
+		double gearRatioLo = gearRatioToEncodersFromWheelsLowGear;
+		double gearRatioHi = gearRatioToEncodersFromWheelsHighGear;
+
+
+		double wheelR = wheelRadius;
 		double encCountsPerRev = 4096;
 		double pi = 3.14159;
-		double countsPerIn;
-		double maxV = 0; //Don't Know Yet
+		
+		double countsPerInLo;
+		double countsPerInHi;
+
+		int maxVLo;
+		int maxVHi;
+
 		float inchesPerMeter = 39.37007874;
-		double metersPerCount;
-		float accelTime;
+
+		double metersPerCountLo;
+		double metersPerCountHi;
+
+		double metersPer100msLo;
+		double metersPer100msHi;
+
+		float accelTimeLo;
+		float accelTimeHi;
+
 		float current[4];
 		float setpt[2];
-    float tempHeadingZero;
-    float angleErr;
+    	float tempHeadingZero;
+    	float angleErr;
+		int currentGear = 1;
+		bool gearHasChanged = false;
 
 		float lastTime;
 
@@ -48,6 +68,8 @@ private:
 		WPI_TalonSRX Left2{leftDirveMotor2};
 		WPI_TalonSRX Right1{rightDriveMotor1};
 		WPI_TalonSRX Right2{rightDriveMotor2};
+
+		frc::DoubleSolenoid Shifter{PCMID, setShifterFirstGear, setShifterSecondGear};
 
     int lmasterID;
     int rmasterID;

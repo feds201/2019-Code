@@ -240,6 +240,10 @@ void Robot::TeleopPeriodic() {
 	
 	Drive->Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), drivetrainAutoheading, drivetrainVoltageControl);
 
+	if(Driver.GetRawButtonPressed(shiftBtn)){
+		Drive->Shift();
+	}
+
 	}else{
 
 		singleOpMode();

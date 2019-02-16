@@ -19,6 +19,11 @@ constexpr bool CONFIG_MODE = false;
 
 constexpr bool SINGLE_OPERATOR_MODE = false;
 
+constexpr int fwdChl = 1;
+constexpr int trnChl = 4;
+
+constexpr int shiftBtn = 0; //A
+
 constexpr int hatchRun = 0; //A
 constexpr int hatchAbort = 0; //B
 
@@ -49,7 +54,7 @@ constexpr int pressureTransID = 0;
 constexpr int leftDriveMotor1 = 9;
 constexpr int leftDirveMotor2 = 8;
 constexpr int rightDriveMotor1 = 7;
-constexpr int rightDriveMotor2 = 6
+constexpr int rightDriveMotor2 = 6;
 
 constexpr int Pigeon = 0;
 
@@ -57,14 +62,19 @@ constexpr int Drivetrain_P = 0;
 constexpr int Drivetrain_I = 0;
 constexpr int Drivetrain_D = 0;
 
-constexpr int maxRobotVelocity = 0;
-constexpr int gearRatioToEncodersFromWheels = 0;
+constexpr int maxRobotVelocityLo = 0;
+constexpr int maxRobotVelocityHi = 0;
+constexpr double gearRatioToEncodersFromWheelsLowGear = 0;
+constexpr double gearRatioToEncodersFromWheelsHighGear = 0;
 constexpr int wheelRadius = 0;
 
 constexpr bool accelLimit = false;
 
 constexpr bool drivetrainVoltageControl = true;
 constexpr bool drivetrainAutoheading = false;
+
+constexpr int setShifterFirstGear = 0;
+constexpr int setShifterSecondGear = 0;
 
 
 //
@@ -77,7 +87,7 @@ constexpr bool drivetrainAutoheading = false;
 
 constexpr bool elevatorPosMode = false;
 
-constexpr int elevatorMotor = 0;
+constexpr int elevatorMotor = 5;
 constexpr int topLimitSwitch = 1;
 constexpr int bottomLimitSwitch = 0;
 
@@ -114,9 +124,9 @@ constexpr int armMotorID = 0;
 //
 //
 
-constexpr int shooterMotor = 0;
-constexpr int masterWristMotor = 0;
-constexpr int slaveWristMotor = 0;
+constexpr int shooterMotor = 2;
+constexpr int masterWristMotor = 3;
+constexpr int slaveWristMotor = 4;
 constexpr int limitSwitch = 2;
 
 constexpr int Cargo_P = 0;

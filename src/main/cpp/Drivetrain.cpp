@@ -5,20 +5,34 @@ Drivetrain::Drivetrain(){
 
 	gyro.SetFusedHeading(0, 10);
 
-	countsPerIn = encCountsPerRev*(gearRatio*(1/(2*pi*wheelR)));
+	if(ACCEL_LIMIT_ENABLED){
 
-	metersPerCount = 1/(countsPerIn*inchesPerMeter);
+	//Low Gear Calculations
 
-	metersPerCount *= maxSpeed;
+	countsPerInLo = encCountsPerRev*(gearRatioLo*(1/(2*pi*wheelR)));
 
-	maxV = metersPerCount*10;
+	metersPerCountLo = 1/(countsPerInLo*inchesPerMeter);
 
-	accelTime = maxV/MAXAccel;
+	metersPer100msLo = maxSpeedLo*metersPerCountLo;
 
-    if(ACCEL_LIMIT_ENABLED){
+	maxVLo = metersPer100msLo/10;
 
-	Left1.ConfigClosedloopRamp(accelTime, 10);
-	Right1.ConfigClosedloopRamp(accelTime, 10);
+	accelTimeLo = maxVLo/MAXAccel;
+
+	//High Gear Calculations
+
+	countsPerInHi = encCountsPerRev*(gearRatioHi*(1/(2*pi*wheelR)));
+
+	metersPerCountHi = 1/(countsPerInHi*inchesPerMeter);
+
+	metersPer100msHi = maxSpeedHi*metersPerCountHi;
+
+	maxVHi = metersPer100msHi/10;
+
+	accelTimeHi = maxVHi/MAXAccel;
+
+	Left1.ConfigClosedloopRamp(accelTimeLo, 10);
+	Right1.ConfigClosedloopRamp(accelTimeLo, 10);
 
     }else{
         std::cout << "WARNING: ACCEL LIMIT NOT ENABLED" << std::endl;
@@ -55,11 +69,27 @@ Drivetrain::Drivetrain(){
     Right1.Config_kI(0, I);
     Right1.Config_kD(0, D);
 
+	Shifter.Set(frc::DoubleSolenoid::Value::kForward);
+
 	std::cout << "INFO: DRIVETRAIN INIT COMPLETE" << std::endl;
 
 }
 
 void Drivetrain::Drive(float fwd, float trn, bool autoHeading, bool voltageControl){
+
+	if(gearHasChanged && ACCEL_LIMIT_ENABLED){
+
+		if(currentGear == 1){
+			Left1.ConfigClosedloopRamp(accelTimeLo, 10);
+			Right1.ConfigClosedloopRamp(accelTimeLo, 10);
+			gearHasChanged = false;
+		}else if(currentGear == 2){
+			Left1.ConfigClosedloopRamp(accelTimeHi, 10);
+			Right1.ConfigClosedloopRamp(accelTimeHi, 10);
+			gearHasChanged = false;
+		}
+
+	}
 
 	if(trn != 0 && autoHeading){
 		tempHeadingZero = gyro.GetFusedHeading();
@@ -74,10 +104,13 @@ void Drivetrain::Drive(float fwd, float trn, bool autoHeading, bool voltageContr
 		rightSet = (trn+fwd);
 	}
 
-    if(!voltageControl){
-        leftSet *= maxSpeed;
-        rightSet *= maxSpeed;
-    }
+    if(!voltageControl && currentGear == 1){
+        leftSet *= maxSpeedLo;
+        rightSet *= maxSpeedLo;
+    }else if(!voltageControl && currentGear == 2){
+		leftSet *= maxSpeedHi;
+        rightSet *= maxSpeedHi;
+	}
 
 	Set(leftSet, rightSet, voltageControl);
 
@@ -98,6 +131,23 @@ void Drivetrain::Set(float Left, float Right, bool voltageControl){
 	Right2.Set(ControlMode::Follower, rmasterID);
 
 }
+
+void Drivetrain::Shift(){
+
+	if(Shifter.Get() == frc::DoubleSolenoid::Value::kForward){
+		Shifter.Set(frc::DoubleSolenoid::Value::kReverse);
+		currentGear = 2;
+		gearHasChanged = true;
+	}else{
+		Shifter.Set(frc::DoubleSolenoid::Value::kForward);
+		currentGear = 1;
+		gearHasChanged = true;
+	}
+
+
+
+}
+
 
 int * Drivetrain::GetEncVel(){
 
