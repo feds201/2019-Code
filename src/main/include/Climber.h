@@ -8,7 +8,6 @@ class Climber {
   void incStage();
   void decStage();
   void setWheel(double speed);
-  void deployArm(double speed);
   bool getFrontState();
   bool getBackState();
   int getStage();
