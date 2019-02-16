@@ -22,23 +22,24 @@ constexpr bool SINGLE_OPERATOR_MODE = false;
 constexpr int fwdChl = 1;
 constexpr int trnChl = 4;
 
-constexpr int shiftBtn = 0; //A
+constexpr int shiftBtn = 1; //A
 
-constexpr int hatchRun = 0; //A
-constexpr int hatchAbort = 0; //B
+constexpr int hatchRun = 1; //A
+constexpr int hatchAbort = 2; //B
 
-constexpr int eleLift = 0; //Right Bumper
-constexpr int eleSwitch = 0; //Left Bumper
-constexpr int eleOverride = 0; //X
-constexpr int eleOverrideAxis = 0; //Axis 1
+constexpr int eleLift = 6; //Right Bumper
+constexpr int eleSwitch = 5; //Left Bumper
+constexpr int eleOverride = 3; //X
+constexpr int eleOverrideAxis = 1; //Axis 1
 
-constexpr int climbIncStage = 0; //Menu
-constexpr int climbDecStage = 0; //View
-constexpr int climbWheelAxis = 0; //Axis 1
-constexpr int climbArmAxis = 0; //Axis 4
+constexpr int climbIncStage = 8; //Menu
+constexpr int climbDecStage = 7; //View
+constexpr int climbWheelAxis = 1; //Axis 1
+constexpr int climbArmAxis = 4; //Axis 4
 
-constexpr int cargoToggle = 0; //Y
-constexpr int cargoIntakeAxis = 0; //Eject Is Right Trigger, Intake Is Left Trigger
+constexpr int cargoToggle = 4; //Y
+constexpr int cargoIntakeAxis = 2; //Eject Is Right Trigger, Intake Is Left Trigger
+constexpr int cargoEjectAxis = 3;
 
 constexpr int pressureTransID = 0;
 

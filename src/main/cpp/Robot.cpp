@@ -134,7 +134,7 @@ void Robot::singleOpMode() {
 		Cargo->ToggleArm();
 	}
 
-	Cargo->Intake(singleOP->GetRawAxis(cargoIntakeAxis));
+	Cargo->Intake(singleOP->GetRawAxis(cargoIntakeAxis)-singleOP->GetRawAxis(cargoEjectAxis));
 	
 	Ele->Refresh(Hatch->hatchOn(), Cargo->isCargo());
 	
@@ -146,7 +146,7 @@ void Robot::singleOpMode() {
 	if(singleOP->GetRawButtonPressed(shiftBtn)){
 		Drive->Shift();
 	}
-	
+
 	}
 }
 
@@ -236,7 +236,7 @@ void Robot::TeleopPeriodic() {
 		Cargo->ToggleArm();
 	}
 
-	Cargo->Intake(Op.GetRawAxis(cargoIntakeAxis));
+	Cargo->Intake(Op.GetRawAxis(cargoIntakeAxis)-Op.GetRawAxis(cargoEjectAxis));
 	
 	Ele->Refresh(Hatch->hatchOn(), Cargo->isCargo());
 	
