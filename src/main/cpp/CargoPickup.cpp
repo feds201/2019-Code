@@ -58,15 +58,15 @@ if(!configMode){
     }
 
     if (input > 0.5) {
-        if (swi.Get()){
+       // if (swi.Get()){
             shooter.Set(ControlMode::PercentOutput, input);
-        }
+        //}
     }
 
     if (input < 0) {
-        if (!(swi.Get())) {
+        //if (!(swi.Get())) {
             shooter.Set(ControlMode::PercentOutput, input);
-        }
+        //}
     }
   }
 }   

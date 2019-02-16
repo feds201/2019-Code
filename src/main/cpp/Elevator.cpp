@@ -208,16 +208,16 @@ void Elevator::Override(double speed, bool isOverride){
         isMoving = true;
         currentPos = 0;
     
-        if(speed != 0){
-            if(speed > 0 && !topLimit.Get()){
+        if(abs(speed) >= holdVoltage){
+            if(speed < 0 && !topLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);
-            }else if(speed < 0 && !bottomLimit.Get()){
+            }else if(speed > 0 && !bottomLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);
             }
         }else if(!bottomLimit.Get()){
-            motor.Set(0.2);
+            motor.Set(ControlMode::PercentOutput, holdVoltage);
         }else{
-            motor.Set(0);
+            motor.Set(ControlMode::PercentOutput, 0);
         }
     
     

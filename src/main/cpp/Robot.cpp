@@ -106,7 +106,7 @@ void Robot::singleOpMode() {
 	*/
 
 	if(Climb.getStage() == 0){
-		Ele.Override(deadzone(Driver.GetRawAxis(eleOverrideAxis)), Driver.GetRawButtonPressed(eleOverride));
+		Ele.Override(-deadzone(Driver.GetRawAxis(eleOverrideAxis)), Driver.GetRawButton(eleOverride));
 	}
 
 	if(Driver.GetRawButtonPressed(eleSwitch)){
@@ -208,7 +208,7 @@ void Robot::TeleopPeriodic() {
 	*/
 
 	if(Climb.getStage() == 0){
-		Ele.Override(deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButtonPressed(eleOverride));
+		Ele.Override(-deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButton(eleOverride));
 	}
 
 	if(Op.GetRawButtonPressed(eleSwitch)){
