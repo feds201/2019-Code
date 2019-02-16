@@ -35,7 +35,6 @@ constexpr int eleOverrideAxis = 1; //Axis 1
 constexpr int climbIncStage = 8; //Menu
 constexpr int climbDecStage = 7; //View
 constexpr int climbWheelAxis = 1; //Axis 1
-constexpr int climbArmAxis = 4; //Axis 4
 
 constexpr int cargoToggle = 4; //Y
 constexpr int cargoIntakeAxis = 2; //Eject Is Right Trigger, Intake Is Left Trigger

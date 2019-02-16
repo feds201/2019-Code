@@ -126,7 +126,6 @@ void Robot::singleOpMode() {
 		Climb.decStage();
 	}
 
-    Climb.deployArm(Driver.GetRawAxis(climbArmAxis));
 	Climb.setWheel(Driver.GetRawAxis(climbWheelAxis));
 
 	if(Driver.GetRawButtonPressed(cargoToggle)){

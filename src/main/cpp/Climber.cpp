@@ -35,21 +35,11 @@ void Climber::incStage(){
   void Climber::setWheel(double speed){
 
       if(stage == 2){
-      tractionwheel.Set(ControlMode::PercentOutput, speed);
+      tractionwheel.Set(ControlMode::PercentOutput, speed/10);
       }else{
         tractionwheel.Set(ControlMode::PercentOutput, 0);
         //This sets the speed of the traction wheel; if it's in any stage but 2, it sets the speed to 0
       }
-  }
-
-  void Climber::deployArm(double speed){
-
-      if(stage == 1 ||stage == 2 || stage == 3){
-            armMotor.Set(ControlMode::PercentOutput, speed);
-        }else{
-            armMotor.Set(ControlMode::PercentOutput, 0);
-        }
-
   }
 
   void Climber::excStage(){
@@ -79,7 +69,6 @@ void Climber::incStage(){
 
             liftFront(false);
             liftBack(false);
-            deployArm(false);
             //This is the default case for the robot. All of the pistons on the robot are retracted.
 
       }
