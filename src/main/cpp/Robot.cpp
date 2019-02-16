@@ -227,7 +227,6 @@ void Robot::TeleopPeriodic() {
 		Climb.decStage();
 	}
 
-    Climb.deployArm(Op.GetRawAxis(climbArmAxis));
 	Climb.setWheel(Op.GetRawAxis(climbWheelAxis));
 
 	if(Op.GetRawButtonPressed(cargoToggle)){
