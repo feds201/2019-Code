@@ -14,7 +14,7 @@ class CargoPickup {
  public:
   CargoPickup();
   void ToggleArm();
-  void Intake(double input);
+  void Intake(double intakeTrigger, double ejectTrigger);
   int getEncPos();
   int getEncVel();
   double * getWristCurrent();
@@ -33,6 +33,8 @@ class CargoPickup {
   int masterID;
 
   bool hasCargo = false;
+
+  double setPt;
 
   int upPos = -50; //Dont Know Yet
   int downPos = 900; //Don't Know Yet

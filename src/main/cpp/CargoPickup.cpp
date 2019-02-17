@@ -48,25 +48,32 @@ if(!configMode){
 
 }
 
-void CargoPickup::Intake(double input) {
+void CargoPickup::Intake(double intakeTrigger, double ejectTrigger) {
     
- if(input == 0 && !hasCargo){
+    setPt = intakeTrigger-ejectTrigger;
+
+
+ if(ejectTrigger > 0 && ejectTrigger < 0.5){
+     hasCargo = false;
+ }
+
+ if(setPt == 0 && !hasCargo){
         shooter.Set(ControlMode::PercentOutput, 0);
-    }else if(input == 0 && hasCargo){
+    }else if(setPt == 0 && hasCargo){
         shooter.Set(ControlMode::PercentOutput, -0.05);
     }
 
-    if (input > 0.5) {
-            shooter.Set(ControlMode::PercentOutput, input);
+    if (setPt > 0.5) {
+            shooter.Set(ControlMode::PercentOutput, setPt);
             hasCargo = false;
     }
 
-    if (input < 0 && !hasCargo) {
-            shooter.Set(ControlMode::PercentOutput, input);
+    if (setPt < 0 && !hasCargo) {
+            shooter.Set(ControlMode::PercentOutput, setPt);
             if(shooter.GetOutputCurrent() > 30){
                 hasCargo = true;
             }
-    }else if(input < 0 && hasCargo){
+    }else if(setPt < 0 && hasCargo){
         shooter.Set(ControlMode::PercentOutput, -0.05);
     }
   }  

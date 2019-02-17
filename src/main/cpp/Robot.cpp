@@ -132,7 +132,7 @@ void Robot::singleOpMode() {
 		Cargo.ToggleArm();
 	}
 
-	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis)-Driver.GetRawAxis(cargoEjectAxis));
+	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis));
 	
 	Ele.Refresh(Hatch.hatchOn(), Cargo.isCargo());
 	
@@ -233,7 +233,7 @@ void Robot::TeleopPeriodic() {
 		Cargo.ToggleArm();
 	}
 
-	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis)-Op.GetRawAxis(cargoEjectAxis));
+	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis), Op.GetRawAxis(cargoEjectAxis));
 	
 	Ele.Refresh(Hatch.hatchOn(), Cargo.isCargo());
 	
