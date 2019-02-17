@@ -60,9 +60,9 @@ constexpr int rightDriveMotor2 = 6;
 
 constexpr int Pigeon = 0;
 
-constexpr int Drivetrain_P = 0;
-constexpr int Drivetrain_I = 0;
-constexpr int Drivetrain_D = 0;
+constexpr double Drivetrain_P = 0;
+constexpr double Drivetrain_I = 0;
+constexpr double Drivetrain_D = 0;
 
 constexpr int maxRobotVelocityLo = 0;
 constexpr int maxRobotVelocityHi = 0;
@@ -131,9 +131,9 @@ constexpr int masterWristMotor = 3;
 constexpr int slaveWristMotor = 4;
 constexpr int limitSwitch = 2;
 
-constexpr int Cargo_P = 0.6;
-constexpr int Cargo_I = 0;
-constexpr int Cargo_D = 0;
+constexpr double Cargo_P = 0.6;
+constexpr double Cargo_I = 0;
+constexpr double Cargo_D = 0;
 
 //
 //

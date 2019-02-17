@@ -213,8 +213,8 @@ void Robot::TeleopPeriodic() {
 
 	//
 	//
-
-	/* Uncomment If No Limit Switch Is Added To Hatch Mech
+/*
+	// Uncomment If No Limit Switch Is Added To Hatch Mech
 
 	if(Op.GetRawButtonPressed(hatchRun)){
 		Hatch.moveBackplate();
@@ -222,8 +222,8 @@ void Robot::TeleopPeriodic() {
 
 	Hatch.Eject(Op.GetRawButton(hatchAbort));
 
-	*/
-
+	//
+*/
 	if(Climb.getStage() == 0){
 		Ele.Override(-deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButton(eleOverride));
 	}
@@ -282,6 +282,7 @@ void Robot::TeleopPeriodic() {
 	frc::SmartDashboard::PutString("Elevator Target Pos", Ele.getTarget());
 	frc::SmartDashboard::PutNumber("Wrist Pos", Cargo.getEncPos());
 	frc::SmartDashboard::PutNumber("Err", Cargo.getErr());
+	frc::SmartDashboard::PutNumber("Elevator Pos", Ele.getEncPos());
 	
 	if(CONFIG_MODE){
 		frc::SmartDashboard::PutNumber("Elevator Pos", Ele.getEncPos());

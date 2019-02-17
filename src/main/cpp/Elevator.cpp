@@ -22,6 +22,8 @@ Elevator::Elevator() {
         motor.Config_kI(0, I);
         motor.Config_kD(0, D);
 
+        motor.SetSensorPhase(true);
+
         std::cout << "INFO: ELEVATOR IN POS MODE" << std::endl;
 
     }else{
@@ -205,7 +207,7 @@ void Elevator::Override(double speed, bool isOverride){
 
     if(isOverride){
 
-        isMoving = true;
+        isMoving = false;
         currentPos = 0;
     
         if(abs(speed) >= holdVoltage){
