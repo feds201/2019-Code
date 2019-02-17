@@ -129,7 +129,7 @@ constexpr int masterWristMotor = 3;
 constexpr int slaveWristMotor = 4;
 constexpr int limitSwitch = 2;
 
-constexpr int Cargo_P = 0;
+constexpr int Cargo_P = 0.6;
 constexpr int Cargo_I = 0;
 constexpr int Cargo_D = 0;
 

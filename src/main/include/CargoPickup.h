@@ -31,8 +31,10 @@ class CargoPickup {
 
   int masterID;
 
-  int upPos = 0; //Dont Know Yet
-  int downPos = 0; //Don't Know Yet
+  bool hasCargo = false;
+
+  int upPos = -50; //Dont Know Yet
+  int downPos = 900; //Don't Know Yet
 
   int P = Cargo_P;
   int I = Cargo_I;

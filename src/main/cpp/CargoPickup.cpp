@@ -18,9 +18,9 @@ CargoPickup::CargoPickup() {
 
     master.SetSensorPhase(true);
 
-    master.Config_kP(0, P); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
-    master.Config_kI(0, I); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
-    master.Config_kD(0, D);
+    master.Config_kP(0, P, 10); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
+    master.Config_kI(0, I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
+    master.Config_kD(0, D, 10);
 
     master.Set(ControlMode::Position, 0);
     slave.Set(ControlMode::Follower, masterID);
@@ -50,25 +50,26 @@ if(!configMode){
 
 void CargoPickup::Intake(double input) {
     
-if(!configMode){
-
-    if(input == 0){
+ if(input == 0 && !hasCargo){
         shooter.Set(ControlMode::PercentOutput, 0);
+    }else if(input == 0 && hasCargo){
+        shooter.Set(ControlMode::PercentOutput, -0.05);
     }
 
     if (input > 0.5) {
-       // if (swi.Get()){
             shooter.Set(ControlMode::PercentOutput, input);
-        //}
+            hasCargo = false;
     }
 
-    if (input < 0) {
-        //if (!(swi.Get())) {
+    if (input < 0 && !hasCargo) {
             shooter.Set(ControlMode::PercentOutput, input);
-        //}
+            if(shooter.GetOutputCurrent() > 30){
+                hasCargo = true;
+            }
+    }else if(input < 0 && hasCargo){
+        shooter.Set(ControlMode::PercentOutput, -0.05);
     }
-  }
-}   
+  }  
 
 int CargoPickup::getEncPos(){
 
