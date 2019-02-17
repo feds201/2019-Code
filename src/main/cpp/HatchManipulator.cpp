@@ -25,14 +25,14 @@ void HatchManipulator::Run(bool state, bool isCargoMode){
         dropOffStage = 0;
     }
 
-    if(whatIsHappening == Nothing && !isHatch.Get() && state == true){
+    if(whatIsHappening == Nothing && isHatch.Get() && state == true){
         whatIsHappening = PickingUp;
     }
 
-    if(whatIsHappening == Nothing && isHatch.Get() && state == true && dropOffStage == 0){
+    if(whatIsHappening == Nothing && !isHatch.Get() && state == true && dropOffStage == 0){
         whatIsHappening = DroppingOff;
         dropOffStage = 1;
-    }else if(whatIsHappening == DroppingOff && isHatch.Get() && state == true && lastState == false && dropOffStage == 1){
+    }else if(whatIsHappening == DroppingOff && !isHatch.Get() && state == true && lastState == false && dropOffStage == 1){
         dropOffStage = 2;
     }
 
@@ -53,7 +53,7 @@ void HatchManipulator::Run(bool state, bool isCargoMode){
     }
 
     lastState = state;
-    wasHatchOn = isHatch.Get();
+    wasHatchOn = !isHatch.Get();
 
     if(dropOffStage > 2){
         std::cout << "ERROR: HATCH MANIPULATOR STAGE HAS EXCEEDED MAX VALUE" << std::endl;
@@ -92,7 +92,7 @@ void HatchManipulator::Eject(bool inOrOut){
 
 bool HatchManipulator::hatchOn(){
 
-    return isHatch.Get();
+    return !isHatch.Get();
 
 }
 

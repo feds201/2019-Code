@@ -69,7 +69,7 @@ private:
 		WPI_TalonSRX Right1{rightDriveMotor1};
 		WPI_TalonSRX Right2{rightDriveMotor2};
 
-		frc::DoubleSolenoid Shifter{PCMID, setShifterFirstGear, setShifterSecondGear};
+		frc::DoubleSolenoid Shifter{PCMID, setShifterSecondGear, setShifterFirstGear};
 
     int lmasterID;
     int rmasterID;

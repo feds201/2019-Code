@@ -280,6 +280,8 @@ void Robot::TeleopPeriodic() {
 	frc::SmartDashboard::PutBoolean("Has Cargo", Cargo.isCargo());
 	frc::SmartDashboard::PutBoolean("Has Hatch", Hatch.hatchOn());
 	frc::SmartDashboard::PutString("Elevator Target Pos", Ele.getTarget());
+	frc::SmartDashboard::PutNumber("Wrist Pos", Cargo.getEncPos());
+	frc::SmartDashboard::PutNumber("Err", Cargo.getErr());
 	
 	if(CONFIG_MODE){
 		frc::SmartDashboard::PutNumber("Elevator Pos", Ele.getEncPos());

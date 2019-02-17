@@ -105,29 +105,29 @@ void Elevator::Move(int position){
 
 if(!configMode & !posMode){
 
-    if(bottomLimit.Get()){
+    if(!bottomLimit.Get()){
         motor.SetSelectedSensorPosition(0);
     }
 
     if(isMoving && position != 0){
 
-        if(goingUp && motor.GetSelectedSensorPosition() < posList[position-1] && !topLimit.Get()){
+        if(goingUp && motor.GetSelectedSensorPosition() < posList[position-1] && topLimit.Get()){
             if(abs(posList[position-1] - motor.GetSelectedSensorPosition()) < bufferDist){
                 motor.Set(ControlMode::PercentOutput, goingUpApproachSpeed);
             }
             motor.Set(ControlMode::PercentOutput, goingUpCruseSpeed);
-        }else if(goingUp && topLimit.Get()){
+        }else if(goingUp && !topLimit.Get()){
             isMoving = false;
         }else if(goingUp && motor.GetSelectedSensorPosition() >= posList[position-1]){
             isMoving = false;
         }
 
-        if(!goingUp && motor.GetSelectedSensorPosition() > posList[position-1] && !bottomLimit.Get()){
+        if(!goingUp && motor.GetSelectedSensorPosition() > posList[position-1] && bottomLimit.Get()){
              if(abs(posList[position-1] - motor.GetSelectedSensorPosition()) < bufferDist){
                 motor.Set(ControlMode::PercentOutput, goingDownApproachSpeed);
             }
             motor.Set(ControlMode::PercentOutput, goingDownCruseSpeed);
-        }else if(!goingUp && bottomLimit.Get()){
+        }else if(!goingUp && !bottomLimit.Get()){
             isMoving = false;
         }else if(!goingUp && motor.GetSelectedSensorPosition() <= posList[position-1]){
             isMoving = false;
@@ -135,15 +135,15 @@ if(!configMode & !posMode){
 
 
     }else if(isMoving && position == 0){
-        if(!bottomLimit.Get()){
+        if(bottomLimit.Get()){
             motor.Set(ControlMode::PercentOutput, goingDownCruseSpeed);
         }else{
            isMoving = false;
         }
     }
-        if(!bottomLimit.Get() && !isMoving){
+        if(bottomLimit.Get() && !isMoving){
             motor.Set(ControlMode::PercentOutput, holdVoltage);
-        }else if(bottomLimit.Get() && !isMoving){
+        }else if(!bottomLimit.Get() && !isMoving){
             motor.Set(ControlMode::PercentOutput, 0);
         }
   }
@@ -158,7 +158,7 @@ if(!configMode & !posMode){
 
 if(!configMode && posMode){
 
-    if(bottomLimit.Get()){
+    if(!bottomLimit.Get()){
         motor.SetSelectedSensorPosition(0);
     }
 
@@ -209,12 +209,12 @@ void Elevator::Override(double speed, bool isOverride){
         currentPos = 0;
     
         if(abs(speed) >= holdVoltage){
-            if(speed < 0 && !topLimit.Get()){
+            if(speed < 0 && topLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);
-            }else if(speed > 0 && !bottomLimit.Get()){
+            }else if(speed > 0 && bottomLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);
             }
-        }else if(!bottomLimit.Get()){
+        }else if(bottomLimit.Get()){
             motor.Set(ControlMode::PercentOutput, holdVoltage);
         }else{
             motor.Set(ControlMode::PercentOutput, 0);
