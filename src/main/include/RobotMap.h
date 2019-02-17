@@ -75,8 +75,8 @@ constexpr bool accelLimit = false;
 constexpr bool drivetrainVoltageControl = true;
 constexpr bool drivetrainAutoheading = false;
 
-constexpr int setShifterFirstGear = 0;
-constexpr int setShifterSecondGear = 0;
+constexpr int setShifterFirstGear = 4;
+constexpr int setShifterSecondGear = 5;
 
 
 //
@@ -143,10 +143,10 @@ constexpr int Cargo_D = 0;
 //
 //
 
-constexpr int plateExtend = 0;
+constexpr int plateExtend = 1;
 constexpr int plateRetract = 0;
-constexpr int ejectorsExtend = 0;
-constexpr int ejectorsRetract = 0;
+constexpr int ejectorsExtend = 2;
+constexpr int ejectorsRetract = 3;
 constexpr int hatchDetectionLimitSwitch = 3;
 
 //
