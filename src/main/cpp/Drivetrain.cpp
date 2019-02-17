@@ -33,6 +33,11 @@ Drivetrain::Drivetrain(){
 
 	Left1.ConfigClosedloopRamp(accelTimeLo, 10);
 	Right1.ConfigClosedloopRamp(accelTimeLo, 10);
+	
+	Left1.ConfigOpenloopRamp(accelTimeLo, 10);
+	Right1.ConfigOpenloopRamp(accelTimeLo, 10);
+
+
 
     }else{
         std::cout << "WARNING: ACCEL LIMIT NOT ENABLED" << std::endl;
