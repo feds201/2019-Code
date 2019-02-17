@@ -13,7 +13,7 @@ class HatchManipulator {
  public:
 
   HatchManipulator();
-  void Run(bool state);
+  void Run(bool state, bool isCargoMode);
   void Abort();
   bool hatchOn();
   void moveBackplate(bool inOrOut);

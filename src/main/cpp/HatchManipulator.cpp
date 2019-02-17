@@ -16,7 +16,7 @@ HatchManipulator::HatchManipulator() {
 
 }
 
-void HatchManipulator::Run(bool state){
+void HatchManipulator::Run(bool state, bool isCargoMode){
 
     if(whatIsHappening == PickingUp && state == false){
         whatIsHappening = Nothing;
@@ -34,6 +34,10 @@ void HatchManipulator::Run(bool state){
         dropOffStage = 1;
     }else if(whatIsHappening == DroppingOff && isHatch.Get() && state == true && lastState == false && dropOffStage == 1){
         dropOffStage = 2;
+    }
+
+    if(isCargoMode){
+        whatIsHappening = Nothing;
     }
 
 

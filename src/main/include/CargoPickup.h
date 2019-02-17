@@ -14,13 +14,14 @@ class CargoPickup {
  public:
   CargoPickup();
   void ToggleArm();
-  void Intake(double intakeTrigger, double ejectTrigger);
+  void Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode);
   int getEncPos();
   int getEncVel();
   double * getWristCurrent();
   double getWheelsCurrent();
   bool isCargo();
   int getErr();
+  bool isDown();
   
  private:
  
@@ -33,6 +34,8 @@ class CargoPickup {
   int masterID;
 
   bool hasCargo = false;
+
+  bool hatchMode = false;
 
   double setPt;
 

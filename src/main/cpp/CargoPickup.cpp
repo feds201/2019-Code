@@ -33,7 +33,7 @@ CargoPickup::CargoPickup() {
 //Dont know which direction to set motors 
 void CargoPickup::ToggleArm() {
    
-if(!configMode){
+if(!configMode && !hatchMode){
 
    if(currentPos == Up){
        master.Set(ControlMode::Position, downPos);
@@ -44,14 +44,21 @@ if(!configMode){
        slave.Set(ControlMode::Follower, masterID);
        currentPos = Up;
    }
+}else if(hatchMode){
+    master.Set(ControlMode::Position, upPos);
+    slave.Set(ControlMode::Follower, masterID);
+    currentPos = Up;
 }
 
 }
 
-void CargoPickup::Intake(double intakeTrigger, double ejectTrigger) {
+void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode) {
     
     setPt = intakeTrigger-ejectTrigger;
 
+    hatchMode = isHatchMode;
+
+if(!hatchMode){
 
  if(ejectTrigger > 0 && ejectTrigger < 0.5){
      hasCargo = false;
@@ -76,6 +83,15 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger) {
     }else if(setPt < 0 && hasCargo){
         shooter.Set(ControlMode::PercentOutput, -0.05);
     }
+}else{
+
+    shooter.Set(ControlMode::PercentOutput, 0);
+
+}
+
+
+
+
   }  
 
 int CargoPickup::getEncPos(){
@@ -113,12 +129,22 @@ double CargoPickup::getWheelsCurrent(){
 
 bool CargoPickup::isCargo(){
 
-    return swi.Get();
+    return hasCargo;
 
 }
 
 int CargoPickup::getErr(){
 
     return master.GetClosedLoopError();
+
+}
+
+bool CargoPickup::isDown(){
+
+    if(currentPos == Up){
+        return false;
+    }else{
+        return true;
+    }
 
 }

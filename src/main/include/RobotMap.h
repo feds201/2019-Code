@@ -19,6 +19,8 @@ constexpr bool CONFIG_MODE = false;
 
 constexpr bool SINGLE_OPERATOR_MODE = false;
 
+constexpr bool HATCH_AND_BALL_AUTO_LOCKOUT = true;
+
 constexpr int fwdChl = 1;
 constexpr int trnChl = 4;
 

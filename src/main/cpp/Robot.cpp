@@ -90,7 +90,7 @@ void Robot::singleOpMode() {
 		Hatch.Abort();
 	}
 
-	Hatch.Run(Driver.GetRawButton(hatchRun));
+	Hatch.Run(Driver.GetRawButton(hatchRun), (isCargoWristDown || isCargoPresent));
 
 	//
 	//
@@ -132,7 +132,7 @@ void Robot::singleOpMode() {
 		Cargo.ToggleArm();
 	}
 
-	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis));
+	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis), isHatchPresent);
 	
 	Ele.Refresh(Hatch.hatchOn(), Cargo.isCargo());
 	
@@ -153,6 +153,24 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+
+	if(Op.GetPOV() == 270){
+		hatchAndBallLockoutOverride = true;
+	}else if(Op.GetPOV() == 90){
+		hatchAndBallLockoutOverride = false;
+	}
+
+	isHatchPresent = Hatch.hatchOn();
+	isCargoPresent = Cargo.isCargo();
+	isCargoWristDown = Cargo.isDown();
+
+	if(hatchAndBallLockoutOverride){
+		isHatchPresent = false;
+		isCargoPresent = false;
+		isCargoWristDown = false;
+	}
+
+
 
 	//Logging Stuff
 
@@ -191,7 +209,7 @@ void Robot::TeleopPeriodic() {
 		Hatch.Abort();
 	}
 
-	Hatch.Run(Op.GetRawButton(hatchRun));
+	Hatch.Run(Op.GetRawButton(hatchRun), (isCargoWristDown || isCargoPresent));
 
 	//
 	//
@@ -233,7 +251,7 @@ void Robot::TeleopPeriodic() {
 		Cargo.ToggleArm();
 	}
 
-	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis), Op.GetRawAxis(cargoEjectAxis));
+	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis), Op.GetRawAxis(cargoEjectAxis), isHatchPresent);
 	
 	Ele.Refresh(Hatch.hatchOn(), Cargo.isCargo());
 	

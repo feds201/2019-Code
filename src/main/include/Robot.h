@@ -48,6 +48,11 @@ class Robot : public frc::TimedRobot {
   int logInterval = 20;
   bool logThisTime = false;
   bool singleOPDriverMode = true;
+  bool hatchAndBallLockoutOverride = HATCH_AND_BALL_AUTO_LOCKOUT;
+
+  bool isHatchPresent;
+  bool isCargoPresent;
+  bool isCargoWristDown;
 
   int press;
 
