@@ -31,6 +31,7 @@ public:
 
 		double elevatorCurrent;
 		double cargoPickupWristPos;
+		int cargoPickupWirstErr;
 		double cargoPickupWristCurrent[2];
 		double cargoPickupWheelsCurrent;
 

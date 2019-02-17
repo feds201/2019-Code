@@ -109,3 +109,9 @@ bool CargoPickup::isCargo(){
     return swi.Get();
 
 }
+
+int CargoPickup::getErr(){
+
+    return master.GetClosedLoopError();
+
+}

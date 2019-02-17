@@ -20,6 +20,7 @@ class CargoPickup {
   double * getWristCurrent();
   double getWheelsCurrent();
   bool isCargo();
+  int getErr();
   
  private:
  
