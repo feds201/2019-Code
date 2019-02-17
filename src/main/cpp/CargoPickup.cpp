@@ -16,12 +16,11 @@ CargoPickup::CargoPickup() {
     master.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
     master.SetSelectedSensorPosition(0);
 
+    master.SetSensorPhase(true);
+
     master.Config_kP(0, P); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
     master.Config_kI(0, I); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
     master.Config_kD(0, D);
-
-    master.SetInverted(false);
-    slave.SetInverted(true);
 
     master.Set(ControlMode::Position, 0);
     slave.Set(ControlMode::Follower, masterID);
