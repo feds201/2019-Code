@@ -139,7 +139,7 @@ void Robot::singleOpMode() {
 	}else{
 	//Driver Controls
 	
-	Drive.Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), drivetrainAutoheading, drivetrainVoltageControl);
+	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)), drivetrainAutoheading, drivetrainVoltageControl);
 
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();
@@ -258,7 +258,7 @@ void Robot::TeleopPeriodic() {
 	
 	//Driver Controls
 	
-	Drive.Drive(deadzone(Driver.GetRawAxis(1)), deadzone(Driver.GetRawAxis(4)), drivetrainAutoheading, drivetrainVoltageControl);
+	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)), drivetrainAutoheading, drivetrainVoltageControl);
 
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();
