@@ -33,10 +33,14 @@ void CargoPickup::ToggleArm() {
    
 if(!configMode && !hatchMode && !eleAboveThreshold){
 
-   if(currentPos == Up){
+   if(currentPos == Up && !eleAboveThreshold){
        master.Set(ControlMode::Position, homePos);
        slave.Set(ControlMode::Follower, masterID);
        currentPos = Home;
+   }else if(currentPos == Up && eleAboveThreshold){
+        master.Set(ControlMode::Position, downPos);
+       slave.Set(ControlMode::Follower, masterID);
+       currentPos = Down;
    }else if(currentPos == Home){
        master.Set(ControlMode::Position, downPos);
        slave.Set(ControlMode::Follower, masterID);
@@ -62,9 +66,11 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
 
     if(abs(eleEncPos) > 1000 && !eleAboveThreshold){
         eleAboveThreshold = true;
-        master.Set(ControlMode::Position, homePos);
-        slave.Set(ControlMode::Follower, masterID);
-        currentPos = Home;
+        if(currentPos == Home){
+            master.Set(ControlMode::Position, upPos);
+            slave.Set(ControlMode::Follower, masterID);
+            currentPos = Up;
+        }
     }else if(abs(eleEncPos) <= 1000){
         eleAboveThreshold = false;
     }
