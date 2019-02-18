@@ -29,22 +29,24 @@ CargoPickup::CargoPickup() {
 
 }
 
-//How to know when arm is completely up or down?
-//Dont know which direction to set motors 
 void CargoPickup::ToggleArm() {
    
 if(!configMode && !hatchMode){
 
    if(currentPos == Up){
+       master.Set(ControlMode::Position, homePos);
+       slave.Set(ControlMode::Follower, masterID);
+       currentPos = Home;
+   }else if(currentPos == Home){
        master.Set(ControlMode::Position, downPos);
        slave.Set(ControlMode::Follower, masterID);
        currentPos = Down;
-   }else{
-       master.Set(ControlMode::Position, upPos);
-       slave.Set(ControlMode::Follower, masterID);
-       currentPos = Up;
-   }
-}else if(hatchMode){
+   }else if(currentPos == Down){
+        master.Set(ControlMode::Position, upPos);
+        slave.Set(ControlMode::Follower, masterID);
+        currentPos = Up;
+       }
+   }else if(hatchMode){
     master.Set(ControlMode::Position, upPos);
     slave.Set(ControlMode::Follower, masterID);
     currentPos = Up;

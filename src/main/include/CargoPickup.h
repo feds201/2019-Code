@@ -27,7 +27,7 @@ class CargoPickup {
  
   bool configMode = CONFIG_MODE;
 
-  enum poss {Up, Down};
+  enum poss {Up, Down, Home};
 
   poss currentPos = Up;
 
@@ -39,8 +39,9 @@ class CargoPickup {
 
   double setPt;
 
-  int upPos = 70; //Dont Know Yet
-  int downPos = 900; //Don't Know Yet
+  int upPos = 70;
+  int downPos = 900;
+  int homePos = -50;
 
   double P = Cargo_P;
   double I = Cargo_I;
