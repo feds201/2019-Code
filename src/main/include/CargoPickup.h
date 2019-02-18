@@ -39,7 +39,7 @@ class CargoPickup {
 
   double setPt;
 
-  int upPos = 50; //Dont Know Yet
+  int upPos = 70; //Dont Know Yet
   int downPos = 900; //Don't Know Yet
 
   double P = Cargo_P;

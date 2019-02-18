@@ -97,7 +97,7 @@ constexpr double upCruseSpeed = 1;
 constexpr double upApproachSpeed = 0.4;
 constexpr double downCruseSpeed = -0.2;
 constexpr double downApproachSpeed = 0;
-constexpr double holdVoltage = 0.1;
+constexpr double holdVoltage = 0.15;
 
 constexpr double elevator_P = 0;
 constexpr double elevator_I = 0;

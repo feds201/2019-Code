@@ -11,6 +11,9 @@ void Robot::RobotInit() {
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
+	Camera.SetResolution(1000, 800);
+	Camera.SetFPS(15);
+
 	if(SINGLE_OPERATOR_MODE){
 		std::cout << "WARNING: SINGLE OP MODE IS ENABLED" << std::endl;
 	}
@@ -85,17 +88,17 @@ void Robot::singleOpMode() {
 	//Op Controls
 
 	//Comment Out If No Limit Switch Is Added To Hatch Mech
-
+/*
 	if(Driver.GetRawButtonPressed(hatchAbort)){
 		Hatch.Abort();
 	}
 
 	Hatch.Run(Driver.GetRawButton(hatchRun), (isCargoWristDown || isCargoPresent));
-
+*/
 	//
 	//
 
-	/* Uncomment If No Limit Switch Is Added To Hatch Mech
+	// Uncomment If No Limit Switch Is Added To Hatch Mech
 
 	if(Driver.GetRawButtonPressed(hatchRun)){
 		Hatch.moveBackplate();
@@ -103,7 +106,7 @@ void Robot::singleOpMode() {
 
 	Hatch.Eject(Driver.GetRawButton(hatchAbort));
 
-	*/
+	
 
 	if(Climb.getStage() == 0){
 		Ele.Override(-deadzone(Driver.GetRawAxis(eleOverrideAxis)), Driver.GetRawButton(eleOverride));
@@ -139,7 +142,7 @@ void Robot::singleOpMode() {
 	}else{
 	//Driver Controls
 	
-	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)), drivetrainAutoheading, drivetrainVoltageControl);
+	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)/2), drivetrainAutoheading, drivetrainVoltageControl);
 
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();
@@ -204,16 +207,16 @@ void Robot::TeleopPeriodic() {
 	//Op Controls
 
 	//Comment Out If No Limit Switch Is Added To Hatch Mech
-
+/*
 	if(Op.GetRawButtonPressed(hatchAbort)){
 		Hatch.Abort();
 	}
 
 	Hatch.Run(Op.GetRawButton(hatchRun), (isCargoWristDown || isCargoPresent));
+*/
+	//
+	//
 
-	//
-	//
-/*
 	// Uncomment If No Limit Switch Is Added To Hatch Mech
 
 	if(Op.GetRawButtonPressed(hatchRun)){
@@ -223,7 +226,7 @@ void Robot::TeleopPeriodic() {
 	Hatch.Eject(Op.GetRawButton(hatchAbort));
 
 	//
-*/
+
 	if(Climb.getStage() == 0){
 		Ele.Override(-deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButton(eleOverride));
 	}
@@ -258,7 +261,7 @@ void Robot::TeleopPeriodic() {
 	
 	//Driver Controls
 	
-	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)), drivetrainAutoheading, drivetrainVoltageControl);
+	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)/2), drivetrainAutoheading, drivetrainVoltageControl);
 
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();

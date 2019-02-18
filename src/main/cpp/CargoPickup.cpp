@@ -60,7 +60,7 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
 
 if(!hatchMode){
 
- if(ejectTrigger > 0 && ejectTrigger < 0.5){
+ if(ejectTrigger > 0.2 && ejectTrigger < 0.5){
      hasCargo = false;
  }
 
