@@ -18,9 +18,9 @@ CargoPickup::CargoPickup() {
 
     master.SetSensorPhase(true);
 
-    master.Config_kP(0, P, 10); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
-    master.Config_kI(0, I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
-    master.Config_kD(0, D, 10);
+    master.Config_kP(0, Cargo_P, 10); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
+    master.Config_kI(0, Cargo_I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
+    master.Config_kD(0, Cargo_D, 10);
 
     master.Set(ControlMode::Position, 0);
     slave.Set(ControlMode::Follower, masterID);
@@ -31,7 +31,7 @@ CargoPickup::CargoPickup() {
 
 void CargoPickup::ToggleArm() {
    
-if(!configMode && !hatchMode && !eleAboveThreshold){
+if(!CONFIG_MODE && !hatchMode && !eleAboveThreshold){
 
    if(currentPos == Up && !eleAboveThreshold){
        master.Set(ControlMode::Position, homePos);

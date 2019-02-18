@@ -24,8 +24,6 @@ class CargoPickup {
   bool isDown();
   
  private:
- 
-  bool configMode = CONFIG_MODE;
 
   enum poss {Up, Down, Home};
 
@@ -44,10 +42,6 @@ class CargoPickup {
   int upPos = 70;
   int downPos = 900;
   int homePos = -50;
-
-  double P = Cargo_P;
-  double I = Cargo_I;
-  double D = Cargo_D;
 
   double current[2];
 
