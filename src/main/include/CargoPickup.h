@@ -14,7 +14,7 @@ class CargoPickup {
  public:
   CargoPickup();
   void ToggleArm();
-  void Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode);
+  void Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode, int eleEncPos);
   int getEncPos();
   int getEncVel();
   double * getWristCurrent();
@@ -36,6 +36,8 @@ class CargoPickup {
   bool hasCargo = false;
 
   bool hatchMode = false;
+
+  bool eleAboveThreshold = false;
 
   double setPt;
 

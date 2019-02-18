@@ -31,7 +31,7 @@ CargoPickup::CargoPickup() {
 
 void CargoPickup::ToggleArm() {
    
-if(!configMode && !hatchMode){
+if(!configMode && !hatchMode && !eleAboveThreshold){
 
    if(currentPos == Up){
        master.Set(ControlMode::Position, homePos);
@@ -54,11 +54,20 @@ if(!configMode && !hatchMode){
 
 }
 
-void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode) {
+void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode, int eleEncPos) {
     
     setPt = intakeTrigger-ejectTrigger;
 
     hatchMode = isHatchMode;
+
+    if(abs(eleEncPos) > 1000 && !eleAboveThreshold){
+        eleAboveThreshold = true;
+        master.Set(ControlMode::Position, homePos);
+        slave.Set(ControlMode::Follower, masterID);
+        currentPos = Home;
+    }else if(abs(eleEncPos) <= 1000){
+        eleAboveThreshold = false;
+    }
 
 if(!hatchMode){
 

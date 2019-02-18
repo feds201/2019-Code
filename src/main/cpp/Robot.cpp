@@ -116,7 +116,7 @@ if(!singleOPDriverMode){
 		Cargo.ToggleArm();
 	}
 
-	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis), isHatchPresent);
+	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis), isHatchPresent, Ele.getEncPos());
 }else{
 	//Driver Controls
 	
@@ -213,7 +213,7 @@ void Robot::TeleopPeriodic() {
 		Cargo.ToggleArm();
 	}
 
-	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis), Op.GetRawAxis(cargoEjectAxis), isHatchPresent);
+	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis), Op.GetRawAxis(cargoEjectAxis), isHatchPresent, Ele.getEncPos());
 	
 	//Driver Controls
 	
