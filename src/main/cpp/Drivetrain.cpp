@@ -66,13 +66,13 @@ Drivetrain::Drivetrain(){
 	Left1.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 	Right1.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 
-	Left1.Config_kP(0, P);
-	Left1.Config_kI(0, I);
-	Left1.Config_kD(0, D);
+	Left1.Config_kP(0, Drivetrain_P);
+	Left1.Config_kI(0, Drivetrain_I);
+	Left1.Config_kD(0, Drivetrain_D);
 	
-    Right1.Config_kP(0, P);
-    Right1.Config_kI(0, I);
-    Right1.Config_kD(0, D);
+    Right1.Config_kP(0, Drivetrain_P);
+    Right1.Config_kI(0, Drivetrain_I);
+    Right1.Config_kD(0, Drivetrain_D);
 
 	Shifter.Set(frc::DoubleSolenoid::Value::kForward);
 

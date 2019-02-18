@@ -64,13 +64,13 @@ constexpr double Drivetrain_P = 0;
 constexpr double Drivetrain_I = 0;
 constexpr double Drivetrain_D = 0;
 
-constexpr int maxRobotVelocityLo = 0;
-constexpr int maxRobotVelocityHi = 0;
-constexpr double gearRatioToEncodersFromWheelsLowGear = 0;
-constexpr double gearRatioToEncodersFromWheelsHighGear = 0;
-constexpr int wheelRadius = 0;
+constexpr int maxSpeedLo = 0;
+constexpr int maxSpeedHi = 0;
+constexpr double gearRatioLo = 0;
+constexpr double gearRatioHi = 0;
+constexpr int wheelR = 0;
 
-constexpr bool accelLimit = false;
+constexpr bool ACCEL_LIMIT_ENABLED = false;
 
 constexpr bool drivetrainVoltageControl = true;
 constexpr bool drivetrainAutoheading = false;

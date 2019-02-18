@@ -21,20 +21,6 @@ public:
 
 private:
 
-    bool ACCEL_LIMIT_ENABLED = accelLimit;
-
-		double P = Drivetrain_P;
-		double I = Drivetrain_I;
-		double D = Drivetrain_D;
-
-		int maxSpeedLo = maxRobotVelocityLo; 
-		int maxSpeedHi = maxRobotVelocityHi;
-
-		double gearRatioLo = gearRatioToEncodersFromWheelsLowGear;
-		double gearRatioHi = gearRatioToEncodersFromWheelsHighGear;
-
-
-		double wheelR = wheelRadius;
 		double encCountsPerRev = 4096;
 		double pi = 3.14159;
 		
@@ -69,7 +55,7 @@ private:
 		WPI_TalonSRX Right1{rightDriveMotor1};
 		WPI_TalonSRX Right2{rightDriveMotor2};
 
-		frc::DoubleSolenoid Shifter{PCMID, setShifterSecondGear, setShifterFirstGear};
+		frc::DoubleSolenoid Shifter{PCMID, setShifterFirstGear, setShifterSecondGear};
 
     int lmasterID;
     int rmasterID;
