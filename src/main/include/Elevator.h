@@ -41,11 +41,9 @@ class Elevator {
 
   private:
    
-   int pos = 0; // 0 = Home, 1 = Hatch Low, 2 = Cargo Low, 3 = Hatch Mid, 4 = Cargo Mid, 5 = Hatch High, 6 = Cargo High
-
    int posList[7] = {0, 0, 0, 0, 0, 0, 0}; //Hatch Mid, Hatch High, Cargo Low, Cargo Mid, Cargo High
 
-   int currentPos = 0;
+   int currentPos = 0; // 0 = Home, 1 = Hatch Low, 2 = Cargo Low, 3 = Hatch Mid, 4 = Cargo Mid, 5 = Hatch High, 6 = Cargo High
    int overridePos = 0;
    bool isOverridden = false;
    bool wasOverridden = false;
