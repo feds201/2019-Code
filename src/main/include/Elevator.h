@@ -31,47 +31,33 @@ class Elevator {
  public:
   Elevator();
   void Lift();
-  int Switch();
-  void Home();
+  void Lower();
   void Refresh(bool isHatch, bool isCargo);
   void Override(double speed, bool isOverride);
   int getEncPos();
   int getEncVel();
   double getCurrent();
   std::string getTarget();
+  int getErr();
 
   private:
    
    bool configMode = CONFIG_MODE;
-
-   void Move(int position);
    
-   int pos = 0; // 0 = Home, 1 = Hatch Mid, 2 = Hatch High, 3 = Cargo Low, 4 = Cargo Mid, 5 = Cargo High
+   int pos = 0; // 0 = Home, 1 = Hatch Low, 2 = Cargo Low, 3 = Hatch Mid, 4 = Cargo Mid, 5 = Hatch High, 6 = Cargo High
 
-   enum mode {Hatch, Cargo, Auto};
+   int posList[7] = {0, 0, 0, 0, 0, 0, 0}; //Hatch Mid, Hatch High, Cargo Low, Cargo Mid, Cargo High
 
-   int posList[5] = {0, 0, 0, 0, 0}; //Hatch Mid, Hatch High, Cargo Low, Cargo Mid, Cargo High
-
-   mode currentMode = Hatch;
    int currentPos = 0;
-   bool goingUp = true;
-   bool isMoving = false;
+   int overridePos = 0;
    bool isOverridden = false;
-   int bufferDist = 0; //TBD
-
-   bool isAuto = false;
+   bool wasOverridden = false;
 
    double P = elevator_P;
    double I = elevator_I;
    double D = elevator_D;
 
-   bool posMode = elevatorPosMode;
-   
-   double goingUpCruseSpeed = upCruseSpeed;
-   double goingUpApproachSpeed = upApproachSpeed;
-   double goingDownCruseSpeed = downCruseSpeed;
-   double goingDownApproachSpeed = downApproachSpeed;
-   double holdPos = holdVoltage;
+   bool manualMode = elevatorManualMode;
 
    WPI_TalonSRX motor{elevatorMotor};
 

@@ -30,7 +30,7 @@ constexpr int hatchRun = 1; //A
 constexpr int hatchAbort = 2; //B
 
 constexpr int eleLift = 6; //Right Bumper
-constexpr int eleSwitch = 5; //Left Bumper
+constexpr int eleLower = 5; //Left Bumper
 constexpr int eleOverride = 3; //X
 constexpr int eleOverrideAxis = 1; //Axis 1
 
@@ -87,7 +87,7 @@ constexpr int setShifterSecondGear = 5;
 //
 //
 
-constexpr bool elevatorPosMode = false;
+constexpr bool elevatorManualMode = false;
 
 constexpr int elevatorMotor = 5;
 constexpr int topLimitSwitch = 1;

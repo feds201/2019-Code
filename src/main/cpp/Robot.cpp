@@ -65,27 +65,9 @@ void Robot::singleOpMode() {
 		singleOPDriverMode = true;
 	}
 
-	//Op Controler Vibration For Ele Modes
+if(!singleOPDriverMode){
 
-	if(vibrationTicker == 1 && eleMode == 0){
-		vibrationTicker++;
-		Driver.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 1);
-	}else if(vibrationTicker == 1 && eleMode == 1){
-		vibrationTicker++;
-		Driver.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 1);
-	}else if(eleMode == 2){
-		vibrationTicker = 0;
-	}else if(vibrationTicker != 0 && vibrationTicker < 50){
-		vibrationTicker++;
-	}else{
-		vibrationTicker = 0;
-		Driver.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 0);
-		Driver.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 0);
-	}
-
-	if(!singleOPDriverMode){
-
-	//Op Controls
+//Op Controls
 
 	//Comment Out If No Limit Switch Is Added To Hatch Mech
 /*
@@ -106,15 +88,14 @@ void Robot::singleOpMode() {
 
 	Hatch.Eject(Driver.GetRawButton(hatchAbort));
 
-	
+	//
 
 	if(Climb.getStage() == 0){
 		Ele.Override(-deadzone(Driver.GetRawAxis(eleOverrideAxis)), Driver.GetRawButton(eleOverride));
 	}
 
-	if(Driver.GetRawButtonPressed(eleSwitch)){
-		eleMode = Ele.Switch();
-		vibrationTicker = 1;
+	if(Driver.GetRawButtonPressed(eleLower)){
+		Ele.Lower();
 	}
 
 	if(Driver.GetRawButtonPressed(eleLift)){
@@ -136,10 +117,7 @@ void Robot::singleOpMode() {
 	}
 
 	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis), isHatchPresent);
-	
-	Ele.Refresh(Hatch.hatchOn(), Cargo.isCargo());
-	
-	}else{
+}else{
 	//Driver Controls
 	
 	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)/2), drivetrainAutoheading, drivetrainVoltageControl);
@@ -147,8 +125,8 @@ void Robot::singleOpMode() {
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();
 	}
+}
 
-	}
 }
 
 void Robot::TeleopInit() {
@@ -186,24 +164,6 @@ void Robot::TeleopPeriodic() {
 
 	if(!SINGLE_OPERATOR_MODE){
 
-	//Op Controler Vibration For Ele Modes
-
-	if(vibrationTicker == 1 && eleMode == 0){
-		vibrationTicker++;
-		Op.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 1);
-	}else if(vibrationTicker == 1 && eleMode == 1){
-		vibrationTicker++;
-		Op.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 1);
-	}else if(vibrationTicker == 1 && eleMode == 2){
-		vibrationTicker = 0;
-	}else if(vibrationTicker != 0 && vibrationTicker < 50){
-		vibrationTicker++;
-	}else{
-		vibrationTicker = 0;
-		Op.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 0);
-		Op.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 0);
-	}
-
 	//Op Controls
 
 	//Comment Out If No Limit Switch Is Added To Hatch Mech
@@ -231,9 +191,8 @@ void Robot::TeleopPeriodic() {
 		Ele.Override(-deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButton(eleOverride));
 	}
 
-	if(Op.GetRawButtonPressed(eleSwitch)){
-		eleMode = Ele.Switch();
-		vibrationTicker = 1;
+	if(Op.GetRawButtonPressed(eleLower)){
+		Ele.Lower();
 	}
 
 	if(Op.GetRawButtonPressed(eleLift)){
@@ -255,9 +214,6 @@ void Robot::TeleopPeriodic() {
 	}
 
 	Cargo.Intake(Op.GetRawAxis(cargoIntakeAxis), Op.GetRawAxis(cargoEjectAxis), isHatchPresent);
-	
-	Ele.Refresh(Hatch.hatchOn(), Cargo.isCargo());
-	
 	
 	//Driver Controls
 	
@@ -284,25 +240,23 @@ void Robot::TeleopPeriodic() {
 	frc::SmartDashboard::PutBoolean("Has Hatch", Hatch.hatchOn());
 	frc::SmartDashboard::PutString("Elevator Target Pos", Ele.getTarget());
 	frc::SmartDashboard::PutNumber("Wrist Pos", Cargo.getEncPos());
-	frc::SmartDashboard::PutNumber("Err", Cargo.getErr());
+	frc::SmartDashboard::PutNumber("Wrist Err", Cargo.getErr());
 	frc::SmartDashboard::PutNumber("Elevator Pos", Ele.getEncPos());
+	frc::SmartDashboard::PutNumber("Elevator Err", Ele.getErr());
+	frc::SmartDashboard::PutNumber("Wrist Pos", Cargo.getEncPos());
+	frc::SmartDashboard::PutNumber("Left Drivetrain Vel", Drive.GetEncVel()[0]);
+	frc::SmartDashboard::PutNumber("Right Drivetrain Vel", Drive.GetEncVel()[1]);
+	frc::SmartDashboard::PutNumber("Left Drivetain Pos", Drive.GetEncPos()[0]);
+	frc::SmartDashboard::PutNumber("Right Drivetrain Pos", Drive.GetEncPos()[1]);
+	frc::SmartDashboard::PutNumber("DM1 Current Draw", Drive.GetCurr()[0]);
+	frc::SmartDashboard::PutNumber("DM2 Current Draw", Drive.GetCurr()[1]);
+	frc::SmartDashboard::PutNumber("DM3 Current Draw", Drive.GetCurr()[2]);
+	frc::SmartDashboard::PutNumber("DM4 Current Draw", Drive.GetCurr()[3]);
+	frc::SmartDashboard::PutNumber("Elevator Current Draw", Ele.getCurrent());
+	frc::SmartDashboard::PutNumber("Cargo Pickup Wheel Current", Cargo.getWheelsCurrent());
+	frc::SmartDashboard::PutNumber("Cargo Wrist Current Master", Cargo.getWristCurrent()[0]);
+	frc::SmartDashboard::PutNumber("Cargo Wrist Current Slave", Cargo.getWristCurrent()[1]);
 	
-	if(CONFIG_MODE){
-		frc::SmartDashboard::PutNumber("Elevator Pos", Ele.getEncPos());
-		frc::SmartDashboard::PutNumber("Wrist Pos", Cargo.getEncPos());
-		frc::SmartDashboard::PutNumber("Left Drivetrain Vel", Drive.GetEncVel()[0]);
-		frc::SmartDashboard::PutNumber("Right Drivetrain Vel", Drive.GetEncVel()[1]);
-		frc::SmartDashboard::PutNumber("Left Drivetain Pos", Drive.GetEncPos()[0]);
-		frc::SmartDashboard::PutNumber("Right Drivetrain Pos", Drive.GetEncPos()[1]);
-		frc::SmartDashboard::PutNumber("DM1 Current Draw", Drive.GetCurr()[0]);
-		frc::SmartDashboard::PutNumber("DM2 Current Draw", Drive.GetCurr()[1]);
-		frc::SmartDashboard::PutNumber("DM3 Current Draw", Drive.GetCurr()[2]);
-		frc::SmartDashboard::PutNumber("DM4 Current Draw", Drive.GetCurr()[3]);
-		frc::SmartDashboard::PutNumber("Elevator Current Draw", Ele.getCurrent());
-		frc::SmartDashboard::PutNumber("Cargo Pickup Wheel Current", Cargo.getWheelsCurrent());
-		frc::SmartDashboard::PutNumber("Cargo Wrist Current Master", Cargo.getWristCurrent()[0]);
-		frc::SmartDashboard::PutNumber("Cargo Wrist Current Slave", Cargo.getWristCurrent()[1]);
-	}
 
 
 
@@ -329,6 +283,7 @@ void Robot::TeleopPeriodic() {
 		csvData.elevatorCurrent = Ele.getCurrent();
 		csvData.eleEncPos = Ele.getEncPos();
 		csvData.eleEncVel = Ele.getEncVel();
+		csvData.eleErr = Ele.getErr();
 
 		csvData.cargoPickupWheelsCurrent = Cargo.getWheelsCurrent();
 		csvData.cargoPickupWristCurrent[0] = Cargo.getWristCurrent()[0];

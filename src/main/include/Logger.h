@@ -26,6 +26,7 @@ public:
 
 		int eleEncVel;
 		int eleEncPos;
+		int eleErr;
 		
 		int wristEncVel;
 
