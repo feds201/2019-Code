@@ -16,11 +16,11 @@ Elevator::Elevator() {
 
     std::cout << "INFO: ELEVATOR INIT COMPLETE" << std::endl;
 
-    if(!manualMode){
+    if(!elevatorManualMode){
 
-        motor.Config_kP(0, P);
-        motor.Config_kI(0, I);
-        motor.Config_kD(0, D);
+        motor.Config_kP(0, elevator_P);
+        motor.Config_kI(0, elevator_I);
+        motor.Config_kD(0, elevator_D);
 
         motor.SetSensorPhase(true);
 
@@ -33,7 +33,7 @@ Elevator::Elevator() {
 
 void Elevator::Lift(){
 
-    if(currentPos < 6){
+    if(currentPos < 6 && !elevatorManualMode){
         currentPos++;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
@@ -42,7 +42,7 @@ void Elevator::Lift(){
 
 void Elevator::Lower(bool hasHatch){
 
-    if(currentPos > 0 && !(currentPos == 1 && hasHatch)){
+    if(currentPos > 0 && !(currentPos == 1 && hasHatch) && !elevatorManualMode){
         currentPos--;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
@@ -54,6 +54,10 @@ void Elevator::Override(double speed, bool isOverride){
 //If the elevator gets stuck and/or is off from the position to insirt ball or cargo, the override will allow the driver to hold and adjust joystick to correct hight.
 
     isOverridden = isOverride;
+
+    if(!elevatorManualMode){
+        speed /= 5;
+    }
 
     if(isOverride){
     
