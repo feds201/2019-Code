@@ -40,9 +40,9 @@ void Elevator::Lift(){
 
 }
 
-void Elevator::Lower(){
+void Elevator::Lower(bool hasHatch){
 
-    if(currentPos > 0){
+    if(currentPos > 0 && !(currentPos == 1 && hasHatch)){
         currentPos--;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }

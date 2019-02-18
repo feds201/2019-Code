@@ -31,7 +31,7 @@ class Elevator {
  public:
   Elevator();
   void Lift();
-  void Lower();
+  void Lower(bool hasHatch);
   void Refresh(bool isHatch, bool isCargo);
   void Override(double speed, bool isOverride);
   int getEncPos();

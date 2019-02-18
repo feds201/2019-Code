@@ -95,7 +95,7 @@ if(!singleOPDriverMode){
 	}
 
 	if(Driver.GetRawButtonPressed(eleLower)){
-		Ele.Lower();
+		Ele.Lower(Hatch.hatchOn());
 	}
 
 	if(Driver.GetRawButtonPressed(eleLift)){
@@ -192,7 +192,7 @@ void Robot::TeleopPeriodic() {
 	}
 
 	if(Op.GetRawButtonPressed(eleLower)){
-		Ele.Lower();
+		Ele.Lower(Hatch.hatchOn());
 	}
 
 	if(Op.GetRawButtonPressed(eleLift)){
