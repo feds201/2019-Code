@@ -27,7 +27,7 @@ class CargoPickup {
 
   enum poss {Up, Down, Home};
 
-  poss currentPos = Up;
+  poss currentPos = Home;
 
   int masterID;
 
@@ -39,9 +39,9 @@ class CargoPickup {
 
   double setPt;
 
-  int upPos = 70;
-  int downPos = 900;
-  int homePos = -50;
+  int upPos = 50;
+  int downPos = 1000;
+  int homePos = -250;
 
   double current[2];
 

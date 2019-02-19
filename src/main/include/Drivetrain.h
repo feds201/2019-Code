@@ -20,9 +20,6 @@ public:
 	void setGyroAngle(double angle);
 
 private:
-
-		double encCountsPerRev = 4096;
-		double pi = 3.14159;
 		
 		double countsPerInLo;
 		double countsPerInHi;

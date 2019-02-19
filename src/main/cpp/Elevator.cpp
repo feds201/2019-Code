@@ -13,6 +13,8 @@ Elevator::Elevator() {
     motor.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
     motor.SetSelectedSensorPosition(0);
     motor.Set(ControlMode::PercentOutput, 0);
+    motor.ConfigPeakOutputReverse(-0.3);
+
 
     std::cout << "INFO: ELEVATOR INIT COMPLETE" << std::endl;
 
@@ -33,7 +35,7 @@ Elevator::Elevator() {
 
 void Elevator::Lift(){
 
-    if(currentPos < 6 && !elevatorManualMode){
+    if(currentPos < 4 && !elevatorManualMode && !pinsOut){
         currentPos++;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
@@ -42,29 +44,40 @@ void Elevator::Lift(){
 
 void Elevator::Lower(bool hasHatch){
 
-    if(currentPos > 0 && !(currentPos == 1 && hasHatch) && !elevatorManualMode){
+    if(currentPos > 0 && !(currentPos == 1 && hasHatch) && !elevatorManualMode, !pinsOut){
         currentPos--;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
 
 }
 
-void Elevator::Override(double speed, bool isOverride){
+void Elevator::Override(double speed, bool isOverride, bool arePinsOut){
 
 //If the elevator gets stuck and/or is off from the position to insirt ball or cargo, the override will allow the driver to hold and adjust joystick to correct hight.
 
     isOverridden = isOverride;
 
-    if(!elevatorManualMode){
-        speed /= 5;
+    frc::SmartDashboard::PutBoolean("Is Bottom Depressed", !bottomLimit.Get());
+     frc::SmartDashboard::PutBoolean("Is Top Depressed", !topLimit.Get());
+
+    pinsOut = arePinsOut;
+
+     if(!bottomLimit.Get()){
+         motor.SetSelectedSensorPosition(0);
+     }
+
+    if(!elevatorManualMode && speed > 0){
+        speed /= 3;
+    }else if(!elevatorManualMode && speed < 0){
+        speed /= 6;
     }
 
-    if(isOverride){
+if(isOverride && !pinsOut){
     
         if(abs(speed) >= holdVoltage){
-            if(speed < 0 && topLimit.Get()){
+            if(speed > 0 && topLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);
-            }else if(speed > 0 && bottomLimit.Get()){
+            }else if(speed < 0  && bottomLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);
             }
         }else if(bottomLimit.Get()){
@@ -83,6 +96,7 @@ void Elevator::Override(double speed, bool isOverride){
         wasOverridden = false;
 
     }
+
 }
 
 int Elevator::getEncPos(){
@@ -110,19 +124,15 @@ double Elevator::getCurrent(){
 std::string Elevator::getTarget(){
 
     if(currentPos == 0){
-        return "Home";
+        return "Home / Cargo Low";
     }else if(currentPos == 1){
         return "Hatch Low";
     }else if(currentPos == 2){
-        return "Cargo Low";
+        return "Cargo Mid";
     }else if(currentPos == 3){
         return "Hatch Mid";
     }else if(currentPos == 4){
-        return "Cargo Mid";
-    }else if(currentPos == 5){
-        return "Hatch High";
-    }else if(currentPos == 6){
-        return "Cargo High";
+        return "Cargo / Hatch High";
     }else{
         return "Error: Unknown Pos";
     }

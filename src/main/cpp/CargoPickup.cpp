@@ -22,7 +22,7 @@ CargoPickup::CargoPickup() {
     master.Config_kI(0, Cargo_I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
     master.Config_kD(0, Cargo_D, 10);
 
-    master.Set(ControlMode::Position, 0);
+    master.Set(ControlMode::Position, homePos);
     slave.Set(ControlMode::Follower, masterID);
 
     std::cout << "INFO: CARGO PICKUP INIT COMPLETE" << std::endl;
@@ -64,14 +64,16 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
 
     hatchMode = isHatchMode;
 
-    if(abs(eleEncPos) > 1000 && !eleAboveThreshold){
+    frc::SmartDashboard::PutBoolean("Cargo Lock Enabled", hasCargo);
+
+    if(abs(eleEncPos) > 10 && !eleAboveThreshold){
         eleAboveThreshold = true;
         if(currentPos == Home){
             master.Set(ControlMode::Position, upPos);
             slave.Set(ControlMode::Follower, masterID);
             currentPos = Up;
         }
-    }else if(abs(eleEncPos) <= 1000){
+    }else if(abs(eleEncPos) <= 10){
         eleAboveThreshold = false;
     }
 
@@ -84,7 +86,7 @@ if(!hatchMode){
  if(setPt == 0 && !hasCargo){
         shooter.Set(ControlMode::PercentOutput, 0);
     }else if(setPt == 0 && hasCargo){
-        shooter.Set(ControlMode::PercentOutput, -0.05);
+        shooter.Set(ControlMode::PercentOutput, -0.07);
     }
 
     if (setPt > 0.5) {
@@ -94,11 +96,11 @@ if(!hatchMode){
 
     if (setPt < 0 && !hasCargo) {
             shooter.Set(ControlMode::PercentOutput, setPt);
-            if(shooter.GetOutputCurrent() > 30){
+            if(shooter.GetOutputCurrent() > 40){
                 hasCargo = true;
             }
     }else if(setPt < 0 && hasCargo){
-        shooter.Set(ControlMode::PercentOutput, -0.05);
+        shooter.Set(ControlMode::PercentOutput, -0.07);
     }
 }else{
 

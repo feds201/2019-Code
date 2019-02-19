@@ -105,3 +105,13 @@ void HatchManipulator::moveBackplate(){
     }
 
 }
+
+bool HatchManipulator::pinsOut(){
+
+    if(Ejector.Get() == frc::DoubleSolenoid::Value::kForward){
+        return true;
+    }else{
+        return false;
+    }
+
+}

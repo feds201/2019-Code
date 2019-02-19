@@ -75,8 +75,8 @@ constexpr bool ACCEL_LIMIT_ENABLED = false;
 constexpr bool drivetrainVoltageControl = true;
 constexpr bool drivetrainAutoheading = false;
 
-constexpr int setShifterFirstGear = 4;
-constexpr int setShifterSecondGear = 5;
+constexpr int setShifterFirstGear = 5;
+constexpr int setShifterSecondGear = 4;
 
 
 //
@@ -99,7 +99,7 @@ constexpr double downCruseSpeed = -0.2;
 constexpr double downApproachSpeed = 0;
 constexpr double holdVoltage = 0.15;
 
-constexpr double elevator_P = 0;
+constexpr double elevator_P = 0.7;
 constexpr double elevator_I = 0;
 constexpr double elevator_D = 0;
 

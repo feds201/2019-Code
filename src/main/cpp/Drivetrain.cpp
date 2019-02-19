@@ -9,8 +9,6 @@ Drivetrain::Drivetrain(){
 
 	//Low Gear Calculations
 
-	countsPerInLo = encCountsPerRev*(gearRatioLo*(1/(2*pi*wheelR)));
-
 	metersPerCountLo = 1/(countsPerInLo*inchesPerMeter);
 
 	metersPer100msLo = maxSpeedLo*metersPerCountLo;
@@ -20,8 +18,6 @@ Drivetrain::Drivetrain(){
 	accelTimeLo = maxVLo/MAXAccel;
 
 	//High Gear Calculations
-
-	countsPerInHi = encCountsPerRev*(gearRatioHi*(1/(2*pi*wheelR)));
 
 	metersPerCountHi = 1/(countsPerInHi*inchesPerMeter);
 
@@ -74,7 +70,7 @@ Drivetrain::Drivetrain(){
     Right1.Config_kI(0, Drivetrain_I);
     Right1.Config_kD(0, Drivetrain_D);
 
-	Shifter.Set(frc::DoubleSolenoid::Value::kForward);
+	Shifter.Set(frc::DoubleSolenoid::Value::kReverse);
 
 	std::cout << "INFO: DRIVETRAIN INIT COMPLETE" << std::endl;
 

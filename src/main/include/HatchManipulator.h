@@ -19,6 +19,7 @@ class HatchManipulator {
   void moveBackplate(bool inOrOut);
   void moveBackplate();
   void Eject(bool inOrOut);
+  bool pinsOut();
 
   private:
 

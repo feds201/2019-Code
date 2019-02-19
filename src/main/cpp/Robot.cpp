@@ -56,79 +56,6 @@ float deadzone(float f){
 		}
 
 
-
-void Robot::singleOpMode() {
-
-	if(Driver.GetPOV() == 90){
-		singleOPDriverMode = false;
-	}else if(Driver.GetPOV() == 270){
-		singleOPDriverMode = true;
-	}
-
-if(!singleOPDriverMode){
-
-//Op Controls
-
-	//Comment Out If No Limit Switch Is Added To Hatch Mech
-/*
-	if(Driver.GetRawButtonPressed(hatchAbort)){
-		Hatch.Abort();
-	}
-
-	Hatch.Run(Driver.GetRawButton(hatchRun), (isCargoWristDown || isCargoPresent));
-*/
-	//
-	//
-
-	// Uncomment If No Limit Switch Is Added To Hatch Mech
-
-	if(Driver.GetRawButtonPressed(hatchRun)){
-		Hatch.moveBackplate();
-	}
-
-	Hatch.Eject(Driver.GetRawButton(hatchAbort));
-
-	//
-
-	if(Climb.getStage() == 0){
-		Ele.Override(-deadzone(Driver.GetRawAxis(eleOverrideAxis)), Driver.GetRawButton(eleOverride));
-	}
-
-	if(Driver.GetRawButtonPressed(eleLower)){
-		Ele.Lower(isHatchPresent);
-	}
-
-	if(Driver.GetRawButtonPressed(eleLift)){
-		Ele.Lift();
-	}
-	
-	if(Driver.GetRawButtonPressed(climbIncStage)){
-		Climb.incStage();
-	}
-
-	if(Driver.GetRawButtonPressed(climbDecStage)){
-		Climb.decStage();
-	}
-
-	Climb.setWheel(Driver.GetRawAxis(climbWheelAxis));
-
-	if(Driver.GetRawButtonPressed(cargoToggle)){
-		Cargo.ToggleArm();
-	}
-
-	Cargo.Intake(Driver.GetRawAxis(cargoIntakeAxis), Driver.GetRawAxis(cargoEjectAxis), isHatchPresent, Ele.getEncPos());
-}else{
-	//Driver Controls
-	
-	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)/2), drivetrainAutoheading, drivetrainVoltageControl);
-
-	if(Driver.GetRawButtonPressed(shiftBtn)){
-		Drive.Shift();
-	}
-}
-
-}
-
 void Robot::TeleopInit() {
 
 }
@@ -162,8 +89,6 @@ void Robot::TeleopPeriodic() {
 		logThisTime = true;
 	}
 
-	if(!SINGLE_OPERATOR_MODE){
-
 	//Op Controls
 
 	//Comment Out If No Limit Switch Is Added To Hatch Mech
@@ -188,7 +113,7 @@ void Robot::TeleopPeriodic() {
 	//
 
 	if(Climb.getStage() == 0){
-		Ele.Override(-deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButton(eleOverride));
+		Ele.Override(-deadzone(Op.GetRawAxis(eleOverrideAxis)), Op.GetRawButton(eleOverride), Hatch.pinsOut());
 	}
 
 	if(Op.GetRawButtonPressed(eleLower)){
@@ -221,12 +146,6 @@ void Robot::TeleopPeriodic() {
 
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();
-	}
-
-	}else{
-
-		singleOpMode();
-	
 	}
 
 	//Display Data To Dashboard

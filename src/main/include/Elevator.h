@@ -32,7 +32,7 @@ class Elevator {
   Elevator();
   void Lift();
   void Lower(bool hasHatch);
-  void Override(double speed, bool isOverride);
+  void Override(double speed, bool isOverride, bool arePinsOut);
   int getEncPos();
   int getEncVel();
   double getCurrent();
@@ -41,12 +41,13 @@ class Elevator {
 
   private:
    
-   int posList[7] = {0, 0, 0, 0, 0, 0, 0}; //Hatch Mid, Hatch High, Cargo Low, Cargo Mid, Cargo High
+   int posList[5] = {0, 7000, 14500, 20000, 28500}; //Hatch Mid, Hatch High, Cargo Low, Cargo Mid, Cargo High
 
-   int currentPos = 0; // 0 = Home, 1 = Hatch Low, 2 = Cargo Low, 3 = Hatch Mid, 4 = Cargo Mid, 5 = Hatch High, 6 = Cargo High
+   int currentPos = 0; // 0 = Home/Cargo Low, 1 = Hatch Low, 2 = Cargo Mid, 3 = Hatch Mid, 4 = Hatch/Cargo High
    int overridePos = 0;
    bool isOverridden = false;
    bool wasOverridden = false;
+   bool pinsOut = false;
 
    WPI_TalonSRX motor{elevatorMotor};
 
