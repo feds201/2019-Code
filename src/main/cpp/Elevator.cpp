@@ -58,7 +58,7 @@ void Elevator::Override(double speed, bool isOverride, bool arePinsOut){
     isOverridden = isOverride;
 
     frc::SmartDashboard::PutBoolean("Is Bottom Depressed", !bottomLimit.Get());
-     frc::SmartDashboard::PutBoolean("Is Top Depressed", !topLimit.Get());
+     frc::SmartDashboard::PutBoolean("Is Top Depressed", topLimit);
      frc::SmartDashboard::PutNumber("Elevator Output Percent", motor.GetMotorOutputPercent());
 
     pinsOut = arePinsOut;
@@ -73,10 +73,15 @@ void Elevator::Override(double speed, bool isOverride, bool arePinsOut){
         speed /= 6;
     }
 
+
+    if(abs(motor.GetSelectedSensorPosition()) > 29500){
+        topLimit = true;
+    }
+
 if(isOverride && !pinsOut){
-    
+
         if(abs(speed) >= holdVoltage){
-            if(speed > 0 && topLimit.Get()){
+            if(speed > 0 && !topLimit){
                 motor.Set(ControlMode::PercentOutput, speed);
             }else if(speed < 0  && bottomLimit.Get()){
                 motor.Set(ControlMode::PercentOutput, speed);

@@ -52,7 +52,7 @@ class Elevator {
 
    WPI_TalonSRX motor{elevatorMotor};
 
-   frc::DigitalInput topLimit{topLimitSwitch};
+   bool topLimit = false;
    frc::DigitalInput bottomLimit{bottomLimitSwitch};
 
 };
