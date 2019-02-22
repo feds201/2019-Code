@@ -165,3 +165,9 @@ bool CargoPickup::isDown(){
     }
 
 }
+
+float CargoPickup::getOutput(){
+
+    return master.GetMotorOutputPercent();
+
+}

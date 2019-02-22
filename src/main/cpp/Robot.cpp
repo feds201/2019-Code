@@ -203,6 +203,7 @@ void Robot::TeleopPeriodic() {
 		csvData.eleEncPos = Ele.getEncPos();
 		csvData.eleEncVel = Ele.getEncVel();
 		csvData.eleErr = Ele.getErr();
+		csvData.eleOutputPercent = Ele.getOutput();
 
 		csvData.cargoPickupWheelsCurrent = Cargo.getWheelsCurrent();
 		csvData.cargoPickupWristCurrent[0] = Cargo.getWristCurrent()[0];
@@ -210,6 +211,7 @@ void Robot::TeleopPeriodic() {
 		csvData.cargoPickupWristPos = Cargo.getEncPos();
 		csvData.wristEncVel = Cargo.getEncVel();
 		csvData.cargoPickupWirstErr = Cargo.getErr();
+		csvData.wristOutputPercent = Cargo.getOutput();
 		csvData.cargoIn = Cargo.isCargo();
 
 		csvData.hatchOn = Hatch.hatchOn();

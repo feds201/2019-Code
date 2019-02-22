@@ -38,6 +38,7 @@ class Elevator {
   double getCurrent();
   std::string getTarget();
   int getErr();
+  float getOutput();
 
   private:
    

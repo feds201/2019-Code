@@ -145,3 +145,9 @@ int Elevator::getErr(){
     return motor.GetClosedLoopError();
 
 }
+
+float Elevator::getOutput(){
+
+    return motor.GetMotorOutputPercent();
+
+}

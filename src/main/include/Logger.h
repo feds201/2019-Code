@@ -27,12 +27,14 @@ public:
 		int eleEncVel;
 		int eleEncPos;
 		int eleErr;
+		float eleOutputPercent;
 		
 		int wristEncVel;
 
 		double elevatorCurrent;
 		double cargoPickupWristPos;
 		int cargoPickupWirstErr;
+		float wristOutputPercent;
 		double cargoPickupWristCurrent[2];
 		double cargoPickupWheelsCurrent;
 

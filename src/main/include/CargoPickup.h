@@ -22,6 +22,7 @@ class CargoPickup {
   bool isCargo();
   int getErr();
   bool isDown();
+  float getOutput();
   
  private:
 
