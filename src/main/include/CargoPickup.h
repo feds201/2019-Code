@@ -39,7 +39,7 @@ class CargoPickup {
 
   double setPt;
 
-  int upPos = 50;
+  int upPos = 75;
   int downPos = 1000;
   int homePos = -250;
 

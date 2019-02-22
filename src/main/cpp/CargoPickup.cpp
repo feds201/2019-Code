@@ -31,7 +31,7 @@ CargoPickup::CargoPickup() {
 
 void CargoPickup::ToggleArm() {
    
-if(!CONFIG_MODE && !hatchMode && !eleAboveThreshold){
+if(!CONFIG_MODE){
 
    if(currentPos == Up && !eleAboveThreshold){
        master.Set(ControlMode::Position, homePos);
@@ -50,11 +50,7 @@ if(!CONFIG_MODE && !hatchMode && !eleAboveThreshold){
         slave.Set(ControlMode::Follower, masterID);
         currentPos = Up;
        }
-   }else if(hatchMode){
-    master.Set(ControlMode::Position, upPos);
-    slave.Set(ControlMode::Follower, masterID);
-    currentPos = Up;
-}
+   }
 
 }
 
@@ -63,6 +59,8 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
     setPt = intakeTrigger-ejectTrigger;
 
     hatchMode = isHatchMode;
+
+    frc::SmartDashboard::PutNumber("Arm Percent Out", master.GetMotorOutputPercent());
 
     frc::SmartDashboard::PutBoolean("Cargo Lock Enabled", hasCargo);
 

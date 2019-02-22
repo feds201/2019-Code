@@ -13,7 +13,7 @@ Elevator::Elevator() {
     motor.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
     motor.SetSelectedSensorPosition(0);
     motor.Set(ControlMode::PercentOutput, 0);
-    motor.ConfigPeakOutputReverse(-0.3);
+    motor.ConfigPeakOutputReverse(-0.1);
 
 
     std::cout << "INFO: ELEVATOR INIT COMPLETE" << std::endl;
@@ -59,6 +59,7 @@ void Elevator::Override(double speed, bool isOverride, bool arePinsOut){
 
     frc::SmartDashboard::PutBoolean("Is Bottom Depressed", !bottomLimit.Get());
      frc::SmartDashboard::PutBoolean("Is Top Depressed", !topLimit.Get());
+     frc::SmartDashboard::PutNumber("Elevator Output Percent", motor.GetMotorOutputPercent());
 
     pinsOut = arePinsOut;
 
