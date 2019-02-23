@@ -22,8 +22,8 @@ class Climber {
   void liftBack(bool state);
 //Requirements for the function; these are what you have to provide when this function is called
 
-  frc::DoubleSolenoid front{PCMID, extendFront, retractFront};
-  frc::DoubleSolenoid back{PCMID, extendBack, retractBack};
+  frc::DoubleSolenoid front{PCM2ID, extendFront, retractFront};
+  frc::DoubleSolenoid back{PCM2ID, extendBack, retractBack};
   
 //The first four control the four pneumatic pistons that lift the robot
 //The last one controls the piston that deploys the traction wheel to pull the robot forward

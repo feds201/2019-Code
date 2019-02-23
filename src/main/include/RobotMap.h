@@ -14,6 +14,7 @@
 
 constexpr int PCMID = 0;
 constexpr int PDPID = 0;
+constexpr ubt PCM2ID = 0;
 
 constexpr bool CONFIG_MODE = false;
 
@@ -111,10 +112,10 @@ constexpr double elevator_D = 0;
 //
 //
 
-constexpr int extendFront = 0;
-constexpr int retractFront = 0;
+constexpr int extendFront = 2;
+constexpr int retractFront = 3;
 constexpr int extendBack = 0;
-constexpr int retractBack = 0;
+constexpr int retractBack = 1;
 constexpr int tractionWheelID = 0;
 constexpr int armMotorID = 0;
 
