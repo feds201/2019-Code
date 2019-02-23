@@ -14,7 +14,7 @@
 
 constexpr int PCMID = 0;
 constexpr int PDPID = 0;
-constexpr ubt PCM2ID = 0;
+constexpr int PCM2ID = 0;
 
 constexpr bool CONFIG_MODE = false;
 
