@@ -171,3 +171,22 @@ float CargoPickup::getOutput(){
     return master.GetMotorOutputPercent();
 
 }
+
+  double CargoPickup::getClosedLoopTarget(){
+
+      return master.GetClosedLoopTarget();
+
+
+  }
+  double CargoPickup::getIAccum(){
+
+      return master.GetIntegralAccumulator();
+
+
+  }
+  double CargoPickup::getDirivErr(){
+
+      return master.GetErrorDerivative();
+
+
+  }

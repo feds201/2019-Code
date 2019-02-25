@@ -39,6 +39,10 @@ class Elevator {
   std::string getTarget();
   int getErr();
   float getOutput();
+  int getAnalogRaw();
+  double getClosedLoopTarget();
+  double getIAccum();
+  double getDirivErr();
 
   private:
    

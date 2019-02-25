@@ -21,6 +21,14 @@ public:
 
 		double driveCurrents[4];
 
+		double cargoClosedLoopTarget;
+		double cargoIAccum;
+		double cargoDirErr;
+
+		double eleClosedLoopTarget;
+		double eleIAccum;
+		double eleDirErr;
+
 		int driveEncPos[2];
 		int driveEncVel[2];
 

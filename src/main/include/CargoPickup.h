@@ -23,6 +23,10 @@ class CargoPickup {
   int getErr();
   bool isDown();
   float getOutput();
+  int getAnalogRaw();
+  double getClosedLoopTarget();
+  double getIAccum();
+  double getDirivErr();
   
  private:
 

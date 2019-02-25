@@ -156,3 +156,22 @@ float Elevator::getOutput(){
     return motor.GetMotorOutputPercent();
 
 }
+
+double Elevator::getClosedLoopTarget(){
+
+      return motor.GetClosedLoopTarget();
+
+
+  }
+  double Elevator::getIAccum(){
+
+      return motor.GetIntegralAccumulator();
+
+
+  }
+  double Elevator::getDirivErr(){
+
+      return motor.GetErrorDerivative();
+
+
+  }

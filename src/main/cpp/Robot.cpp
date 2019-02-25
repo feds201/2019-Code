@@ -23,21 +23,8 @@ void Robot::RobotInit() {
 	}
 
 	std::cout << "INFO: ROBOT INIT COMPLETED" << std::endl;
-	
-	std::cout << "        %&&&&&&&&&&&&&&&&&&&&&&& *&&&&&&&&&&&&&&&&&&&&&&&, &&&&&&&&&&&&&&&&&&&&&&&&    #&&&&&&&&&&&&&&&&&&&&&&&           &&&&&&&&&&&&&&&&&&&&&&&&    &&&&&&&&&&&&&&&&&&&&&&%   ,&&&&&&&&&&" << std::endl;
-	std::cout << "       &&&&&&&&&&&&&&&&&&&&&&&&%,&&&&&&&&&&&&&&&&&&&&&&&&  &&&&&&&&&&&&&&&&&&&&&&&&   &&&&&&&&&&&&&&&&&&&&&&&&&           &&&&&&&&&&&&&&&&&&&&&&&&,  &&&&&&&&&&&&&&&&&&&&&&&&   &&&&&&&&&&(" << std::endl;
-	std::cout << "       &&&&&&%%%%%%%%%%%%%%%%%%.&&&&&&&%%%%%%%%%%%%%%%%%# #&&&&&%%%%%%%%%%%%&&&&&&&   &&&&&&&%%%%%%%%%%%%%%%%%*          .&&&&&&&&&&&&&&&&&&&&&&&&  *&&&&&&&&&&&&&&&&&&&&&&&&   &&&&&&&&&&" << std::endl;
-	std::cout << "      *&&&&%                    &&&&&                     &&&&&              #&&&&/  /&&&&&                                                 ,&&&&%  &&&&&      %       &&&&&/        &&&&&" << std::endl;
-	std::cout << "      &&&&&                    /&&&&&                    .&&&&&              &&&&&   &&&&                                                 &&&&&   &&&&&      %&      &&&&&        %&&&" << std::endl;
-	std::cout << "      ////////////////////,    ///////////((((((((((     /((((/             .(((((   (######################(            (############%##%%%%%%%%  /%%%%/     %&&      %%%%%        %%%%%" << std::endl;
-	std::cout << "                                                           ...              ((###.   %%%&&&&&&&&&&&&&&&&&&&&&           &&&&&&&&&&&&&&&&&&&&&&&&(  &&&&&    *#&     %&&&&,       ,&&&&&" << std::endl;
-	std::cout << "     &&&&&,...............    %&&&...............     /&&&&&              &&&&&      ...............*&&&&&(           &&&&&&,,,,,,,,,,,,,,,,    .&&&&&       &&     &&&&&        &&&&&*" << std::endl;
-	std::cout << "    .&&&&&                    &&&&&                     &&&&&*             /&&&&&                      &&&&&           (&&&&%                     %&&&&(       &     *&&&&&        &&&&&" << std::endl;
-	std::cout << "    %&&&&(                   ,&&&&&/                    &&&&&             /&&&&&,                     &&&&&&           &&&&&.                     &&&&&%            ,&&&&&*       (&&&&%" << std::endl;
-	std::cout << "    &&&&&                    &&&&&&&&&&&&&&&&&&&&&&&&& #&&&&&&&&&&&&&&&&&&&&&&&&   &&&&&&&&&&&&&&&&&&&&&&&&%           &&&&&&&&&&&&&&&&&&&&&&&&  *&&&&&&&&&&&&&&&&&&&&&&&&        &&&&&." << std::endl;
-	std::cout << "   *&&&&&                    &&&&&&&&&&&&&&&&&&&&&&&&* &&&&&&&&&&&&&&&&&&&&&&&&.  .&&&&&&&&&&&&&&&&&&&&&&&&           /&&&&&&&&&&&&&&&&&&&&&&&&  /&&&&&&&&&&&&&&&&&&&&&&&.        &&&&&" << std::endl;
 
-	std::cout << std::endl << "FЯED INITALIZED, READY TO TAKE OVER THE WORLD" << std::endl;
+	std::cout << std::endl << "FRED INITALIZED, READY TO TAKE OVER THE WORLD" << std::endl;
 }
 
 
@@ -218,7 +205,14 @@ void Robot::TeleopPeriodic() {
 		csvData.eleEncVel = Ele.getEncVel();
 		csvData.eleErr = Ele.getErr();
 		csvData.eleOutputPercent = Ele.getOutput();
+		csvData.eleClosedLoopTarget = Ele.getClosedLoopTarget();
+		csvData.eleIAccum = Ele.getIAccum();
+		csvData.eleDirErr = Ele.getDirivErr();
 
+
+		csvData.cargoClosedLoopTarget = Cargo.getClosedLoopTarget();
+		csvData.cargoIAccum = Cargo.getIAccum();
+		csvData.cargoDirErr = Cargo.getDirivErr();
 		csvData.cargoPickupWheelsCurrent = Cargo.getWheelsCurrent();
 		csvData.cargoPickupWristCurrent[0] = Cargo.getWristCurrent()[0];
 		csvData.cargoPickupWristCurrent[1] = Cargo.getWristCurrent()[1];
