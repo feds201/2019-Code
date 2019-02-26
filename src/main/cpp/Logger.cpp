@@ -28,11 +28,11 @@ Logger::Logger() {
 	std::cout << "INFO: THE LOGFILE FOR THIS SESSION IS NAMED " << (std::string)timeString << std::endl; 
 
 	csvFile
-		//*General Data*//
+		/*General Data*/
 			<< "time" << ','
 			<< "voltage" << ','
 			<< "totalCurrent" << ','
-		//*Drivetrain Data*//
+		/*Drivetrain Data*/
 		//	<< "driveCurrents0" << ','
 		//	<< "driveCurrents1" << ','
 		//	<< "driveCurrents2" << ','
@@ -41,7 +41,7 @@ Logger::Logger() {
 			<< "rightDriveEncPos" << ','
 			<< "leftDriveEncVel" << ','
 			<< "rightDriveEncVel" << ','
-		//*Elevator Data*//
+		/*Elevator Data*/
 		//	<< "elevatorCurrent" << ','
 			<< "elevatorEncPos" << ','
 			<< "elevatorEncVel" << ','
@@ -50,7 +50,7 @@ Logger::Logger() {
 			<< "elevatorClosedLoopTarget" << ','
 			<< "elevatorIAccum" << ','
 			<< "elevatorDirErr" << ','
-		//*Cargo&Hatch Pickup Data*//
+		/*Cargo&Hatch Pickup Data*/
 			<< "cargoPickupWristPos" << ','
 			<< "cargoPickupWristEncVel" << ','
 			<< "cargoPickupWristErr" << ','
@@ -64,7 +64,7 @@ Logger::Logger() {
 			<< "cargoPickupWheelsCurrent" << ','
 			<< "cargoIn" << ','
 		//	<< "hatchOn" << ','
-		//*Lifter Data*//
+		/*Lifter Data*/
 			<< "frontLifterUp" << ','
 			<< "backLifterUp" << ','
 			//*Please add pressure transducer value and solenoid states*//
@@ -102,11 +102,11 @@ void Logger::logCSV(struct CSVVals *data)
 	double time = timer.getTotalTime();
 
 	csvFile
-		//*General Data*//
+		/*General Data*/
 			<< time << ','
 			<< data->voltage << ','
 			<< data->totalCurrent << ','
-		//*Drivetrain Data*//
+		/*Drivetrain Data*/
 		//	<< data->driveCurrents[0] << ','
 		//	<< data->driveCurrents[1] << ','
 		//	<< data->driveCurrents[2] << ','
@@ -115,7 +115,7 @@ void Logger::logCSV(struct CSVVals *data)
 			<< data->driveEncPos[1] << ','
 			<< data->driveEncVel[0] << ','
 			<< data->driveEncVel[1] << '.'
-		//*Elevator Data*//
+		/*Elevator Data*/
 		//	<< data->elevatorCurrent << ','
 			<< data->eleEncPos << ','
 			<< data->eleEncVel << ','
@@ -124,7 +124,7 @@ void Logger::logCSV(struct CSVVals *data)
 			<< data->eleClosedLoopTarget << ','
 			<< data->eleIAccum << ','
 			<< data->eleDirErr << ','
-		//*Cargo&Hatch Pickup Data*//
+		/*Cargo&Hatch Pickup Data*/
 			<< data->cargoPickupWristPos << ','
 			<< data->wristEncVel << ','
 			<< data->cargoPickupWirstErr << ','
@@ -137,10 +137,10 @@ void Logger::logCSV(struct CSVVals *data)
 			<< data->cargoPickupWheelsCurrent << ','
 			<< (data->cargoIn ? 1 : 0) << ','
 		//	<< (data->hatchOn ? 1 : 0) << ','
-		//*Lifter Data*//
+		/*Lifter Data*/
 			<< (data->frontLifterUp ? 1 : 0) << ','
 			<< (data->backLifterUp ? 1 : 0) << ','
-		//*Please add pressure transducer value and solenoid states*//	
+		/*Please add pressure transducer value and solenoid states*/
 			<< data->liftStage << std::endl;
 	save();
 }
