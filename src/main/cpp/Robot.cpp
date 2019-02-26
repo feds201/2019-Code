@@ -32,6 +32,8 @@ void Robot::RobotPeriodic() {}
 
 
 void Robot::AutonomousInit() {
+
+	//comp.SetClosedLoopControl(true);
  
 }
 
@@ -58,6 +60,8 @@ float deadzone(float f){
 
 
 void Robot::TeleopInit() {
+
+	//comp.SetClosedLoopControl(true);
 
 }
 

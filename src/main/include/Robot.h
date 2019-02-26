@@ -41,6 +41,7 @@ class Robot : public frc::TimedRobot{
 
   frc::Joystick Driver{0};
   frc::Joystick Op{1};
+  //frc::Compressor comp{0};
 
   cs::UsbCamera Camera;
 

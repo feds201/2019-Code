@@ -92,7 +92,7 @@ constexpr bool elevatorManualMode = false;
 
 constexpr int elevatorMotor = 5;
 constexpr int topLimitSwitch = 1;
-constexpr int bottomLimitSwitch = 0;
+constexpr int bottomLimitSwitch = 5;
 
 constexpr double upCruseSpeed = 1;
 constexpr double upApproachSpeed = 0.4;

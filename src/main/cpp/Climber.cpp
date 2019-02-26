@@ -44,6 +44,8 @@ void Climber::incStage(){
 
   void Climber::excStage(){
 
+      frc::SmartDashboard::PutNumber("ClimbStage", stage);
+
       switch(stage){
 
           case 1:

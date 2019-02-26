@@ -13,7 +13,7 @@ Elevator::Elevator() {
     motor.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
     motor.SetSelectedSensorPosition(0);
     motor.Set(ControlMode::PercentOutput, 0);
-    motor.ConfigPeakOutputReverse(-0.1);
+    motor.ConfigPeakOutputReverse(-0.3); //Change Back To -0.3 When Ready
 
 
     std::cout << "INFO: ELEVATOR INIT COMPLETE" << std::endl;
