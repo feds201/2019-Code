@@ -67,7 +67,7 @@ Logger::Logger() {
 		/*Lifter Data*/
 			<< "frontLifterUp" << ','
 			<< "backLifterUp" << ','
-			//*Please add pressure transducer value and solenoid states*//
+			/*Please add pressure transducer value and solenoid states*/
 			<< "liftStage" << std::endl;
 }
 
