@@ -28,18 +28,21 @@ Logger::Logger() {
 	std::cout << "INFO: THE LOGFILE FOR THIS SESSION IS NAMED " << (std::string)timeString << std::endl; 
 
 	csvFile
+		//*General Data*//
 			<< "time" << ','
 			<< "voltage" << ','
 			<< "totalCurrent" << ','
-			<< "driveCurrents0" << ','
-			<< "driveCurrents1" << ','
-			<< "driveCurrents2" << ','
-			<< "driveCurrents3" << ','
+		//*Drivetrain Data*//
+		//	<< "driveCurrents0" << ','
+		//	<< "driveCurrents1" << ','
+		//	<< "driveCurrents2" << ','
+		//	<< "driveCurrents3" << ','
 			<< "leftDriveEncPos" << ','
 			<< "rightDriveEncPos" << ','
 			<< "leftDriveEncVel" << ','
 			<< "rightDriveEncVel" << ','
-			<< "elevatorCurrent" << ','
+		//*Elevator Data*//
+		//	<< "elevatorCurrent" << ','
 			<< "elevatorEncPos" << ','
 			<< "elevatorEncVel" << ','
 			<< "elevatorErr" << ','
@@ -47,6 +50,7 @@ Logger::Logger() {
 			<< "elevatorClosedLoopTarget" << ','
 			<< "elevatorIAccum" << ','
 			<< "elevatorDirErr" << ','
+		//*Cargo&Hatch Pickup Data*//
 			<< "cargoPickupWristPos" << ','
 			<< "cargoPickupWristEncVel" << ','
 			<< "cargoPickupWristErr" << ','
@@ -55,13 +59,15 @@ Logger::Logger() {
 			<< "wristIAccum" << ','
 			<< "wristDirErr" << ','
 			<< "cargoPickupEncVel" << ','
-			<< "cargoPickupWristCurrent1" << ','
-			<< "cargoPickupWristCurrent2" << ','
+		//	<< "cargoPickupWristCurrent1" << ','
+		//	<< "cargoPickupWristCurrent2" << ','
 			<< "cargoPickupWheelsCurrent" << ','
 			<< "cargoIn" << ','
-			<< "hatchOn" << ','
+		//	<< "hatchOn" << ','
+		//*Lifter Data*//
 			<< "frontLifterUp" << ','
 			<< "backLifterUp" << ','
+			//*Please add pressure transducer value and solenoid states*//
 			<< "liftStage" << std::endl;
 }
 
@@ -96,18 +102,21 @@ void Logger::logCSV(struct CSVVals *data)
 	double time = timer.getTotalTime();
 
 	csvFile
+		//*General Data*//
 			<< time << ','
 			<< data->voltage << ','
 			<< data->totalCurrent << ','
-			<< data->driveCurrents[0] << ','
-			<< data->driveCurrents[1] << ','
-			<< data->driveCurrents[2] << ','
-			<< data->driveCurrents[3] << ','
+		//*Drivetrain Data*//
+		//	<< data->driveCurrents[0] << ','
+		//	<< data->driveCurrents[1] << ','
+		//	<< data->driveCurrents[2] << ','
+		//	<< data->driveCurrents[3] << ','
 			<< data->driveEncPos[0] << ','
 			<< data->driveEncPos[1] << ','
 			<< data->driveEncVel[0] << ','
 			<< data->driveEncVel[1] << '.'
-			<< data->elevatorCurrent << ','
+		//*Elevator Data*//
+		//	<< data->elevatorCurrent << ','
 			<< data->eleEncPos << ','
 			<< data->eleEncVel << ','
 			<< data->eleErr << ','
@@ -115,6 +124,7 @@ void Logger::logCSV(struct CSVVals *data)
 			<< data->eleClosedLoopTarget << ','
 			<< data->eleIAccum << ','
 			<< data->eleDirErr << ','
+		//*Cargo&Hatch Pickup Data*//
 			<< data->cargoPickupWristPos << ','
 			<< data->wristEncVel << ','
 			<< data->cargoPickupWirstErr << ','
@@ -122,13 +132,15 @@ void Logger::logCSV(struct CSVVals *data)
 			<< data->cargoClosedLoopTarget << ','
 			<< data->cargoIAccum << ','
 			<< data->cargoDirErr << ','
-			<< data->cargoPickupWristCurrent[0] << ','
-			<< data->cargoPickupWristCurrent[1] << ','
+		//	<< data->cargoPickupWristCurrent[0] << ','
+		//	<< data->cargoPickupWristCurrent[1] << ','
 			<< data->cargoPickupWheelsCurrent << ','
 			<< (data->cargoIn ? 1 : 0) << ','
-			<< (data->hatchOn ? 1 : 0) << ','
+		//	<< (data->hatchOn ? 1 : 0) << ','
+		//*Lifter Data*//
 			<< (data->frontLifterUp ? 1 : 0) << ','
 			<< (data->backLifterUp ? 1 : 0) << ','
+		//*Please add pressure transducer value and solenoid states*//	
 			<< data->liftStage << std::endl;
 	save();
 }
