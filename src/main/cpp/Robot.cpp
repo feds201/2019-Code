@@ -11,7 +11,7 @@ void Robot::RobotInit() {
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-	Camera.SetResolution(1000, 800);
+	Camera.SetResolution(360, 240);
 	Camera.SetFPS(15);
 
 	if(SINGLE_OPERATOR_MODE){
@@ -38,6 +38,8 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
+
+	Teleop();
  
 	//Make Sure To Put Teleop Code In Here For Sandstorm Period
 
@@ -67,7 +69,13 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 
-	if(Op.GetPOV() == 270){
+	Teleop();
+
+}
+
+void Robot::Teleop(){
+
+if(Op.GetPOV() == 270){
 		hatchAndBallLockoutOverride = true;
 	}else if(Op.GetPOV() == 90){
 		hatchAndBallLockoutOverride = false;
@@ -152,6 +160,8 @@ void Robot::TeleopPeriodic() {
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();
 	}
+
+	Cargo.forceArmReset(Driver.GetRawButton(4));
 
 	//Display Data To Dashboard
 
@@ -238,8 +248,9 @@ void Robot::TeleopPeriodic() {
 		Logger::instance()->logCSV(&csvData);
 
 	}
-
+	
 }
+
 
 void Robot::TestPeriodic() {}
 

@@ -27,6 +27,7 @@ class CargoPickup {
   double getClosedLoopTarget();
   double getIAccum();
   double getDirivErr();
+  void forceArmReset(bool on);
   
  private:
 
@@ -47,6 +48,8 @@ class CargoPickup {
   int upPos = 75;
   int downPos = 1000;
   int homePos = -250;
+
+  bool wasOnOn = false;
 
   double current[2];
 

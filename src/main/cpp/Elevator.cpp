@@ -35,7 +35,7 @@ Elevator::Elevator() {
 
 void Elevator::Lift(){
 
-    if(currentPos < 4 && !elevatorManualMode && !pinsOut){
+    if(currentPos != 4 && !elevatorManualMode && !pinsOut){
         currentPos++;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
@@ -44,7 +44,7 @@ void Elevator::Lift(){
 
 void Elevator::Lower(bool hasHatch){
 
-    if(currentPos > 0 && !(currentPos == 1 && hasHatch) && !elevatorManualMode, !pinsOut){
+    if(currentPos != 0 && !(currentPos == 1 && hasHatch) && !elevatorManualMode && !pinsOut){
         currentPos--;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
@@ -74,7 +74,7 @@ void Elevator::Override(double speed, bool isOverride, bool arePinsOut){
     }
 
 
-    if(abs(motor.GetSelectedSensorPosition()) > 29500){
+    if(abs(motor.GetSelectedSensorPosition()) > 26000){
         topLimit = true;
     }
 
@@ -136,9 +136,9 @@ std::string Elevator::getTarget(){
     }else if(currentPos == 2){
         return "Cargo Mid";
     }else if(currentPos == 3){
-        return "Hatch Mid";
+        return "Hatch Sandstrom";
     }else if(currentPos == 4){
-        return "Cargo / Hatch High";
+        return "Hatch Mid";
     }else{
         return "Error: Unknown Pos";
     }

@@ -16,7 +16,7 @@ CargoPickup::CargoPickup() {
     master.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
     master.SetSelectedSensorPosition(0);
 
-    master.SetSensorPhase(true);
+    master.SetSensorPhase(false);
 
     master.Config_kP(0, Cargo_P, 10); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
     master.Config_kI(0, Cargo_I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
@@ -24,6 +24,9 @@ CargoPickup::CargoPickup() {
 
     master.Set(ControlMode::Position, homePos);
     slave.Set(ControlMode::Follower, masterID);
+
+    master.ConfigPeakOutputForward(0.4, 10);
+    master.ConfigPeakOutputReverse(0.5, 10);
 
     std::cout << "INFO: CARGO PICKUP INIT COMPLETE" << std::endl;
 
@@ -174,7 +177,15 @@ float CargoPickup::getOutput(){
 
   double CargoPickup::getClosedLoopTarget(){
 
-      return master.GetClosedLoopTarget();
+      if(currentPos == Home){
+          return homePos;
+      }else if(currentPos == Up){
+          return upPos;
+      }else if(currentPos == Down){
+          return downPos;
+      }else{
+          return -1;
+      }
 
 
   }
@@ -187,6 +198,20 @@ float CargoPickup::getOutput(){
   double CargoPickup::getDirivErr(){
 
       return master.GetErrorDerivative();
+
+
+  }
+
+  void CargoPickup::forceArmReset(bool on){
+
+      if(on){
+          master.Set(ControlMode::PercentOutput, -0.3);
+      }if(!on && wasOnOn){
+          master.SetSelectedSensorPosition(0);
+          master.Set(ControlMode::Position, homePos);
+      }
+
+    wasOnOn = on;
 
 
   }
