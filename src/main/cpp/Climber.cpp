@@ -8,6 +8,7 @@ Climber::Climber() {
 
     tractionwheel.Set(ControlMode::PercentOutput, 0);
     armMotor.Set(ControlMode::PercentOutput, 0);
+    std::cout << "test--------------------------" << std::endl;
     //This makes sure that the motor for the wheel is off by default
 
     std::cout << "INFO: CLIMBER INIT COMPLETE" << std::endl;

@@ -117,7 +117,7 @@ constexpr int retractFront = 3;
 constexpr int extendBack = 0;
 constexpr int retractBack = 1;
 constexpr int tractionWheelID = 3;
-constexpr int armMotorID = 0;
+constexpr int armMotorID = 3;
 
 //
 //
@@ -130,7 +130,7 @@ constexpr int armMotorID = 0;
 constexpr int shooterMotor = 2;
 constexpr int masterWristMotor = 4;
 constexpr int slaveWristMotor = 0;
-constexpr int limitSwitch = 2;
+constexpr int limitSwitch = 2; 
 
 constexpr double Cargo_P = 0.6;
 constexpr double Cargo_I = 0;

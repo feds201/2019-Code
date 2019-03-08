@@ -33,6 +33,7 @@ void Robot::RobotPeriodic() {}
 
 void Robot::AutonomousInit() {
 
+
 	//comp.SetClosedLoopControl(true);
  
 }

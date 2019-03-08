@@ -47,7 +47,9 @@ class CargoPickup {
 
   int upPos = 75;
   int downPos = 1000;
-  int homePos = -250;
+  int homePos = -250; // -250
+
+  int sensorOffset = 0;
 
   bool wasOnOn = false;
 

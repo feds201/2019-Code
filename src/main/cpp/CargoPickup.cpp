@@ -12,9 +12,11 @@ CargoPickup::CargoPickup() {
     masterID = master.GetDeviceID();
 
     shooter.Set(ControlMode::PercentOutput, 0);
+
+    master.ConfigFeedbackNotContinuous(true, 10);
     
     master.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
-    master.SetSelectedSensorPosition(0);
+    sensorOffset = master.GetSelectedSensorPosition();
 
     master.SetSensorPhase(false);
 
@@ -22,11 +24,19 @@ CargoPickup::CargoPickup() {
     master.Config_kI(0, Cargo_I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
     master.Config_kD(0, Cargo_D, 10);
 
-    master.Set(ControlMode::Position, homePos);
-    slave.Set(ControlMode::Follower, masterID);
+    master.Set(ControlMode::Position, homePos + sensorOffset);
+    slave.Follow(master);
 
     master.ConfigPeakOutputForward(0.4, 10);
-    master.ConfigPeakOutputReverse(0.5, 10);
+    master.ConfigPeakOutputReverse(-0.5, 10);
+
+    master.ConfigContinuousCurrentLimit(40, 10);
+    master.ConfigPeakCurrentLimit(40, 10);
+    master.ConfigPeakCurrentDuration(0, 10);
+
+    slave.ConfigContinuousCurrentLimit(40, 10);
+    slave.ConfigPeakCurrentLimit(40, 10);
+    slave.ConfigPeakCurrentDuration(0, 10);
 
     std::cout << "INFO: CARGO PICKUP INIT COMPLETE" << std::endl;
 
@@ -37,20 +47,20 @@ void CargoPickup::ToggleArm() {
 if(!CONFIG_MODE){
 
    if(currentPos == Up && !eleAboveThreshold){
-       master.Set(ControlMode::Position, homePos);
-       slave.Set(ControlMode::Follower, masterID);
+       master.Set(ControlMode::Position, homePos + sensorOffset);
+       slave.Follow(master);
        currentPos = Home;
    }else if(currentPos == Up && eleAboveThreshold){
-        master.Set(ControlMode::Position, downPos);
-       slave.Set(ControlMode::Follower, masterID);
+        master.Set(ControlMode::Position, downPos + sensorOffset);
+       slave.Follow(master);
        currentPos = Down;
    }else if(currentPos == Home){
-       master.Set(ControlMode::Position, downPos);
-       slave.Set(ControlMode::Follower, masterID);
+       master.Set(ControlMode::Position, downPos + sensorOffset);
+       slave.Follow(master);
        currentPos = Down;
    }else if(currentPos == Down){
-        master.Set(ControlMode::Position, upPos);
-        slave.Set(ControlMode::Follower, masterID);
+        master.Set(ControlMode::Position, upPos + sensorOffset);
+        slave.Follow(master);
         currentPos = Up;
        }
    }
@@ -60,6 +70,7 @@ if(!CONFIG_MODE){
 void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode, int eleEncPos) {
     
     setPt = intakeTrigger-ejectTrigger;
+    slave.Follow(master);
 
     hatchMode = isHatchMode;
 
@@ -70,8 +81,8 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
     if(abs(eleEncPos) > 10 && !eleAboveThreshold){
         eleAboveThreshold = true;
         if(currentPos == Home){
-            master.Set(ControlMode::Position, upPos);
-            slave.Set(ControlMode::Follower, masterID);
+            master.Set(ControlMode::Position, upPos + sensorOffset);
+            slave.Follow(master);
             currentPos = Up;
         }
     }else if(abs(eleEncPos) <= 10){
@@ -87,7 +98,7 @@ if(!hatchMode){
  if(setPt == 0 && !hasCargo){
         shooter.Set(ControlMode::PercentOutput, 0);
     }else if(setPt == 0 && hasCargo){
-        shooter.Set(ControlMode::PercentOutput, -0.07);
+        shooter.Set(ControlMode::PercentOutput, -0.1);
     }
 
     if (setPt > 0.5) {
@@ -101,7 +112,7 @@ if(!hatchMode){
                 hasCargo = true;
             }
     }else if(setPt < 0 && hasCargo){
-        shooter.Set(ControlMode::PercentOutput, -0.07);
+        shooter.Set(ControlMode::PercentOutput, -0.1);
     }
 }else{
 
@@ -208,7 +219,7 @@ float CargoPickup::getOutput(){
           master.Set(ControlMode::PercentOutput, -0.3);
       }if(!on && wasOnOn){
           master.SetSelectedSensorPosition(0);
-          master.Set(ControlMode::Position, homePos);
+          master.Set(ControlMode::Position, homePos + sensorOffset);
       }
 
     wasOnOn = on;

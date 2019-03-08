@@ -159,7 +159,7 @@ float Elevator::getOutput(){
 
 double Elevator::getClosedLoopTarget(){
 
-      return motor.GetClosedLoopTarget();
+      return 0;
 
 
   }
