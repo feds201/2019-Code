@@ -57,6 +57,7 @@ class Robot : public frc::TimedRobot{
   bool isCargoPresent;
   bool isCargoWristDown;
 
+
   int press;
 
   int vibrationTicker = 0;
