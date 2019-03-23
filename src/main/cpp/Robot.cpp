@@ -156,7 +156,7 @@ if(Op.GetPOV() == 270){
 	
 	//Driver Controls
 	
-	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)/2), drivetrainAutoheading, drivetrainVoltageControl);
+	Drive.Drive(deadzone(Driver.GetRawAxis(fwdChl)), deadzone(Driver.GetRawAxis(trnChl)), drivetrainAutoheading, drivetrainVoltageControl);
 
 	if(Driver.GetRawButtonPressed(shiftBtn)){
 		Drive.Shift();

@@ -46,22 +46,15 @@ void CargoPickup::ToggleArm() {
    
 if(!CONFIG_MODE){
 
-   if(currentPos == Up && !eleAboveThreshold){
-       master.Set(ControlMode::Position, homePos + sensorOffset);
-       slave.Follow(master);
-       currentPos = Home;
-   }else if(currentPos == Up && eleAboveThreshold){
-        master.Set(ControlMode::Position, downPos + sensorOffset);
-       slave.Follow(master);
-       currentPos = Down;
-   }else if(currentPos == Home){
+   
+   if(currentPos == Home){
        master.Set(ControlMode::Position, downPos + sensorOffset);
        slave.Follow(master);
        currentPos = Down;
    }else if(currentPos == Down){
-        master.Set(ControlMode::Position, upPos + sensorOffset);
+        master.Set(ControlMode::Position, homePos + sensorOffset);
         slave.Follow(master);
-        currentPos = Up;
+        currentPos = Home;
        }
    }
 
@@ -80,13 +73,18 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
 
     if(abs(eleEncPos) > 10 && !eleAboveThreshold){
         eleAboveThreshold = true;
-        if(currentPos == Home){
-            master.Set(ControlMode::Position, upPos + sensorOffset);
-            slave.Follow(master);
-            currentPos = Up;
-        }
     }else if(abs(eleEncPos) <= 10){
         eleAboveThreshold = false;
+    }
+
+    if(eleAboveThreshold && currentPos == Home){
+        master.Set(ControlMode::Position, upPos + sensorOffset);
+        slave.Follow(master);
+        currentPos = Up;
+    }else if(!eleAboveThreshold && currentPos == Up){
+        master.Set(ControlMode::Position, homePos + sensorOffset);
+        slave.Follow(master);
+        currentPos = Home;
     }
 
 if(!hatchMode){

@@ -78,6 +78,10 @@ Drivetrain::Drivetrain(){
 
 void Drivetrain::Drive(float fwd, float trn, bool autoHeading, bool voltageControl){
 
+	if(currentGear == 1){
+		trn*=0.3;
+	}
+
 	if(gearHasChanged && ACCEL_LIMIT_ENABLED){
 
 		if(currentGear == 1){
