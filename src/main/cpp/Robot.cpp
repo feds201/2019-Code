@@ -138,15 +138,15 @@ if(Op.GetPOV() == 270){
 		Ele.Lift();
 	}
 	
-	if(Op.GetRawButtonPressed(climbIncStage)){
+	if(Driver.GetRawButtonPressed(climbIncStage)){
 		Climb.incStage();
 	}
 
-	if(Op.GetRawButtonPressed(climbDecStage)){
+	if(Driver.GetRawButtonPressed(climbDecStage)){
 		Climb.decStage();
 	}
 
-	Climb.setWheel(Op.GetRawAxis(climbWheelAxis));
+	Climb.setWheel(Driver.GetRawAxis(climberWheelsFwdAxis)-Driver.GetRawAxis(climberWheelsRevAxis));
 
 	if(Op.GetRawButtonPressed(cargoToggle)){
 		Cargo.ToggleArm();
@@ -162,7 +162,7 @@ if(Op.GetPOV() == 270){
 		Drive.Shift();
 	}
 
-	Cargo.forceArmReset(Driver.GetRawButton(4));
+	//Cargo.forceArmReset(Driver.GetRawButton(4));
 
 	//Display Data To Dashboard
 

@@ -43,6 +43,9 @@ constexpr int cargoToggle = 4; //Y
 constexpr int cargoIntakeAxis = 2; //Eject Is Right Trigger, Intake Is Left Trigger
 constexpr int cargoEjectAxis = 3;
 
+constexpr int climberWheelsFwdAxis = 2;
+constexpr int climberWheelsRevAxis = 3;
+
 constexpr int pressureTransID = 0;
 
 
