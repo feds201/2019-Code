@@ -117,7 +117,7 @@ constexpr int retractFront = 3;
 constexpr int extendBack = 0;
 constexpr int retractBack = 1;
 constexpr int tractionWheelID = 3;
-constexpr int tractionWheel2ID = 3;
+constexpr int tractionWheel2ID = 1;
 
 //
 //
