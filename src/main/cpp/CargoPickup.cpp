@@ -71,9 +71,9 @@ void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatch
 
     frc::SmartDashboard::PutBoolean("Cargo Lock Enabled", hasCargo);
 
-    if(abs(eleEncPos) > 10 && !eleAboveThreshold){
+    if(abs(eleEncPos) > 6000 && !eleAboveThreshold){
         eleAboveThreshold = true;
-    }else if(abs(eleEncPos) <= 10){
+    }else if(abs(eleEncPos) <= 6000){
         eleAboveThreshold = false;
     }
 

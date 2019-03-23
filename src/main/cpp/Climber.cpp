@@ -34,14 +34,8 @@ void Climber::incStage(){
   }
   void Climber::setWheel(double speed){
 
-      if(stage == 2){
-      tractionwheel.Set(ControlMode::PercentOutput, speed/10);
-      tractionwheel2.Set(ControlMode::PercentOutput, -speed/10);
-      }else{
-        tractionwheel.Set(ControlMode::PercentOutput, 0);
-        tractionwheel2.Set(ControlMode::PercentOutput, 0);
-        //This sets the speed of the traction wheel; if it's in any stage but 2, it sets the speed to 0
-      }
+      tractionwheel.Set(ControlMode::PercentOutput, speed*0.15);
+      tractionwheel2.Set(ControlMode::PercentOutput, -speed*0.15);
   }
 
   void Climber::excStage(){
@@ -53,10 +47,14 @@ void Climber::incStage(){
           case 1:
 
             liftFront();
-            liftBack();
 
             break;
             //This case extends all of the pistons on the robot except for the one for the traction wheel
+
+        case 2:
+
+            liftBack();
+
         case 3:
         
             liftFront();
