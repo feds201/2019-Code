@@ -29,7 +29,7 @@ class Climber {
 //The last one controls the piston that deploys the traction wheel to pull the robot forward
 
   WPI_TalonSRX tractionwheel{tractionWheelID};
-  WPI_TalonSRX armMotor{armMotorID};
+  WPI_TalonSRX tractionwheel2{tractionWheel2ID};
 //Controls the wheel that will pull the robot forward after it lits itself up
 
   int stage = 0;

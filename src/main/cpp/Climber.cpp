@@ -7,8 +7,7 @@ Climber::Climber() {
     //This makes sure that all of the pistons are retracted by default
 
     tractionwheel.Set(ControlMode::PercentOutput, 0);
-    armMotor.Set(ControlMode::PercentOutput, 0);
-    std::cout << "test--------------------------" << std::endl;
+    tractionwheel2.Set(ControlMode::PercentOutput, 0);
     //This makes sure that the motor for the wheel is off by default
 
     std::cout << "INFO: CLIMBER INIT COMPLETE" << std::endl;
@@ -37,8 +36,10 @@ void Climber::incStage(){
 
       if(stage == 2){
       tractionwheel.Set(ControlMode::PercentOutput, speed/10);
+      tractionwheel2.Set(ControlMode::PercentOutput, -speed/10);
       }else{
         tractionwheel.Set(ControlMode::PercentOutput, 0);
+        tractionwheel2.Set(ControlMode::PercentOutput, 0);
         //This sets the speed of the traction wheel; if it's in any stage but 2, it sets the speed to 0
       }
   }
