@@ -34,8 +34,8 @@ void Climber::incStage(){
   }
   void Climber::setWheel(double speed){
 
-      tractionwheel.Set(ControlMode::PercentOutput, speed*0.15);
-      tractionwheel2.Set(ControlMode::PercentOutput, -speed*0.15);
+      tractionwheel.Set(ControlMode::PercentOutput, speed*0.3);
+      tractionwheel2.Set(ControlMode::PercentOutput, -speed*0.3);
   }
 
   void Climber::excStage(){
@@ -54,6 +54,8 @@ void Climber::incStage(){
         case 2:
 
             liftBack();
+
+            break;
 
         case 3:
         

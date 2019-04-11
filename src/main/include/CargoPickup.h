@@ -46,7 +46,7 @@ class CargoPickup {
   double setPt;
 
   int upPos = 50;
-  int downPos = 1000;
+  int downPos = 900;
   int homePos = -250; // -250
 
   int sensorOffset = 0;

@@ -35,7 +35,7 @@ Elevator::Elevator() {
 
 void Elevator::Lift(){
 
-    if(currentPos != 4 && !elevatorManualMode && !pinsOut){
+    if(currentPos != 5 && !elevatorManualMode && !pinsOut){
         currentPos++;
         motor.Set(ControlMode::Position, posList[currentPos]);
     }
@@ -132,13 +132,15 @@ std::string Elevator::getTarget(){
     if(currentPos == 0){
         return "Home / Cargo Low";
     }else if(currentPos == 1){
-        return "Hatch Low";
+        return "Hatch Sandstorm Low";
     }else if(currentPos == 2){
-        return "Cargo Mid";
+        return "Hatch Low";
     }else if(currentPos == 3){
-        return "Hatch Sandstrom";
+        return "Cargo Mid";
     }else if(currentPos == 4){
         return "Hatch Mid";
+    }else if(currentPos == 5){
+        return "Cargo High";
     }else{
         return "Error: Unknown Pos";
     }

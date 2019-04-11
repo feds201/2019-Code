@@ -105,8 +105,8 @@ if(!hatchMode){
     }
 
     if (setPt < 0 && !hasCargo) {
-            shooter.Set(ControlMode::PercentOutput, setPt);
-            if(shooter.GetOutputCurrent() > 40){
+            shooter.Set(ControlMode::PercentOutput, setPt*0.66);
+            if(shooter.GetOutputCurrent() > 32){
                 hasCargo = true;
             }
     }else if(setPt < 0 && hasCargo){

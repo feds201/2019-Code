@@ -11,8 +11,8 @@ void Robot::RobotInit() {
 
     Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-	Camera.SetResolution(360, 240);
-	Camera.SetFPS(15);
+	Camera.SetResolution(320, 240);
+	Camera.SetFPS(30);
 
 	if(SINGLE_OPERATOR_MODE){
 		std::cout << "WARNING: SINGLE OP MODE IS ENABLED" << std::endl;
@@ -197,7 +197,7 @@ if(Op.GetPOV() == 270){
 
 //Logging
 
-
+/*
 	if(logThisTime){
 
 		logTicker = 0;
@@ -249,7 +249,7 @@ if(Op.GetPOV() == 270){
 		Logger::instance()->logCSV(&csvData);
 
 	}
-	
+*/	
 }
 
 

@@ -115,9 +115,9 @@ constexpr double elevator_D = 0;
 //
 //
 
-constexpr int extendFront = 2;
+constexpr int extendFront = 0;
 constexpr int retractFront = 3;
-constexpr int extendBack = 0;
+constexpr int extendBack = 2;
 constexpr int retractBack = 1;
 constexpr int tractionWheelID = 3;
 constexpr int tractionWheel2ID = 1;

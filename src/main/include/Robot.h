@@ -27,7 +27,7 @@ class Robot : public frc::TimedRobot{
   void TestPeriodic() override;
   void singleOpMode();
   void Teleop();
-  Robot():TimedRobot(0.08){}
+  Robot():TimedRobot(0.04){}
 
  private:
   
