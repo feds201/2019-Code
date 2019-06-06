@@ -68,13 +68,13 @@ void Elevator::Override(double speed, bool isOverride, bool arePinsOut){
      }
 
     if(!elevatorManualMode && speed > 0){
-        speed /= 3;
+        speed /= 2;
     }else if(!elevatorManualMode && speed < 0){
         speed /= 6;
     }
 
 
-    if(abs(motor.GetSelectedSensorPosition()) > 26000){
+    if(abs(getEncPos()) > 26500){
         topLimit = true;
     }
 
@@ -176,4 +176,11 @@ double Elevator::getClosedLoopTarget(){
       return motor.GetErrorDerivative();
 
 
+  }
+
+  void Elevator::down2k(){
+
+    if(currentPos != 0 && getEncPos() > 2000){
+      motor.Set(ControlMode::Position, posList[currentPos]-2000);
+    }
   }

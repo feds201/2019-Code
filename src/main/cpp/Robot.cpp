@@ -9,10 +9,15 @@
 
 void Robot::RobotInit() {
 
-    Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
+    //Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-	Camera.SetResolution(320, 240);
-	Camera.SetFPS(30);
+	//Camera.SetResolution(320, 240);
+	//Camera.SetFPS(30);
+
+	mjpegerver.SetSource(camera);  //Made MJPG server to host camera feed from roborio with more compression and a custom resolution
+  	mjpegerver.SetFPS(15);
+  	mjpegerver.SetResolution(480, 270);
+  	mjpegerver.SetCompression(70);
 
 	if(SINGLE_OPERATOR_MODE){
 		std::cout << "WARNING: SINGLE OP MODE IS ENABLED" << std::endl;
@@ -122,7 +127,9 @@ if(Op.GetPOV() == 270){
 		Hatch.moveBackplate();
 	}
 
-	Hatch.Eject(Op.GetRawButton(hatchAbort));
+	if(Op.GetRawButtonPressed(hatchAbort)){
+		Ele.down2k();
+	}
 
 	//
 

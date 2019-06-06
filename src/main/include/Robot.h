@@ -27,7 +27,7 @@ class Robot : public frc::TimedRobot{
   void TestPeriodic() override;
   void singleOpMode();
   void Teleop();
-  Robot():TimedRobot(0.04){}
+  Robot():TimedRobot(0.06){}
 
  private:
   
@@ -45,7 +45,10 @@ class Robot : public frc::TimedRobot{
   frc::Joystick Op{1};
   //frc::Compressor comp{0};
 
-  cs::UsbCamera Camera;
+  //cs::UsbCamera Camera;
+
+  cs::UsbCamera camera{"Camera", "/dev/video0"};
+  cs::MjpegServer mjpegerver{"serve_usbcam_0", 1181};
 
   int logTicker = 0;
   int logInterval = 20;

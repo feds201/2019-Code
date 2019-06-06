@@ -70,7 +70,7 @@ Drivetrain::Drivetrain(){
     Right1.Config_kI(0, Drivetrain_I);
     Right1.Config_kD(0, Drivetrain_D);
 
-	Shifter.Set(frc::DoubleSolenoid::Value::kReverse);
+	Shifter.Set(frc::DoubleSolenoid::Value::kForward);
 
 	std::cout << "INFO: DRIVETRAIN INIT COMPLETE" << std::endl;
 

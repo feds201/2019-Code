@@ -43,10 +43,11 @@ class Elevator {
   double getClosedLoopTarget();
   double getIAccum();
   double getDirivErr();
+  void down2k();
 
   private:
    
-   int posList[6] = {0, 2400, 6800, 13000, 20000, 26000}; //Home/Cargo Low, Hatch Sandstorm Low, Hatch Low, Cargo Mid, Hatch Mid, Cargo High 
+   int posList[6] = {0, 2500, 5000, 13500, 17500, 26500}; //Home/Cargo Low, Hatch Pickup, Hatch Low, Cargo Mid, Hatch Mid, Cargo High 
 
    int currentPos = 0;
    int overridePos = 0;
