@@ -5,65 +5,65 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "CargoPickup.h"
+#include "CargoPickup.h" //Pulls code from header file
 
 CargoPickup::CargoPickup() {
 
-    masterID = master.GetDeviceID();
+    masterID = master.GetDeviceID(); //declares masterID as device id of the main wrist motor
 
-    shooter.Set(ControlMode::PercentOutput, 0);
+    shooter.Set(ControlMode::PercentOutput, 0); //changes the control mode of the shootey wheel motors
 
-    master.ConfigFeedbackNotContinuous(true, 10);
+    master.ConfigFeedbackNotContinuous(true, 10); //stops the arm from going the wrong way
     
-    master.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
-    sensorOffset = master.GetSelectedSensorPosition();
+    master.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute); //sets the ID of the encoder for the master wrist motor
+    sensorOffset = master.GetSelectedSensorPosition(); //sets what we want as the rest position to zero
 
-    master.SetSensorPhase(false);
+    master.SetSensorPhase(false); //turns off this setting
 
     master.Config_kP(0, Cargo_P, 10); //Don't Know Yet https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html
     master.Config_kI(0, Cargo_I, 10); //THE SECOND NUMBER IS THE CONSTANT VALUE TO TUNE
-    master.Config_kD(0, Cargo_D, 10);
+    master.Config_kD(0, Cargo_D, 10); //PID Tuning
 
-    master.Set(ControlMode::Position, homePos + sensorOffset);
-    slave.Follow(master);
+    master.Set(ControlMode::Position, homePos + sensorOffset); //Changes the control mode of the master wrist motor to follow specific positions
+    slave.Follow(master); //this tells the slave wrist motor to follow the commands that the master recieves
 
-    master.ConfigPeakOutputForward(0.4, 10);
-    master.ConfigPeakOutputReverse(-0.5, 10);
+    master.ConfigPeakOutputForward(0.4, 10); //limits the speed of the motor going forward
+    master.ConfigPeakOutputReverse(-0.5, 10); //limits the speed of the motor going backwards
 
-    master.ConfigContinuousCurrentLimit(40, 10);
-    master.ConfigPeakCurrentLimit(40, 10);
-    master.ConfigPeakCurrentDuration(0, 10);
+    master.ConfigContinuousCurrentLimit(40, 10); //limits the current draw of the motor continously
+    master.ConfigPeakCurrentLimit(40, 10); //limits the current draw of the motor non-continuously
+    master.ConfigPeakCurrentDuration(0, 10); //defines when the current draw becomes considered continuous
 
-    slave.ConfigContinuousCurrentLimit(40, 10);
-    slave.ConfigPeakCurrentLimit(40, 10);
-    slave.ConfigPeakCurrentDuration(0, 10);
+    slave.ConfigContinuousCurrentLimit(40, 10); /* ------------------------------------------------------------*/
+    slave.ConfigPeakCurrentLimit(40, 10);       /* this does all that stuff that the master does for the slave */
+    slave.ConfigPeakCurrentDuration(0, 10);     /* ------------------------------------------------------------*/
 
-    std::cout << "INFO: CARGO PICKUP INIT COMPLETE" << std::endl;
+    std::cout << "INFO: CARGO PICKUP INIT COMPLETE" << std::endl; //sends the message "INFO: CARGO PICKUP INIT COMPLETE"
 
 }
 
-void CargoPickup::ToggleArm() {
+void CargoPickup::ToggleArm() { //this runs when someone hits the button to change the arm position
    
-if(!CONFIG_MODE){
+if(!CONFIG_MODE){ //this always runs
 
    
-   if(currentPos == Home){
-       master.Set(ControlMode::Position, downPos + sensorOffset);
-       slave.Follow(master);
-       currentPos = Down;
-   }else if(currentPos == Down){
-        master.Set(ControlMode::Position, homePos + sensorOffset);
-        slave.Follow(master);
-        currentPos = Home;
+   if(currentPos == Home){ //if the current position of the wrist is the Home position
+       master.Set(ControlMode::Position, downPos + sensorOffset); //change the arm position to the down position
+       slave.Follow(master); //do the same thing with the other motor
+       currentPos = Down; //change the variable to down
+   }else if(currentPos == Down){ //if the current position of the motor is the Down position
+        master.Set(ControlMode::Position, homePos + sensorOffset); //change the arm position to the home position
+        slave.Follow(master); //do the same thing with the other motor
+        currentPos = Home; //change the variable to home
        }
    }
 
 }
 
-void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode, int eleEncPos) {
+void CargoPickup::Intake(double intakeTrigger, double ejectTrigger, bool isHatchMode, int eleEncPos) { //this is called when the operator tries to pick up cargo
     
-    setPt = intakeTrigger-ejectTrigger;
-    slave.Follow(master);
+    setPt = intakeTrigger-ejectTrigger; //sets this variable to 
+    slave.Follow(master); //does whatever the master just did
 
     hatchMode = isHatchMode;
 
