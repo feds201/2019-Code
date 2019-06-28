@@ -126,7 +126,7 @@ double Elevator::getCurrent(){
     return motor.GetOutputCurrent();
 
 }
-
+//Different stages of where the cargo and hatch goes to put piece on rocket
 std::string Elevator::getTarget(){
 
     if(currentPos == 0){
