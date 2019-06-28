@@ -78,19 +78,19 @@ Drivetrain::Drivetrain(){
 
 void Drivetrain::Drive(float fwd, float trn, bool autoHeading, bool voltageControl){
 
-	if(currentGear == 1){
+	if(currentGear == 1){ //If the current gear is 1
 		trn*=0.3;
 		fwd*=0.5;
 	}else{
 		trn*=0.75;
 	}
 
-	if(gearHasChanged && ACCEL_LIMIT_ENABLED){
+	if(gearHasChanged && ACCEL_LIMIT_ENABLED){ //IF the gear changed AND the accerlation limit is enabled
 
-		if(currentGear == 1){
+		if(currentGear == 1){ //If the current gear is one set acceltime lo to 10
 			Left1.ConfigClosedloopRamp(accelTimeLo, 10);
 			Right1.ConfigClosedloopRamp(accelTimeLo, 10);
-			gearHasChanged = false;
+			gearHasChanged = false; 
 		}else if(currentGear == 2){
 			Left1.ConfigClosedloopRamp(accelTimeHi, 10);
 			Right1.ConfigClosedloopRamp(accelTimeHi, 10);
