@@ -19,16 +19,22 @@ void Climber::incStage(){
     if((stage+1) <= 5){
     stage++;
     }
+    else if((stage+1) >= 6) {
+        stage = 0;
+    }
     excStage();
     //This makes the stage increase by 1 if the resulting stage doesn't go above 5
 
 }
   void Climber::decStage(){
 
-      if((stage-1) >= 0){
+      if((stage+1) >= 1){
       stage--;
     }
-      excStage();
+    else if((stage+1) <= 0) {
+        stage = 4;
+    }      
+    excStage();
     //This makes the stage decrease by 1 if the resulting stage doesn't go below 0
 
   }
