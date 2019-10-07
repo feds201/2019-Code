@@ -26,6 +26,7 @@ constexpr int fwdChl = 1;
 constexpr int trnChl = 4;
 
 constexpr int shiftBtn = 1; //A
+constexpr int shiftStick = 9; //left stick
 
 constexpr int hatchRun = 1; //A
 constexpr int hatchAbort = 2; //B

@@ -33,7 +33,7 @@ Drivetrain::Drivetrain(){
 	Left1.ConfigOpenloopRamp(accelTimeLo, 10);
 	Right1.ConfigOpenloopRamp(accelTimeLo, 10);
 
-	//Current Limits 
+	/*Current Limits 
 	Right1.ConfigContinuousCurrentLimit(40, 10);
 	Right1.ConfigPeakCurrentLimit(60, 10);
 	Right1.ConfigPeakCurrentDuration(400, 10);
@@ -52,7 +52,7 @@ Drivetrain::Drivetrain(){
 	Left2.ConfigContinuousCurrentLimit(40, 10);
 	Left2.ConfigPeakCurrentLimit(60, 10);
 	Left2.ConfigPeakCurrentDuration(400, 10);
-	Left2.EnableCurrentLimit(true);
+	Left2.EnableCurrentLimit(true);*/
 
     }else{
         std::cout << "WARNING: ACCEL LIMIT NOT ENABLED" << std::endl;
@@ -88,6 +88,7 @@ Drivetrain::Drivetrain(){
     Right1.Config_kP(0, Drivetrain_P);
     Right1.Config_kI(0, Drivetrain_I);
     Right1.Config_kD(0, Drivetrain_D);
+
 
 	Shifter.Set(frc::DoubleSolenoid::Value::kForward);
 
