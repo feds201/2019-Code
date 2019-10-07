@@ -33,7 +33,26 @@ Drivetrain::Drivetrain(){
 	Left1.ConfigOpenloopRamp(accelTimeLo, 10);
 	Right1.ConfigOpenloopRamp(accelTimeLo, 10);
 
+	//Current Limits 
+	Right1.ConfigContinuousCurrentLimit(40, 10);
+	Right1.ConfigPeakCurrentLimit(60, 10);
+	Right1.ConfigPeakCurrentDuration(400, 10);
+	Right1.EnableCurrentLimit(true);
 
+	Left1.ConfigContinuousCurrentLimit(40, 10);
+	Left1.ConfigPeakCurrentLimit(60, 10);
+	Left1.ConfigPeakCurrentDuration(400, 10);
+	Left1.EnableCurrentLimit(true);
+
+	Right2.ConfigContinuousCurrentLimit(40, 10);
+	Right2.ConfigPeakCurrentLimit(60, 10);
+	Right2.ConfigPeakCurrentDuration(400, 10);
+	Right2.EnableCurrentLimit(true);
+
+	Left2.ConfigContinuousCurrentLimit(40, 10);
+	Left2.ConfigPeakCurrentLimit(60, 10);
+	Left2.ConfigPeakCurrentDuration(400, 10);
+	Left2.EnableCurrentLimit(true);
 
     }else{
         std::cout << "WARNING: ACCEL LIMIT NOT ENABLED" << std::endl;
@@ -213,6 +232,8 @@ float * Drivetrain::GetCurr(){
 				motorNum = i+1;
 			}
 		}
+
+
 		
 		std::cout << "WARNING: HIGH DRIVETRAIN CURRENT ON MOTOR " << motorNum << " DRAWING " << highCurr << " AMPS" << std::endl;
 		
