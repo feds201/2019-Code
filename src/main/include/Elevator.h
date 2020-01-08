@@ -9,7 +9,7 @@
 -one button 
 [cargo mode 
 hatch mode]
--cargo mode has 3 hights
+-cargo mode has 3 hights 
 -lowest hatch hight is the home position
 -one button will switch from how high it is
 -limit swatchs are on the top and buttom of robot
