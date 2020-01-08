@@ -244,7 +244,7 @@ if(Op.GetPOV() == 270){
 		csvData.wristOutputPercent = Cargo.getOutput();
 		csvData.cargoIn = Cargo.isCargo();
 
-		csvData.hatchOn = Hatch.hatchOn();
+		csvData.hatchOn = Hatch.hat>chOn();
 
 		csvData.frontLifterUp = Climb.getFrontState();
 		csvData.backLifterUp = Climb.getBackState();
