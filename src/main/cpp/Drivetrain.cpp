@@ -249,7 +249,6 @@ void Drivetrain::vision() {
 				//we see target, aim
 				frc::SmartDashboard::PutString("Vision Success", "We did it");
 
-		}
 
 		}
 
