@@ -1,8 +1,11 @@
 #pragma once
 
 #include"RobotMap.h"
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+#include "frc/smartdashboard/Smartdashboard.h"
 
-class Drivetrain{
+class Drivetrain {
 
 public:
 
@@ -18,6 +21,7 @@ public:
 	void SetEncPos(double left, double right);
 	double getGyroAngle();
 	void setGyroAngle(double angle);
+	void vision();
 
 private:
 		

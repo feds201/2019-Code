@@ -33,6 +33,7 @@ constexpr int hatchAbort = 2; //B
 constexpr int eleLift = 6; //Right Bumper
 constexpr int eleLower = 5; //Left Bumper
 constexpr int eleOverride = 3; //X
+constexpr int visionbtn = 3; //X
 constexpr int eleOverrideAxis = 1; //Axis 1
 
 constexpr int climbIncStage = 8; //Menu

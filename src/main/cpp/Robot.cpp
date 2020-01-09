@@ -123,6 +123,10 @@ if(Op.GetPOV() == 270){
 
 	// Uncomment If No Limit Switch Is Added To Hatch Mech
 
+	if(Driver.GetRawButtonPressed(visionbtn)){
+		Drive.vision();
+	}
+
 	if(Op.GetRawButtonPressed(hatchRun)){
 		Hatch.moveBackplate();
 	}
