@@ -176,10 +176,10 @@ if(Op.GetPOV() == 270){
 	//Cargo.forceArmReset(Driver.GetRawButton(4));
 
 	//Display Data To Dashboard
-
+float tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
 
 	press = (double)((((double)pressure.GetValue()-404.0)/3418.0)*120.0);
-
+frc::SmartDashboard::PutNumber("# of objects", tv);
 	frc::SmartDashboard::PutNumber("Pressure", press);
 	frc::SmartDashboard::PutNumber("Total Current Draw", pdp.GetTotalCurrent());
 	frc::SmartDashboard::PutBoolean("Has Cargo", Cargo.isCargo());
