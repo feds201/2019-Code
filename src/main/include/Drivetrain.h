@@ -21,7 +21,7 @@ public:
 	void SetEncPos(double left, double right);
 	double getGyroAngle();
 	void setGyroAngle(double angle);
-	void vision();
+	void vision(double fwd, double trn);
 
 private:
 		

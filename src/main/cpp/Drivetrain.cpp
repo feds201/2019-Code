@@ -228,27 +228,16 @@ float * Drivetrain::GetSetpoint(){
 
 }
 
-void Drivetrain::vision() {
+void Drivetrain::vision(double trnspeed, double fwrdspeed) {
 	
 	std::shared_ptr<NetworkTable> table = NetworkTable::GetTable("limelight");
 	float tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
 	float tx = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0);
 
-	float turnspeed = .2;
+	
+	
+while(tv == 0.0f){
+	Drive(fwrdspeed, trnspeed, false, true);
+}
 
-	if (tv == 0.0f)
-	{
-			// we dont see target, turn
-			while (true) { 
-			Drive(0, turnspeed, false, false);
-			}
-			
-	}
-		else
-		{
-				//we see target, aim
-				frc::SmartDashboard::PutString("Vision Success", "We did it");
-
-
-		}
-
+}
