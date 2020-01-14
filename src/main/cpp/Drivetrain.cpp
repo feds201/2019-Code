@@ -228,16 +228,23 @@ float * Drivetrain::GetSetpoint(){
 
 }
 
-void Drivetrain::vision(double trnspeed, double fwrdspeed) {
+void Drivetrain::vision(double fwrdspeed, double trnspeed) {
 	
 	std::shared_ptr<NetworkTable> table = NetworkTable::GetTable("limelight");
 	float tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
 	float tx = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0);
 
-	
-	
 while(tv == 0.0f){
 	Drive(fwrdspeed, trnspeed, false, true);
+	 tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
 }
+/*
+while(tv != 0.0){
+	Drive(fwrdspeed,0, false, true);
+	 tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
+}
+*/
+	
+
 
 }

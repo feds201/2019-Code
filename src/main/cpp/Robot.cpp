@@ -45,9 +45,10 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 
-	Teleop();
+	//Teleop();
  
 	//Make Sure To Put Teleop Code In Here For Sandstorm Period
+
 
 }
 
@@ -124,7 +125,15 @@ if(Op.GetPOV() == 270){
 	// Uncomment If No Limit Switch Is Added To Hatch Mech
 
 	if(Driver.GetRawButtonPressed(visionbtn)){
-		Drive.vision(0.2, 0.2);
+		/*std::shared_ptr<NetworkTable> table = NetworkTable::GetTable("limelight");
+		float tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
+		float tx = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0);
+
+		while(tv == 0.0f){
+		Drive.Drive(0.0, 1, false, true);
+		 tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);*/
+//}
+		Drive.vision(0, 1);
 	}
 
 	if(Op.GetRawButtonPressed(hatchRun)){
@@ -177,8 +186,10 @@ if(Op.GetPOV() == 270){
 
 	//Display Data To Dashboard
 float tv = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0);
+float tx = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0);
 
 	press = (double)((((double)pressure.GetValue()-404.0)/3418.0)*120.0);
+frc::SmartDashboard::PutNumber("vision offset", tx);
 frc::SmartDashboard::PutNumber("# of objects", tv);
 	frc::SmartDashboard::PutNumber("Pressure", press);
 	frc::SmartDashboard::PutNumber("Total Current Draw", pdp.GetTotalCurrent());
