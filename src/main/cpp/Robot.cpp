@@ -6,7 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
-
+#include "ColorSensorV3.h"
+#include "ColorMatch.h"
 void Robot::RobotInit() {
 
     //Camera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
